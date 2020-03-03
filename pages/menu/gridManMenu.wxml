@@ -1,0 +1,48 @@
+<!-- 报事 -->
+
+<view class="{{currentTab == 0?'show':'hidden'}} tab-content">
+  <image class="bg-img" src="../../images/tab1-bg.png"></image>
+
+  <view class="report-button-wrapper" bindtap="masses">
+    <image class="report-button-icon" src="../../images/masses.png"></image>
+    <view class="report-button-info">
+      <view class="report-button-info-label">我是群众</view>
+      <view class="report-button-info-desc">供群众进行报事支持</view>
+    </view>
+    <image class="report-button-tail" src="../../images/arrow-right.png"></image>
+  </view>
+  <view class="report-button-wrapper" style="margin-top:100rpx;" bindtap="gridMan">
+    <image class="report-button-icon" src="../../images/gridman.png"></image>
+    <view class="report-button-info">
+      <view class="report-button-info-label">我是网格员</view>
+      <view class="report-button-info-desc">供网格员进行报事支持</view>
+    </view>
+    <image class="report-button-tail" src="../../images/arrow-right.png"></image>
+  </view>
+</view>
+
+<!-- 记录 -->
+
+<view class="{{currentTab == 1?'show':'hidden'}} tab-content">
+  <!--pages/jobdiary/jobdiary.wxml-->
+  <view class="box">
+    <view class="inbox bg">
+      <view class="record_date">记录日期</view>
+      <view class="work_objective">工作目标</view>
+    </view> 
+    <block wx:for="{{arr}}">
+      <view class="inbox border_botm" bindtap="detailtip" data-index="{{item.id}}">
+        <view class="record_date">{{item.workDay}}</view>
+        <view class="work_objective">{{item.workGoal}}</view>
+      </view> 
+    </block>
+  </view>
+
+  <!-- add -->
+  <view class="f_box" bindtap="addtip">新增</view>
+</view>
+<view class="{{currentTab == 2?'show':'hidden'}} tab-content">我的</view>
+
+<view class="nav-tabs">
+    <view class="tab-list  {{currentTab == idx?'active':'default'}}" wx:for="{{tabArray}}" wx:for-index="idx" wx:for-item="itemName" data-current="{{idx}}" bindtap="swichNav">{{itemName}}</view>
+</view>

@@ -1,0 +1,35 @@
+<?xml version="1.0" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd" >
+<!--
+2013-9-30: Created.
+-->
+<svg>
+<metadata>
+Created by iconfont
+</metadata>
+<defs>
+
+<font id="iconfont" horiz-adv-x="1024" >
+  <font-face
+    font-family="iconfont"
+    font-weight="500"
+    font-stretch="normal"
+    units-per-em="1024"
+    ascent="896"
+    descent="-128"
+  />
+    <missing-glyph />
+    
+    <glyph glyph-name="shanchu1" unicode="&#59020;" d="M555.4 384l304.6 304.6c4.8 4.8 4.8 12.6 0 17.4l-26 26c-4.8 4.8-12.6 4.8-17.4 0L512 427.4 207.4 732c-4.8 4.8-12.6 4.8-17.4 0l-26-26c-4.8-4.8-4.8-12.6 0-17.4L468.6 384 164 79.4c-4.8-4.8-4.8-12.6 0-17.4l26-26c4.8-4.8 12.6-4.8 17.4 0L512 340.6l304.6-304.6c4.8-4.8 12.6-4.8 17.4 0l26 26c4.8 4.8 4.8 12.6 0 17.4L555.4 384z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="jia" unicode="&#58901;" d="M1018.024921 428.332632H553.659381V892.705398h-86.700064v-464.372766H2.586552v-86.700063h464.372765v-464.387215h86.700064V341.632569h464.36554z"  horiz-adv-x="1024" />
+
+    
+    <glyph glyph-name="jia1" unicode="&#58949;" d="M898 419.5H547v351c0 19.3-15.7 35-35 35s-35-15.7-35-35v-351H126c-19.3 0-35-15.7-35-35s15.7-35 35-35h351v-351c0-19.3 15.7-35 35-35s35 15.7 35 35v351h351c19.3 0 35 15.7 35 35s-15.7 35-35 35z"  horiz-adv-x="1024" />
+
+    
+
+
+  </font>
+</defs></svg>

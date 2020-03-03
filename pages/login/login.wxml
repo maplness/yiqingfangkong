@@ -1,0 +1,40 @@
+<!--pages/login/login.wxml-->
+<!-- <text>pages/login/login.wxml</text> -->
+
+<!--pages/phlogin/pglogin.wxml-->
+<view class='page'>
+
+  <view class='page__hd'>
+    <text>城市网格化系统</text>
+  </view>
+
+  <view class='page__bd'>
+      <image class="bg-img" src="../../images/login-bg-new.png">
+      </image>
+
+      <form bindsubmit="submitForm">
+
+      <view class="form">
+        <view class="weui-cell weui-cell_input">   
+        <input  class="weui-input" name="tel" value="{{form.tel}}" placeholder="账号" bindinput="telChange"/>
+
+        </view>
+        <view class='grey-line'></view>
+
+        <view class='weui-cell weui-cell_input'>
+          <view class="weui-cell__bd">
+            <input name = "vcode" value="{{form.vcode}}" class='weui-input' placeholder='密码' bindinput='setPwd'/>
+          </view>
+        </view>
+        <view class='grey-line'></view>
+      </view>
+    
+
+
+    <button class='btn1' formType="submit">登录</button>
+  </form>
+</view>
+
+  
+
+</view>

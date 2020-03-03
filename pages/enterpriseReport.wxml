@@ -1,0 +1,105 @@
+<!--pages/enterpriseReport.wxml-->
+<view class="legalInfo">请如实填写信息，漏报、瞒报、提供虚假信息将承担相应法律后果</view>
+<form bindsubmit="formSubmit">
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">企业名称</view>
+  <input placeholder="请填写企业名称" name="companyName" class="flex-item"></input>
+</view>
+<view class="divider"></view>
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">详细地址</view>
+  <input class="flex-item" name="companyAddress" placeholder="请填写详细地址"></input>
+</view>
+<view class="divider"></view>
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">企业负责人</view>
+  <input class="flex-item" name="companyLeader" placeholder="请填写企业负责人"></input>
+</view>
+<view class="divider"></view>
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">负责人联系方式</view>
+  <input class="flex-item" name="leaderContact" placeholder="请填写负责人联系方式"></input>
+</view>
+<view class="divider"></view>
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">员工总人数</view>
+  <input class="flex-item" name="totalStaffNum" placeholder="请填写员工总人数"></input>
+</view>
+<view class="divider"></view>
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">济南籍员工人数</view>
+  <input class="flex-item" name="jinanStaffNum" placeholder="请填写济南籍员工人数"></input>
+</view>
+<view class="divider"></view>
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">本省外地市员工人数</view>
+  <input class="flex-item" name="otherCityStaffNum" placeholder="请填写本省外地市员工人数"></input>
+</view>
+<view class="divider"></view>
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">外省员工人数</view>
+  <input class="flex-item" name="otherProvinceStaffNum" placeholder="请填写外省员工人数"></input>
+</view>
+<view class="divider"></view>
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">湖北籍员工人数</view>
+  <input class="flex-item" name="hubeiStaffNum" placeholder="请填写湖北籍员工人数"></input>
+</view>
+<view class="divider"></view>
+<view class="label2">
+  <view style="margin-left:40rpx;color:red;">*</view>
+  <view class="label">武汉籍人数</view>
+  <input class="flex-item" name="wuhanStaffNum" placeholder="请填写武汉籍人数"></input>
+</view>
+<view class="divider2"></view>
+<view class="label2">
+  <view class="label3">报事名称</view>
+  <input class="flex-item2" name="eventName" placeholder="请填写报事名称"></input>
+</view>
+<view class="divider2"></view>
+<view class="">
+  <!-- <view style="margin-left:40rpx;color:red;">*</view> -->
+  <view class="label3">报事详情</view>
+  <textarea class="input-box" name="eventDetail" placeholder="填写事件发生地点，起因、经过、结果" maxlength="300" bindinput="signDetailInput">
+    <text class="hint">{{charNumber}}/300</text>
+    <!-- <image class="microphone" src="../images/microphone.png"></image> -->
+  </textarea>
+</view>
+<view class="divider2"></view>
+<view class="">
+  <!-- <view style="margin-left:40rpx;color:red;">*</view> -->
+  <view class="label3">事件发生位置</view>
+  <textarea class="input-box2" name="eventAddress" placeholder="请填写事件发生位置" value="{{current_location}}">
+    <!-- <image class="location-icon" src="../images/location.png"></image> -->
+  </textarea>
+</view>
+<view class="divider2"></view>
+<view>
+  <view class="label3">定位网格</view>
+  <input class="input-box2" name="eventGridName" placeholder="定位网格"></input>
+</view>
+<view class="divider2"></view>
+<view>
+  <view class="label3">报事人身份证号码</view>
+  <input class="input-box2" name="reporterIdNum" placeholder="请填写报事人身份证号码"></input>
+</view>
+<view class="divider2"></view>
+<view>
+  <view class="label3">照片</view>
+  <image class="add" src="../images/add.png"></image>
+</view>
+
+  <view class="submitButton display_block">
+    <button class="submit" bindtap="" size="mini" formType="submit">提交</button>
+    <button class="cancel" bindtap="canceltip" size="mini">取消</button>
+  </view>
+</form>

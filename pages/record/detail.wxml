@@ -1,0 +1,41 @@
+<!--pages/jobdiary/add.wxml-->
+<view class="page_add">
+  <form bindsubmit="submitForm">
+  <view class="line_box">
+    <view class="name">填报人</view>
+    <input name="userName" value="{{form.userName}}" disabled="true"></input>
+  </view>
+  <view class="line_box">
+    <view class="name" >工作目标</view>
+    <input name="workGoal" value="{{form.workGoal}}" disabled="true"></input>
+  </view>
+  <view class="line_box_text">
+    <view class="name" >工作记录</view>
+    <view class="textRecord">
+      <textarea name="workDetail" value="{{form.workDetail}}" disabled="true"></textarea>
+    </view>
+  </view>
+  <view class="line_box_text">
+    <view class="name" >照片</view>
+    <view class="picRecord">
+      <view class="question-images clearFloat">
+        <block wx:for="{{images}}" wx:key="*this">
+          <view class="q-image-wrap">
+            <!-- 图片缩略图  -->
+            <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+            <!-- 移除图片的按钮  -->
+            <!-- <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+              <icon class='iconfont icon-shanchu1'></icon>
+            </view> -->
+          </view>
+        </block>
+        <!-- 上传图片 -->
+        <!-- <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
+          <icon class="iconfont icon-jia1"></icon>
+        </view> -->
+      </view>
+    </view>
+    
+  </view>
+  </form>
+</view>

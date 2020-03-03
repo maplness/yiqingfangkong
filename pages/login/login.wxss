@@ -1,0 +1,87 @@
+/* pages/login/login.wxss */
+.bg-img{
+  position: absolute;
+  width: 95%;
+  height: 40%;
+  z-index: -1;
+  top: 150rpx
+}
+.logo-img{
+  position: absolute;
+  width: 128rpx;
+  height: 128rpx;
+  left: 310rpx;
+  top: 30rpx;
+}
+.title{
+  font-size: 36rpx;
+  position: absolute;
+  left: 270rpx;
+  top: 180rpx;
+}
+/* pages/phlogin/pglogin.wxss */
+.grey-line{
+  height: 1rpx;
+  border-bottom: 1rpx solid #EEEEEE;
+  margin-left: 40px;
+  width: 100%;
+}
+.page__hd{
+  font-family: PingFangSC-Semibold;
+  font-size: 20px;
+  padding-left: 32rpx;
+  padding-bottom: 20rpx;
+  padding-top: 48rpx;
+  text-align: center;
+  line-height: 100rpx;
+}
+
+.btn1{
+  position: absolute;
+  left: 10%;
+  top: 80%;
+  width: 80%;
+  border-radius: 5px;
+  color: #fff;
+  /* margin: 60rpx 32rpx 10rpx 32rpx; */
+  background:  linear-gradient(to right, #04d8c9 , #74e5de);
+}
+.form{
+  position: absolute;
+  left: 30rpx;
+  top: 55%;
+}
+
+
+.weui-cell_access{
+  position: absolute;
+  left: 240rpx;
+  bottom: 200rpx;
+  color: #353535;
+  text-align: center;
+  font-size: 13px;
+}
+
+.weui-cell:before{
+  border-top: none;
+}
+
+.copyright{
+  position: absolute;
+  left: 80rpx;
+  bottom: 50rpx;
+  line-height: 50rpx;
+  font-size: 10px;
+  color: #b2b2b2;
+  text-align: center;
+}
+
+.weui-vcode-btn{
+  color: #333333;
+  border-left: none;
+  font-family: PingFangSC-Regular;
+  font-size: 15px;
+}
+.weui-cell{
+  padding: 5px 35px;
+}

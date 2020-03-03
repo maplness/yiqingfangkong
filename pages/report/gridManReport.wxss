@@ -1,0 +1,120 @@
+/* pages/gridOperator/gridOperator.wxss */
+@import '../../iconfont/iconfont.wxss';
+page {
+  height: 100%;
+  font-size: 32rpx;
+  line-height: 1.6;
+}
+
+.page-body {
+  padding: 20rpx 0;
+    border: 1px solid #F8F8F8;
+
+}
+.display_block{
+  display: block;
+}
+
+.form-item{
+  border-bottom: 1px solid #F8F8F8;
+  padding-bottom: 15rpx;
+  margin-left: 30rpx;
+}
+.form-item-name{
+  margin-bottom: 10rpx;
+}
+.form-item-input{
+  border-radius: 8rpx;
+  background-color: rgb(240, 240, 240);
+  height:70rpx;
+  color:#000;
+  width: 670rpx;
+  padding: 10rpx;
+}
+.form-item-textarea{
+  background-color: rgb(240, 240, 240);
+  color:#000;
+  width: 670rpx;
+  border-radius: 8rpx;
+  padding: 10rpx;
+}
+.form-item-btn{
+  width: 200rpx;
+  border: 1px solid #c9c9c9;
+  display: inline-block;
+  text-align: center;
+  line-height: 35rpx;
+  border-radius: 10rpx;
+}
+.ml-1{
+  margin-left:calc(50% - 220rpx);
+  margin-right: 40rpx;
+  background: #ff0000;
+}
+.form-item-submit{
+  background-color: #ff0000;
+  color: #fff;
+}
+.picRecord{
+  height: 160rpx;
+  padding: 10rpx 20rpx 20rpx 20rpx;
+}
+.q-image-wrap{
+  width: 150rpx;
+  height: 150rpx;
+  border: 2rpx solid #000000;
+  float: left;
+  margin-right: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+.q-image-remover{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100%;
+  background: #2e82ff;
+  position: absolute;
+  top:-50rpx;
+  right:-50rpx;
+ 
+}
+.q-image-remover icon{
+  position: absolute;
+  left:12rpx;
+  bottom:12rpx;
+  color:#fff;
+}
+ 
+.uploadImgBtn{
+  width: 150rpx;
+  height: 150rpx;
+  text-align: center;
+  line-height: 140rpx;
+  border: 2rpx solid #000000;
+  float: left;
+}
+.uploadImgBtn icon{
+  font-size: 80rpx;
+  color: #999;
+}
+.submitButton{
+  margin-top: 20rpx;
+  text-align: center;
+}
+
+.submitButton button{
+  width: 200rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.submitButton .submit{
+  margin-right: 20rpx;
+  background-color: #ff0000;
+  color: #fff;
+}
+.submitButton .cancel{
+  margin-left: 20rpx;
+  border: 1rpx solid #000000;
+  background-color: #fff;
+  color: #000000;
+}

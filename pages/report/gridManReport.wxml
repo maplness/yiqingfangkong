@@ -1,0 +1,51 @@
+<!--index.wxml-->
+<view class="page-body">
+  <form bindsubmit="formSubmit">
+    <view class="form-item">
+      <text class="form-item-name">报事名称</text>
+      <input class="form-item-input" name="eventName" value="{{form.eventName}}" auto-focus placeholder="填写报事名称" />
+    </view>
+    <view class="form-item">
+      <text class="form-item-name">报事详情</text>
+      <textarea class="form-item-textarea" name="eventDetail" value="{{form.eventDetail}}" placeholder="请填写报事详情" />
+
+    </view>
+    <view class="form-item">
+      <text class="form-item-name">事件发生位置</text>
+      <input class="form-item-input" name="eventAddress" value="{{current_location}}" placeholder="请填写时间发生位置"/>
+    </view>
+    <view class="form-item">
+      <text class="form-item-name">定位网格</text>
+      <input class="form-item-input" name="eventGrid" value="{{form.eventGrid}}" placeholder="请输入定位网格"/>
+    </view>
+    <view class="form-item">
+      <text class="form-item-name">网格员</text>
+      <input class="form-item-input" name="reporterIdNum" value="{{form.reporterIdNum}}" placeholder="请填写网格员"/>
+    </view>
+    <view class="form-item">
+      <view class="form-item-name">照片</view>
+      <view class="picRecord">
+        <view class="question-images clearFloat">
+          <block wx:for="{{images}}" wx:key="*this">
+            <view class="q-image-wrap">
+              <!-- 图片缩略图  -->
+              <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+              <!-- 移除图片的按钮  -->
+              <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+                <icon class='iconfont icon-shanchu1'></icon>
+              </view>
+            </view>
+          </block>
+          <!-- 上传图片 -->
+          <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
+            <icon class="iconfont icon-jia1"></icon>
+          </view>
+        </view>
+      </view>
+    </view>
+    <view class="submitButton display_block">
+        <button class="submit" bindtap="" size="mini" formType="submit">提交</button>
+        <button class="cancel" bindtap="canceltip" size="mini">取消</button>
+      </view>
+  </form>
+</view>
