@@ -1,0 +1,11 @@
+<!--pages/report/reportRecord.wxml-->
+<block wx:for="{{reportRecord}}">
+<view class="recordCell">
+  <view class="title">摊贩占道经营问题</view>
+  <view class="info">
+    <view>2019-11-01</view>
+    <view class="state">未处理</view>
+  </view>
+  <view class="divide"></view>
+</view>
+</block>

@@ -103,3 +103,45 @@ page{
   margin-left: 40rpx;
   margin-top: 43rpx;
 }
+
+/* pages/mine/mine.wxss */
+.head-height {
+  height: 240rpx;
+}
+
+.head {
+  display:flex;
+  width: 100%;
+  /* background-image: url(https://tva1.sinaimg.cn/large/00831rSTgy1gcgpi2ocxgj30af04aq2t.jpg); */
+  align-items: center;
+}
+
+.login-button {
+  opacity: 0; 
+  width: 100%;
+  position: fixed;
+}
+
+.userinfo {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  width: 100%;
+  position: fixed;
+}
+
+.userinfo-avatar {
+  width: 150rpx;
+  height: 150rpx;
+  margin: 30rpx;
+  border-radius: 50%;
+}
+
+.userinfo-nickname {
+  color: #333333;
+  font-size: 42rpx;
+}
+
+.list-wrapper {
+  width: 100%;
+}

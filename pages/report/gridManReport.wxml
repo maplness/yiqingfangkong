@@ -5,6 +5,12 @@
       <text class="form-item-name">报事名称</text>
       <input class="form-item-input" name="eventName" value="{{form.eventName}}" auto-focus placeholder="填写报事名称" />
     </view>
+    <view class='weui-cell display_block'>
+        <label class='weui-label'>事件类型</label>
+        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <view class="weui-input">{{eventType}}</view>
+          </picker>
+    </view>
     <view class="form-item">
       <text class="form-item-name">报事详情</text>
       <textarea class="form-item-textarea" name="eventDetail" value="{{form.eventDetail}}" placeholder="请填写报事详情" />

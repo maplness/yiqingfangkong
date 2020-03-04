@@ -1,7 +1,7 @@
 <!-- 报事 -->
 
 <view class="{{currentTab == 0?'show':'hidden'}} tab-content">
-  <image class="bg-img" src="../../images/tab1-bg.png"></image>
+  <image class="bg-img" src="https://tva1.sinaimg.cn/large/00831rSTly1gcgp7fdzdgj30u01hdqfo.jpg"></image>
 
   <view class="report-button-wrapper" bindtap="masses">
     <image class="report-button-icon" src="../../images/masses.png"></image>
@@ -41,7 +41,42 @@
   <!-- add -->
   <view class="f_box" bindtap="addtip">新增</view>
 </view>
-<view class="{{currentTab == 2?'show':'hidden'}} tab-content">我的</view>
+
+<!-- 我的 -->
+<view class="{{currentTab == 2?'show':'hidden'}} tab-content">
+
+<view class='head head-height'>
+    <block wx:if="{{!hasUserInfo && canIUse}}">
+      <view class="userinfo">
+        <image class="userinfo-avatar" src="../../images/icon-mine.png" mode="cover"></image>
+        <text class="userinfo-nickname">微信授权</text>
+      </view>
+      <button class="login-button head-height" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
+    </block>
+    <block wx:else>
+      <view class="userinfo">
+        <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
+        <text class="userinfo-nickname">{{userInfo.nickName}}</text>
+      </view>
+    </block>
+  </view>
+
+  <view class="list-wrapper">
+    <block wx:for="{{menuitems}}" wx:key="item">
+      <navigator url="{{item.url}}" class="list-item" hover-class="list-item_active">
+        <view class='item'>
+          <image class='item-image' src='{{item.icon}}'></image>
+          <text class="item-text">{{item.text}}</text>
+          <text class='item-array'>></text>
+        </view>
+        <view class="div-line"></view>
+      </navigator>
+    </block>
+  </view>
+
+</view>
+
+
 
 <view class="nav-tabs">
     <view class="tab-list  {{currentTab == idx?'active':'default'}}" wx:for="{{tabArray}}" wx:for-index="idx" wx:for-item="itemName" data-current="{{idx}}" bindtap="swichNav">{{itemName}}</view>

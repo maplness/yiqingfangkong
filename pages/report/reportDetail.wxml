@@ -8,34 +8,47 @@
           <label class='weui-label'>报事名称</label>
         </view>
         <view class='weui-cell__bd'>
-          <input class='weui-input' name='eventName' value='{{form.eventName}}' placeholder="请填写报事名称"></input>
+          <view class="value">{{event.eventName}}</view>
         </view>
       </view>
       <view class='weui-cell display_block'>
-        <label class='weui-label'>事件类型</label>
-        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-            <view class="weui-input">{{eventType}}</view>
-          </picker>
-      </view>
-      <view class='weui-cell display_block'>
         <label class='weui-label'>报事详情</label>
-        <textarea class='weui-textarea textarea_p' name='eventDetail' value='{{form.eventDetail}}' rows='4' placeholder="填写事件发生地点、起因、经过、结果" maxlength="300" bindinput="signDetailInput"></textarea>
-        <view class="weui-textarea-counter"><span>{{charNumber}}</span>/300</view>
+        <textarea class='weui-textarea textarea_p' name='eventDetail' value='{{form.eventDetail}}' rows='4' disabled="true" maxlength="300" bindinput="signDetailInput">{{event.eventDetail}}</textarea>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>事件发生位置</label>
-        <input class='weui-input margin-top-5' name='eventAddress' value='{{current_location}}' placeholder="填写事件发生位置" bindinput="changeLocation"></input>
+        <view class="valueType1">{{event.eventAddress}}</view>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>定位网格</label>
-        <input class='weui-input margin-top-5' name='eventGrid' value='{{form.eventGrid}}' placeholder="填写定位网格"></input>
+        <view class="valueType1">{{event.eventGridName}}</view>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>报事人身份号码</label>
-        <input class='weui-input margin-top-5' name='reporterIdNum' value='{{form.reporterIdNum}}' placeholder="填写身份号码"></input>
+        <view class="valueType1">{{event.reporterIdNum}}</view>
       </view>
       <view class='weui-cell display_block'>
-        <label class='weui-label'>图片</label>
+        <label class='weui-label'>照片</label>
+        <view>
+          <image class="eventPhoto" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcgqwmjne3j30er081tfw.jpg"></image>
+        </view>
+        
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>核实结果</label>
+        <picker bindchange="validStateChange" value="{{index}}" range="{{validState}}">
+          <view class="valueType1">
+            {{validValue}}
+          </view>
+        </picker>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>核实意见</label>
+        <textarea class='weui-textarea textarea_p' name='eventDetail' rows='4' placeholder="填写核实意见" maxlength="300" bindinput="signDetailInput"></textarea>
+        <view class="weui-textarea-counter"><span>{{charNumber}}</span>/300</view>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>照片</label>
         <view class="picRecord">
           <view class="question-images clearFloat">
             <block wx:for="{{images}}" wx:key="*this">
@@ -54,6 +67,14 @@
             </view>
           </view>
         </view>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>核实立案</label>
+        <picker bindchange="eventToFileChange" value="{{index}}" range="{{eventToFile}}">
+          <view class="valueType1">
+            {{eventToFileValue}}
+          </view>
+        </picker>
       </view>
       <view class="submitButton display_block">
         <button class="submit" bindtap="" size="mini" formType="submit">提交</button>

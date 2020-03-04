@@ -66,6 +66,12 @@
   <input class="flex-item2" name="eventName" placeholder="请填写报事名称"></input>
 </view>
 <view class="divider2"></view>
+<view class=''>
+  <label class='label3'>事件类型</label>
+  <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+      <view class="input-box2">{{eventType}}</view>
+  </picker>
+</view>
 <view class="">
   <!-- <view style="margin-left:40rpx;color:red;">*</view> -->
   <view class="label3">报事详情</view>

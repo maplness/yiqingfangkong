@@ -18,7 +18,7 @@ Page({
     // currentTime: 61,
     // disabled: false,
     // color: "#000",
-    isGridMan: true
+    isGridMan: false
   },
 
   telChange(e) {
@@ -111,23 +111,23 @@ Page({
   },
   submitForm(e) {
     var that = this
-    const params = e.detail.value;
-    wx.request({
-      url:app.globalData.host + '/loginWechat?username=' + params.tel + '&password=' + params.vcode,
-      method: "POST",
-      header: {
-        "Content-Type": "application/json;charset=UTF-8"
-      },
-      success(res) {
-        console.log(res);
-        app.globalData.access_token=res.data.token;
-      }
-    })
-    if (params.tel=='admin'){
-      that.data.isGridMan=true;
-    }else{
-      that.data.isGridMan=false;
-    }
+    // const params = e.detail.value;
+    // wx.request({
+    //   url:app.globalData.host + '/loginWechat?username=' + params.tel + '&password=' + params.vcode,
+    //   method: "POST",
+    //   header: {
+    //     "Content-Type": "application/json;charset=UTF-8"
+    //   },
+    //   success(res) {
+    //     console.log(res);
+    //     app.globalData.access_token=res.data.token;
+    //   }
+    // })
+    // if (params.tel=='admin'){
+    //   that.data.isGridMan=true;
+    // }else{
+    //   that.data.isGridMan=false;
+    // }
     //普通群众
     if(!that.data.isGridMan){
       wx.navigateTo({

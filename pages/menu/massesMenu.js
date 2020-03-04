@@ -13,7 +13,7 @@ Page({
     hasUserInfo: false,
     canIUse: wx.canIUse('button.open-type.getUserInfo'),
     menuitems: [
-      { text: '完善信息', url: '../userinfo/userinfo', icon: '../../images/icon-index.png', tips: '' },
+      { text: '我的报事', url: '../report/reportRecord', icon: '../../images/jilu.png', tips: '' },
       { text: '个性设置', url: '../userinfo/userinfo', icon: '../../images/icon-index.png', tips: '' }
     ]
   },

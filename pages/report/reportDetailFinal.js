@@ -1,7 +1,6 @@
 // pages/general/generalSign.js
 import WxValidate from '../../utils/WxValidate.js';
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
-const app = getApp();
 Page({
 
   /**
@@ -16,17 +15,40 @@ Page({
       reporterIdNum: '',
       current_location: ""
     },
+    event: {
+      "eventDay": "2020-03-02",
+      "eventName": "摊贩占道经营问题",
+      "eventDetail": "恒大城东侧每到下午4点以后，就有一些商贩聚集在道路旁边，占道经营，影响正常交通",
+      "eventAddress": "高新区-槐安街158号",
+      "eventLatitude": "",
+      "eventLongitude": "",
+      "eventGridName": "高新区-槐安街道-恒大城居委会-第316网格-孙东磊",
+      "eventGrid": "",
+      "eventConfirm": "核实通过",
+      "eventConfirmRemark":"核实属实",
+      "eventToFile":"立案处理",
+      "reporterIdNum": "120223199608211214",
+      "picturePath": "",
+      "voicePath": "",
+      "reportType": "",//1，群众报事；2，网格员报事； 3，公司报事
+      "companyId": "",
+      "eventStatus": "",
+      "solvedInfo": "",
+      "solvedUser": "",
+      "nickName": "",
+      "companyName": "",
+      "userId": "",
+      "solvedTime": "",
+      "company": "",
+      "sort": "",
+      "order": ""
+    },
+    validState: ['核实通过', '核实不通过'],
+    validValue: "请选择",
+    eventToFile: ['核查通过', '核查不通过'],
+    eventToFileValue: "请选择",
     charNumber: 0,
-    images: [],
-
-    //multiple picker
-    objectMultiShow: [],
-    objectMultiArray: [],
-    multiArray: [],
-    multiIndex: [],
-    checkeIndex: [],
-    eventType: "请选择"
-
+    images: []
   },
   signDetailInput(e) {
     var v = e.detail.value || '';
@@ -49,7 +71,7 @@ Page({
       }
     })
   },
-  changeLocation(e){
+  changeLocation(e) {
     console.log(this.data.form)
     this.setData({
       current_location: e.detail.value
@@ -79,6 +101,24 @@ Page({
       urls: images,  //所有要预览的图片
     })
   },
+  validStateChange: function (e) {
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    let index = e.detail.value
+    let validState = this.data.validState
+    this.setData({
+      index,
+      validValue: validState[index]
+    })
+  },
+  eventToFileChange: function (e) {
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    let index = e.detail.value
+    let eventToFile = this.data.eventToFile
+    this.setData({
+      index,
+      eventToFileValue: eventToFile[index]
+    })
+  },
   formSubmit(e) {
     var that = this
     const params = e.detail.value;
@@ -91,7 +131,7 @@ Page({
       return false;
     }
     wx.request({
-      url: app.globalData.host +'/report/reportInfo',
+      url: app.globalData.host + '/report/reportInfo',
       method: "POST",
       data: params,
       header: {
@@ -208,88 +248,6 @@ Page({
         })
       }
     })
-
-    //mutiple picker
-    // 初始化
-    let data = {
-      objectMultiShow: this.data.objectMultiShow,
-      objectMultiArray: this.data.objectMultiArray,
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex,
-      checkeIndex: this.data.checkeIndex
-    }
-    data.objectMultiArray = app.globalData.eventTypeArray
-
-    data.objectMultiShow = data.objectMultiArray.map((item, index) => {
-      if (index > 0) {
-        item = item.filter(i => i.parentId === data.objectMultiArray[index - 1][0].id)
-      }
-      return item
-    })
-    data.multiArray = data.objectMultiShow.map(item => {
-      item = item.map(i => i.name)
-      return item
-    })
-    console.log(data.multiIndex)
-    
-    // 数据更新
-    this.setData(data)
-
-  },
-
-  //mutiple picker
-  bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
-    this.setData({
-      multiIndex: e.detail.value
-    })
-  },
-  bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
-    // 初始化数据
-    var data = {
-      objectMultiShow: this.data.objectMultiShow,
-      multiArray: this.data.multiArray,
-      multiIndex: this.data.multiIndex
-    };
-
-    // 改变第i列数据之后，后几列选择第0个选项（重置）
-    data.multiIndex[e.detail.column] = e.detail.value;
-    for (let i = e.detail.column; i < data.multiIndex.length - 1; i++) {
-      data.multiIndex[i + 1] = 0
-    }
-
-    /**
-     * 改变第i列数据之后，后几列数据更新
-     * 两种写法：for 和 switch，switch为三列选择器写法，for由switch精简拓展过来，可用于多列选择器
-     * swich写法：如果更改的是第一列数据，第二列数据通过filter筛选（parentId = 第一列选中项id），同时更新第三列数据
-     *            如果更改的是第二列数据，更新第三列数据 通过filter筛选（parentId = 第二列选中项id）
-     */
-    let arry = this.data.objectMultiArray
-    for (let i = e.detail.column; i < data.multiIndex.length - 1; i++) {
-      data.objectMultiShow[i + 1] = arry[i + 1].filter(item => item.parentId === data.objectMultiShow[i][data.multiIndex[i]].id)
-      data.multiArray[i + 1] = data.objectMultiShow[i + 1].map(item => item.name)
-    }
-    /*switch (e.detail.column) {
-      case 0:
-        data.objectMultiShow[1] = arry[1].filter(item => item.parentId === data.objectMultiShow[0][data.multiIndex[0]].id)
-        data.multiArray[1] = data.objectMultiShow[1].map(item => item.name)
-        data.objectMultiShow[2] = arry[2].filter(item => item.parentId === data.objectMultiShow[1][data.multiIndex[1]].id)
-        data.multiArray[2] = data.objectMultiShow[2].map(item => item.name)
-        break;
-      case 1:
-        data.objectMultiShow[2] = arry[2].filter(item => item.parentId === data.objectMultiShow[1][data.multiIndex[1]].id)
-        data.multiArray[2] = data.objectMultiShow[2].map(item => item.name)
-    }*/
-    // 数据更新
-    var temp1 = data.multiArray[0][data.multiIndex[0]] ? data.multiArray[0][data.multiIndex[0]] : "请选择"
-    var temp2 = data.multiArray[1][data.multiIndex[1]] ? data.multiArray[1][data.multiIndex[1]] : "请选择"
-    var temp = temp1 + ' -- ' + temp2
-    console.log(temp)
-    this.setData({
-      eventType: temp
-    })
-    this.setData(data);
   },
 
   /**

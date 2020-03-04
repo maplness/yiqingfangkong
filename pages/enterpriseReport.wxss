@@ -1,4 +1,5 @@
 /* pages/enterpriseReport.wxss */
+@import './report/generalReport.wxss';
 .legalInfo{
   color: #AFBEED;
   font-size: 25rpx;

@@ -1,9 +1,17 @@
 {
   "pages": [
+    
     "pages/login/login",
+    "pages/report/reportDetailFinal",
     "pages/enterpriseReport",
     "pages/report/gridManReport",
     "pages/report/generalReport",
+    
+    
+    "pages/report/reportRecord",
+    
+    "pages/report/reportDetail",
+    
     "pages/menu/gridManMenu",
     "pages/record/jobdiary",
     "pages/record/detail",

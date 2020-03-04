@@ -1,10 +1,13 @@
 /* pages/login/login.wxss */
+page{
+  background-color: #F7F9FC;
+}
 .bg-img{
   position: absolute;
-  width: 95%;
-  height: 40%;
+  width: 100%;
+  height: 64%;
   z-index: -1;
-  top: 150rpx
+  top: 0rpx
 }
 .logo-img{
   position: absolute;
@@ -13,18 +16,22 @@
   left: 310rpx;
   top: 30rpx;
 }
-.title{
-  font-size: 36rpx;
-  position: absolute;
-  left: 270rpx;
-  top: 180rpx;
+.app-title{
+  margin-top: 160rpx;
+  font-family: PingFangSC-Medium;
+  font-size: 26px;
+  color: #FFFFFF;
+  letter-spacing: 0;
+  text-align: center;
+  line-height: 40px;
 }
 /* pages/phlogin/pglogin.wxss */
 .grey-line{
   height: 1rpx;
   border-bottom: 1rpx solid #EEEEEE;
-  margin-left: 40px;
-  width: 100%;
+  margin-left: 20px;
+  margin-top: 40rpx;
+  width: 86%;
 }
 .page__hd{
   font-family: PingFangSC-Semibold;
@@ -34,54 +41,81 @@
   padding-top: 48rpx;
   text-align: center;
   line-height: 100rpx;
+
+  
 }
 
 .btn1{
   position: absolute;
   left: 10%;
-  top: 80%;
+  top: 90%;
   width: 80%;
-  border-radius: 5px;
   color: #fff;
-  /* margin: 60rpx 32rpx 10rpx 32rpx; */
-  background:  linear-gradient(to right, #04d8c9 , #74e5de);
+  background: #006AFF;
+  border-radius: 27.5px;
 }
+
 .form{
   position: absolute;
-  left: 30rpx;
-  top: 55%;
+  top: 43%;
+  background-color: #fff;
+  border-radius: 20rpx;
+  margin-left: 7%;
+
+  width: 86%;
+  height: 500rpx;
+  display: flex;
+  flex-direction: column;
 }
-
-
-.weui-cell_access{
+.form .label{
+  margin-left: 40rpx;
+  margin-top: 40rpx;
+  font-family: PingFangSC-Light;
+  font-size: 14px;
+  color: #203152;
+  letter-spacing: 0;
+}
+.form .input{
+  margin-left: 40rpx;
+  margin-top: 14rpx;
+}
+.phclass{
+  color: #C9CDD5;
+}
+.form .password-line{
+  display: flex;
+  flex-direction: row;
+}
+.form .password-line .fp{
+  margin-top: 20rpx;
+  font-family: PingFangSC-Light;
+  font-size: 11px;
+  color: #5680FA;
+  letter-spacing: 0;
+  text-align: right;
+  line-height: 18px;
+}
+.sign-up{
   position: absolute;
-  left: 240rpx;
-  bottom: 200rpx;
-  color: #353535;
-  text-align: center;
-  font-size: 13px;
-}
-
-.weui-cell:before{
-  border-top: none;
-}
-
-.copyright{
-  position: absolute;
-  left: 80rpx;
-  bottom: 50rpx;
-  line-height: 50rpx;
-  font-size: 10px;
-  color: #b2b2b2;
+  bottom: 100rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
   text-align: center;
 }
-
-.weui-vcode-btn{
-  color: #333333;
-  border-left: none;
-  font-family: PingFangSC-Regular;
-  font-size: 15px;
+.sign-up .label{
+  width: 100%;
+  font-family: PingFangSC-Light;
+  font-size: 12px;
+  color: #203152;
+  letter-spacing: 0;
+  text-align: center;
 }
-.weui-cell{
-  padding: 5px 35px;
+.sign-up .r{
+  width: 100%;
+  font-family: PingFangSC-Semibold;
+  font-size: 12px;
+  color: #203152;
+  letter-spacing: 0;
+  text-align: center;
 }

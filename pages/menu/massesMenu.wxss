@@ -1,5 +1,5 @@
 /* pages/menu/massesMenu.wxss */
-@import "./gridManMenu.wxss"
+@import "./gridManMenu.wxss";
 
 /* pages/mine/mine.wxss */
 .head-height {
@@ -9,7 +9,7 @@
 .head {
   display:flex;
   width: 100%;
-  background-color: #15c261;
+  /* background-image: url(https://tva1.sinaimg.cn/large/00831rSTgy1gcgpi2ocxgj30af04aq2t.jpg); */
   align-items: center;
 }
 

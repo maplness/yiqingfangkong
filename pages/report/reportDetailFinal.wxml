@@ -1,0 +1,100 @@
+<!--pages/general/generalSign.wxml-->
+<!--<text>pages/general/generalSign.wxml</text>-->
+<view class='page'>
+  <form bindsubmit="formSubmit">
+    <view class='weui-cells weui-cells_form'>
+      <view class='weui-cell'>
+        <view class='weui-cell__hd'>
+          <label class='weui-label'>报事名称</label>
+        </view>
+        <view class='weui-cell__bd'>
+          <view class="value">{{event.eventName}}</view>
+        </view>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>报事详情</label>
+        <textarea class='weui-textarea textarea_p' name='eventDetail' value='{{form.eventDetail}}' rows='4' disabled="true" maxlength="300" bindinput="signDetailInput">{{event.eventDetail}}</textarea>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>事件发生位置</label>
+        <view class="valueType2">{{event.eventAddress}}</view>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>定位网格</label>
+        <view class="valueType2">{{event.eventGridName}}</view>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>报事人身份号码</label>
+        <view class="valueType1">{{event.reporterIdNum}}</view>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>照片</label>
+        <view>
+          <image class="eventPhoto" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcgqwmjne3j30er081tfw.jpg"></image>
+        </view>
+        
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>核实结果</label>
+        <view class="valueType1">{{event.eventConfirm}}</view>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>核实意见</label>
+        <textarea class='weui-textarea textarea_p' name='eventDetail' rows='4' disabled="true"  maxlength="300" bindinput="signDetailInput">{{event.eventConfirmRemark}}</textarea>
+      </view>
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>照片</label>
+        <view>
+          <image class="eventPhoto" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcgqwmjne3j30er081tfw.jpg"></image>
+        </view>
+      </view>
+
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>核实立案</label>
+        <view class="valueType1">{{event.eventToFile}}</view>
+      </view>
+
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>核查结果</label>
+        <picker bindchange="eventToFileChange" value="{{index}}" range="{{eventToFile}}">
+          <view class="valueType1" style="color:#808080">
+            {{eventToFileValue}}
+          </view>
+        </picker>
+      </view>
+
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>核查意见</label>
+        <textarea class='weui-textarea textarea_p' name='eventDetail' rows='4' placeholder="填写核查意见" maxlength="300" bindinput="signDetailInput"></textarea>
+        <view class="weui-textarea-counter"><span>{{charNumber}}</span>/300</view>
+      </view>
+
+      <view class='weui-cell display_block'>
+        <label class='weui-label'>照片</label>
+        <view class="picRecord">
+          <view class="question-images clearFloat">
+            <block wx:for="{{images}}" wx:key="*this">
+              <view class="q-image-wrap">
+                <!-- 图片缩略图  -->
+                <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+                <!-- 移除图片的按钮  -->
+                <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+                  <icon class='iconfont icon-shanchu1'></icon>
+                </view>
+              </view>
+            </block>
+            <!-- 上传图片 -->
+            <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
+              <icon class="iconfont icon-jia1"></icon>
+            </view>
+          </view>
+        </view>
+      </view>
+      
+      <view class="submitButton display_block">
+        <button class="submit" bindtap="" size="mini" formType="submit">提交</button>
+        <button class="cancel" bindtap="canceltip" size="mini">取消</button>
+      </view>
+    </view>
+  </form>
+</view>
