@@ -68,7 +68,7 @@ Page({
         "Authorization": app.globalData.access_token
       },
       success(res){
-        console.log(res)
+        // console.log(res)
         var r = res.data;
         if(r.code == 200){
           that.setData({

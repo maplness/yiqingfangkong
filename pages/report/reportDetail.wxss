@@ -40,6 +40,15 @@
   color: #000;
   background-color: #efefef;
 }
+.valueType2{
+  padding: 20rpx;
+  margin-top: 10rpx;
+  border-radius: 10rpx;
+  height: 96rpx;
+  font-size: 32rpx;
+  color: #000;
+  background-color: #efefef;
+}
 .q-image-wrap{
   width: 150rpx;
   height: 150rpx;
@@ -95,7 +104,7 @@
 }
 .submitButton .submit{
   margin-right: 20rpx;
-  background-color: #ff0000;
+  background-color: #55abfc;
   color: white;
 }
 .submitButton .cancel{

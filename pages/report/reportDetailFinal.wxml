@@ -13,7 +13,7 @@
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>报事详情</label>
-        <textarea class='weui-textarea textarea_p' name='eventDetail' value='{{form.eventDetail}}' rows='4' disabled="true" maxlength="300" bindinput="signDetailInput">{{event.eventDetail}}</textarea>
+        <textarea class='weui-textarea textarea_p' name='eventDetail' value='{{event.eventDetail}}' rows='4' disabled="true" maxlength="300" bindinput="signDetailInput"></textarea>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>事件发生位置</label>
@@ -40,7 +40,7 @@
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>核实意见</label>
-        <textarea class='weui-textarea textarea_p' name='eventDetail' rows='4' disabled="true"  maxlength="300" bindinput="signDetailInput">{{event.eventConfirmRemark}}</textarea>
+        <textarea class='weui-textarea textarea_p' name='eventDetail' value="{{event.eventConfirmRemark}}" rows='4' disabled="true"  maxlength="300" bindinput="signDetailInput"></textarea>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>照片</label>

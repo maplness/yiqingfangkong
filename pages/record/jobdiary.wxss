@@ -44,7 +44,7 @@
   border-radius: 50%;
   line-height: 100rpx;
   text-align: center;
-  background-color: #ff0000;
+  background-color: #55abfc;
   color: #fff;
   position: fixed;
   top: 200rpx;

@@ -39,6 +39,18 @@ Page({
         }
       })
     }
+
+    //获取事件类型
+    wx.request({
+      url: app.globalData.host + app.globalData.getEventTypeUrl,
+      header: {
+        "Authorization": app.globalData.access_token
+      },
+      success(res) {
+        console.log(res)
+        app.globalData.eventTypeArray = res.data.data
+      }
+    })
   },
   //事件处理函数
   bindChange: function (e) {
@@ -47,7 +59,7 @@ Page({
   },
   swichNav: function (e) {
     var that = this;
-    console.log(e.target)
+    // console.log(e.target)
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -61,7 +73,7 @@ Page({
   },
 
   enterprise(){
-    console.log("111")
+    // console.log("111")
     wx.navigateTo({
       url: '../enterpriseReport',
     })

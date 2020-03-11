@@ -1,0 +1,23 @@
+<!--pages/items/map.wxml-->
+<view class='TL_info'>
+  <block class='TL_info1'>
+    <image src="{{icon_clock}}" style='width:30rpx; height: 30rpx;'></image>
+    <view class='TL_info_detail'>{{current_time}}</view>
+  </block>
+  <block class='TL_info2'>
+    <image src='{{icon_position}}' style='width:30rpx; height: 30rpx;'></image>
+    <view class='TL_info_detail' style=''>{{current_location}}</view>
+  </block>
+</view>
+<view class='grey_line'></view>
+<view class='map_cell'>
+  <view class='text_desc'>定位地址</view>
+  <!-- 地图 -->
+  <map id="myMap" style="width: 698rpx; height: 286rpx;margin-left:25rpx;margin-top:15rpx;" latitude="{{location.latitude}}" longitude="{{location.longitude}}" show-location></map>
+</view>
+<view class='grey_line'></view>
+
+<view class="clock-btn">
+  <button bindtap="clockIn">签到</button>
+  <button bindtap="clockOut">签退</button>
+</view>

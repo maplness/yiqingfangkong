@@ -44,6 +44,16 @@ Page({
     }
     params.company = company;
     //console.log(params);
+
+    // console.log(params);
+    if (that.data.eventType == '请选择') {
+      wx.showModal({
+        content: '请选择事件类型',
+        showCancel: false
+      })
+      return false
+    }
+    params.eventType = that.data.eventId
     var url = app.globalData.host+'/report/reportInfo';
     wx.request({
       url:url,
@@ -53,7 +63,7 @@ Page({
         "Authorization": app.globalData.access_token
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         that.showModal({
           msg: '提交成功',
         })
@@ -99,7 +109,7 @@ Page({
             that.setData({
               current_location: res.address
             })
-            console.log(that.data.current_location)
+            // console.log(that.data.current_location)
           },
           fail: function (error) {
             console.error(error);
@@ -132,7 +142,7 @@ Page({
       item = item.map(i => i.name)
       return item
     })
-    console.log(data.multiIndex)
+    // console.log(data.multiIndex)
 
     // 数据更新
     this.setData(data)
@@ -140,13 +150,13 @@ Page({
   },
   //mutiple picker
   bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndex: e.detail.value
     })
   },
   bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     // 初始化数据
     var data = {
       objectMultiShow: this.data.objectMultiShow,
@@ -186,7 +196,7 @@ Page({
     var temp1 = data.multiArray[0][data.multiIndex[0]] ? data.multiArray[0][data.multiIndex[0]] : "请选择"
     var temp2 = data.multiArray[1][data.multiIndex[1]] ? data.multiArray[1][data.multiIndex[1]] : "请选择"
     var temp = temp1 + ' -- ' + temp2
-    console.log(temp)
+    // console.log(temp)
     this.setData({
       eventType: temp
     })

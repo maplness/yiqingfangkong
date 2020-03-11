@@ -13,11 +13,11 @@
   
       <view class="form">
         <view class="label">账号</view>
-        <input placeholder-class="phclass" class="input" placeholder="请输入账号"></input>
+        <input name="tel" placeholder-class="phclass" class="input" placeholder="请输入账号"></input>
         <view class="grey-line"></view>
         <view class="label">密码</view>
         <view class="password-line">  
-          <input style="width:70%" placeholder-class="phclass" class="input" placeholder="请输入密码"></input>
+          <input type="password" name="vcode" style="width:70%" placeholder-class="phclass" class="input" placeholder="请输入密码"></input>
           <view class="fp">忘记密码</view>
         </view>
         

@@ -1,6 +1,7 @@
 // pages/gridOperator/gridOperator.js
 import WxValidate from '../../utils/WxValidate.js'
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+var time = require('../../utils/time.js');
 var app = getApp();
 Page({
 
@@ -17,7 +18,7 @@ Page({
     multiArray: [],
     multiIndex: [],
     checkeIndex: [],
-    eventType: "请选择"
+    eventType: "请选择",
   },
   chooseImage(e) {
     wx.chooseImage({
@@ -27,7 +28,7 @@ Page({
         const images = this.data.images.concat(res.tempFilePaths)
         // 限制最多只能留下3张照片
         const images1 = images.length <= 3 ? images : images.slice(0, 3)
-        console.log(images1);
+        // console.log(images1);
         this.setData({
           images: images1
         })
@@ -56,17 +57,57 @@ Page({
   formSubmit: function (e) {
     var that = this
     const params = e.detail.value
-    params.reportType = '2';
-    console.log(params);
+    params.reportType = '2'
+    params.eventDay = time.getDate()
+    // console.log(params);
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]
       this.showModal(error)
       return false
     }
+    // console.log(params);
+    if (that.data.eventType == '请选择') {
+      wx.showModal({
+        content: '请选择事件类型',
+        showCancel: false
+      })
+      return false
+    }
+    params.eventType = that.data.eventId
+    params.picturePath = ''
+    // console.log(params)
+    // that.submitForm(params)
+    
+    //先上传照片，再提交表单
+    for(var i=0;i<that.data.images.length;i++){
+      wx.uploadFile({
+        url: app.globalData.host + app.globalData.uploadImgUrl,
+        header: {
+          "Authorization": app.globalData.access_token
+        },
+        filePath: that.data.images[0],
+        name: 'file',
+        success(res) {
+          params.picturePath += JSON.parse(res.data).url+','
+          console.log(i)
+          console.log(params.picturePath)
+          var n = (params.picturePath.split(',')).length - 1;
+          //传完了图片
+          if(n == (that.data.images.length)){
+            console.log(params)
+            that.submitForm(params)
+          }
+        }
+      })
+    }
+  },
+  submitForm(e){
+    console.log("上传表单")
+    var that = this
     wx.request({
-      url: app.globalData.host +'/report/reportInfo',
+      url: app.globalData.host + '/report/reportInfo',
       method: "POST",
-      data: params,
+      data: e,
       header: {
         "Authorization": app.globalData.access_token
       },
@@ -75,10 +116,10 @@ Page({
         that.showModal({
           msg: '提交成功',
         })
-        
       }
     })
   },
+
   //报错 
   showModal(error) {
     wx.showModal({
@@ -145,10 +186,10 @@ Page({
             that.setData({
               current_location: res.address
             })
-            console.log(that.data.current_location)
+            // console.log(that.data.current_location)
           },
           fail: function (error) {
-            console.error(error);
+            // console.error(error);
           },
           complete: function (res) {
             // console.log(res);
@@ -178,20 +219,20 @@ Page({
       item = item.map(i => i.name)
       return item
     })
-    console.log(data.multiIndex)
+    // console.log(data.multiIndex)
 
     // 数据更新
     this.setData(data)
   },
   //mutiple picker
   bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndex: e.detail.value
     })
   },
   bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     // 初始化数据
     var data = {
       objectMultiShow: this.data.objectMultiShow,
@@ -231,9 +272,12 @@ Page({
     var temp1 = data.multiArray[0][data.multiIndex[0]] ? data.multiArray[0][data.multiIndex[0]] : "请选择"
     var temp2 = data.multiArray[1][data.multiIndex[1]] ? data.multiArray[1][data.multiIndex[1]] : "请选择"
     var temp = temp1 + ' -- ' + temp2
-    console.log(temp)
+    var id1 = arry[0][data.multiIndex[0]].id
+    var id2 = arry[1][data.multiIndex[1]].id
+    // console.log(temp)
     this.setData({
-      eventType: temp
+      eventType: temp,
+      eventId: id1 + ',' + id2
     })
     this.setData(data);
   },

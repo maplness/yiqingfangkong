@@ -1,0 +1,120 @@
+/* pages/mine/mine.wxss */
+page{
+  background-color: #F7F9FC;
+}
+.mine-top-bg{
+  width: 100%;
+  height: 300rpx;
+  z-index: 11;
+  position: absolute;
+  top: 0;
+}
+.avatar{
+  width: 150rpx;
+  height: 150rpx;
+  border: 2px solid #fff;
+  border-radius: 50%;
+  margin-left: 60rpx;
+}
+.userinfo-wrapper{
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 200rpx;
+  position: absolute;
+  top: 60rpx;
+  align-items: center;
+  z-index: 15;
+}
+.userinfo-wrapper .info{
+  display: flex;
+  flex-direction: column;
+  color: #fff;
+  margin-left: 40rpx;
+}
+.userinfo-wrapper .info .name{
+  font-size: 40rpx;
+}
+.mine-list-tab1{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  position: absolute;
+  top: 180rpx;
+  padding-top: 100rpx;
+  width: 100%;
+  height: 160rpx;
+  background-color: #fff;
+  z-index: 9;
+}
+.mine-list-tab1 .icon{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 50rpx;
+}
+.mine-list-tab1 .foot{
+  width: 22rpx;
+  height: 36rpx;
+  position: absolute;
+  right: 50rpx;
+}
+.mine-list-tab1 .label{
+  opacity: 0.85;
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  color: #000000;
+  letter-spacing: 0;
+  text-align: center;
+  margin-left: 26rpx;
+}
+.mine-list-wrapper{
+  position: absolute;
+  top: 480rpx;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+.mine-list-cell{
+
+  height: 120rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  background-color: #fff;
+}
+.mine-list-wrapper .icon{
+  width: 50rpx;
+  height: 50rpx;
+  margin-left: 50rpx;
+}
+.mine-list-wrapper .foot{
+  width: 22rpx;
+  height: 36rpx;
+  position: absolute;
+  right: 50rpx;
+}
+.mine-list-wrapper .label{
+  opacity: 0.85;
+  font-family: PingFangSC-Regular;
+  font-size: 18px;
+  color: #000000;
+  letter-spacing: 0;
+  text-align: center;
+  margin-left: 26rpx;
+}
+.grey-line{
+  width: 100%;
+  height: 1px;
+  background-color: #F2F2F2;
+}
+.logout{
+  width: 100%;
+  height: 100rpx;
+  text-align: center;
+  color: red;
+  background-color: #fff;
+  margin-top: 80rpx;
+}
+.logout::after{
+  border: none;
+}

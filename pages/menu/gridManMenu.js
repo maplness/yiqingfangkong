@@ -1,5 +1,5 @@
 // pages/menu/gridManMenu.js
-var app = getApp()
+const app = getApp()
 const util = require('../../utils/util.js')
 
 Page({
@@ -11,7 +11,8 @@ Page({
     currentTab: 0,
     tabArray: ["报事", "记录", "我的"],
     arr: [],
-    userId: ''
+    userId: '',
+    user: {}
   },
 
   //事件处理函数
@@ -21,7 +22,7 @@ Page({
   },
   swichNav: function (e) {
     var that = this;
-    console.log(e.target)
+    // console.log(e.target)
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -33,16 +34,54 @@ Page({
       })
     }
   },
+  changePassword(){
+    wx.navigateTo({
+      url: '../changePassword/changePassword',
+    })
+  },
+  reportRecord() {
+    wx.navigateTo({
+      url: '../report/reportRecord',
+    })
+  },
+  logout(){
+    wx.redirectTo({
+      url: '../login/login',
+    })
+  },
   onLoad: function () {
-    console.log('onLoad')
+    // console.log('onLoad')
     var that = this
-    //调用应用实例的方法获取全局数据
-    // app.getUserInfo(function (userInfo) {
-    //   //更新数据
-    //   that.setData({
-    //     userInfo: userInfo
-    //   })
-    // })
+    
+    //获取事件类型
+    wx.request({
+      url: app.globalData.host + app.globalData.getEventTypeUrl,
+      header: {
+        "Authorization": app.globalData.access_token
+      },
+      success(res){
+        // console.log(res)
+        app.globalData.eventTypeArray = res.data.data
+      }
+    })
+
+    //获取用户信息
+    wx.request({
+      url: app.globalData.host + app.globalData.getInfoUrl,
+      header: {
+        "Authorization": app.globalData.access_token
+      },
+      success(res){
+        // console.log(res)
+        app.globalData.user = res.data.user
+        console.log(app.globalData.user)
+      }
+    })
+
+    //设置用户信息
+    that.setData({
+      user: app.globalData.user
+    })
   },
 
   masses(){
@@ -60,6 +99,11 @@ Page({
       url: '../record/jobdiary',
     })
   },
+  clockIn(){
+    wx.navigateTo({
+      url: '../clock/clock',
+    })
+  },
   getjobdiaryInfo: function () {
     var that = this;
     var params = {
@@ -74,7 +118,7 @@ Page({
         "Authorization": app.globalData.access_token
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         var r = res.data;
         if (r.code == 200) {
           var jobdiaryArr = r.rows;
@@ -126,7 +170,7 @@ Page({
         "Authorization": app.globalData.access_token
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         var r = res.data;
         if (r.code == 200) {
           // that.data.form.userId = r.user.userId
@@ -135,8 +179,8 @@ Page({
             userId: r.user.userId
           });
           that.getjobdiaryInfo()
-          console.log(r.user);
-          console.log(r.user.userName);
+          // console.log(r.user);
+          // console.log(r.user.userName);
         } else {
           wx.showModal({
             content: r.msg,
@@ -145,7 +189,7 @@ Page({
         }
       },
       fail(error) {
-        console.log(error);
+        // console.log(error);
         wx.showModal({
           content: error.errMsg,
           showCancel: false,

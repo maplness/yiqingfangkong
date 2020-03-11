@@ -2,17 +2,17 @@
   "pages": [
     
     "pages/login/login",
+    "pages/clock/clock",
+    "pages/changePassword/changePassword",
+    "pages/report/reportDetail",
+    
     "pages/report/reportDetailFinal",
+    "pages/report/reportRecord",
+    "pages/menu/gridManMenu",
+    "pages/mine/mine",
     "pages/enterpriseReport",
     "pages/report/gridManReport",
     "pages/report/generalReport",
-    
-    
-    "pages/report/reportRecord",
-    
-    "pages/report/reportDetail",
-    
-    "pages/menu/gridManMenu",
     "pages/record/jobdiary",
     "pages/record/detail",
     "pages/record/add",

@@ -1,0 +1,30 @@
+/* pages/clock/clock.wxss */
+/* pages/items/map.wxss */
+.grey_line{
+  height: 1rpx;
+  border-top: 1rpx solid #E5E5E5;
+}
+.TL_info{
+  background-color: #ffffff;
+  align-items: center;
+  height: 74rpx;
+  display: flex;
+  flex-direction: row;
+  font-size: 10px;
+  padding-left: 32rpx;
+}
+.TL_info_detail{
+  margin-right: 30rpx;
+  color: #888888;
+  font-size:22rpx;
+  font-family:PingFangSC-Regular;
+  font-weight:400;
+}
+.map_cell{
+  height: 399rpx;
+}
+.clock-btn{
+  display: flex;
+  flex-direction: row;
+  margin-top: 40rpx;
+}

@@ -14,10 +14,6 @@ Page({
     },
     account: "",
     pwd: "",
-    // time: "获取验证码",
-    // currentTime: 61,
-    // disabled: false,
-    // color: "#000",
     isGridMan: false
   },
 
@@ -111,35 +107,50 @@ Page({
   },
   submitForm(e) {
     var that = this
-    // const params = e.detail.value;
-    // wx.request({
-    //   url:app.globalData.host + '/loginWechat?username=' + params.tel + '&password=' + params.vcode,
-    //   method: "POST",
-    //   header: {
-    //     "Content-Type": "application/json;charset=UTF-8"
-    //   },
-    //   success(res) {
-    //     console.log(res);
-    //     app.globalData.access_token=res.data.token;
-    //   }
-    // })
-    // if (params.tel=='admin'){
-    //   that.data.isGridMan=true;
-    // }else{
-    //   that.data.isGridMan=false;
-    // }
-    //普通群众
-    if(!that.data.isGridMan){
-      wx.navigateTo({
-        url: '../menu/massesMenu',
-      })
+    const params = e.detail.value;
+
+    if (!this.WxValidate.checkForm(params)) {
+      const error = this.WxValidate.errorList[0];
+      this.showModal(error);
+      return false;
     }
-    //网格员
-    else{
-      wx.navigateTo({
-        url: '../menu/gridManMenu',
-      })
-    }
+
+    // console.log(params)
+    wx.request({
+      url:app.globalData.host + '/loginWechat?username=' + params.tel + '&password=' + params.vcode,
+      // url: "https://createsharp.cn/scgp/loginWechat?username=admin&password=admin123",
+      method: "POST",
+      header: {
+        "ContentType": "application/json;charset=UTF-8"
+      },
+      success(res) {
+        // console.log(res);
+        if(res.data.msg == '操作成功'){
+          app.globalData.access_token = res.data.token;
+
+          if (params.tel == 'admin') {
+            that.data.isGridMan = true;
+          } else {
+            that.data.isGridMan = false;
+          }
+          //普通群众
+          if (!that.data.isGridMan) {
+            wx.redirectTo({
+              url: '../menu/massesMenu',
+            })
+          }
+          //网格员
+          else {
+            wx.redirectTo({
+              url: '../menu/gridManMenu',
+            })
+          }
+        }
+        
+      }
+    })
+    
+    
   },
   showModal(error) {
     wx.showModal({

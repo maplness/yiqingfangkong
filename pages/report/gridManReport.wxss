@@ -50,10 +50,10 @@ page {
 .ml-1{
   margin-left:calc(50% - 220rpx);
   margin-right: 40rpx;
-  background: #ff0000;
+  background: #55abfc;
 }
 .form-item-submit{
-  background-color: #ff0000;
+  background-color: #55abfc;
   color: #fff;
 }
 .picRecord{
@@ -110,7 +110,7 @@ page {
 }
 .submitButton .submit{
   margin-right: 20rpx;
-  background-color: #ff0000;
+  background-color: #55abfc;
   color: #fff;
 }
 .submitButton .cancel{

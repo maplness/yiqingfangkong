@@ -1,7 +1,7 @@
 <!-- 报事 -->
 
 <view class="{{currentTab == 0?'show':'hidden'}} tab-content">
-  <image class="bg-img" src="https://tva1.sinaimg.cn/large/00831rSTly1gcgp7fdzdgj30u01hdqfo.jpg"></image>
+  <image class="bg-img" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcit248ln2j30ku194n4z.jpg"></image>
 
   <view class="report-button-wrapper" bindtap="masses">
     <image class="report-button-icon" src="../../images/masses.png"></image>

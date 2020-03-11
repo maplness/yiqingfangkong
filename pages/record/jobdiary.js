@@ -25,7 +25,7 @@ Page({
         "Authorization": app.globalData.access_token
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         var r = res.data;
         if (r.code == 200){
           var jobdiaryArr = r.rows;
@@ -91,7 +91,7 @@ Page({
         "Authorization": app.globalData.access_token
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         var r = res.data;
         if (r.code == 200) {
           // that.data.form.userId = r.user.userId
@@ -100,8 +100,8 @@ Page({
             userId: r.user.userId
           });
           that.getjobdiaryInfo()
-          console.log(r.user);
-          console.log(r.user.userName);
+          // console.log(r.user);
+          // console.log(r.user.userName);
         } else {
           wx.showModal({
             content: r.msg,
@@ -110,7 +110,7 @@ Page({
         }
       },
       fail(error) {
-        console.log(error);
+        // console.log(error);
         wx.showModal({
           content: error.errMsg,
           showCancel: false,

@@ -114,7 +114,7 @@ page{
 }
 .submitButton .submit{
   margin-right: 20rpx;
-  background-color: #ff0000;
+  background-color: #55abfc;
   color: white;
 }
 .submitButton .cancel{

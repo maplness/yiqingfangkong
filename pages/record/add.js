@@ -44,7 +44,7 @@ Page({
         const images = this.data.images.concat(res.tempFilePaths)
         // 限制最多只能留下3张照片
         const images1 = images.length <= 3 ? images : images.slice(0, 3)
-        console.log(images1);
+        // console.log(images1);
         this.setData({
           images: images1
         })
@@ -76,7 +76,7 @@ Page({
     // 目前用户id先写死
     params.userId = that.data.form.userId
     params.workDay = util.formatDate(new Date());
-    console.log(params);
+    // console.log(params);
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]
       this.showModal(error)
@@ -108,7 +108,7 @@ Page({
         }
       },
       fail(error){
-        console.log(error);
+        // console.log(error);
         wx.showModal({
           content: error.errMsg,
           showCancel: false,
@@ -139,7 +139,7 @@ Page({
         "Authorization": app.globalData.access_token
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         var r = res.data;
         if (r.code == 200) {
           // that.data.form.userId = r.user.userId
@@ -153,8 +153,8 @@ Page({
               workDetail: ''
             }
           });
-          console.log(r.user);
-          console.log(r.user.userName);
+          // console.log(r.user);
+          // console.log(r.user.userName);
         } else {
           wx.showModal({
             content: r.msg,
@@ -163,7 +163,7 @@ Page({
         }
       },
       fail(error) {
-        console.log(error);
+        // console.log(error);
         wx.showModal({
           content: error.errMsg,
           showCancel: false,

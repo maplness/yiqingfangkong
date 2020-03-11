@@ -64,7 +64,7 @@ Page({
         const images = this.data.images.concat(res.tempFilePaths)
         // 限制最多只能留下3张照片
         const images1 = images.length <= 3 ? images : images.slice(0, 3)
-        console.log(images1);
+        // console.log(images1);
         this.setData({
           images: images1
         })
@@ -72,7 +72,7 @@ Page({
     })
   },
   changeLocation(e) {
-    console.log(this.data.form)
+    // console.log(this.data.form)
     this.setData({
       current_location: e.detail.value
     })
@@ -80,7 +80,7 @@ Page({
     this.setData({
       form: this.data.form
     })
-    console.log(this.data.form)
+    // console.log(this.data.form)
   },
   removeImage(e) {
     var that = this;
@@ -121,37 +121,51 @@ Page({
   },
   formSubmit(e) {
     var that = this
-    const params = e.detail.value;
-    params.picturePath = this.data.images.join(',');
-    params.eventDay = new Date();
-    console.log(params);
-    if (!this.WxValidate.checkForm(params)) {
-      const error = this.WxValidate.errorList[0];
-      this.showModal(error);
-      return false;
-    }
-    wx.request({
-      url: app.globalData.host + '/report/reportInfo',
-      method: "POST",
-      data: params,
-      header: {
-        "Content-Type": "application/json;charset=UTF-8"
-      },
-      success(res) {
-        if (res.data && res.data.code == 200) {
-          that.showModal({
-            msg: '提交成功',
-          });
-          wx.navigateTo({
-            url: '/pages/jobdiary/jobdiary'
-          })
-        } else {
-          that.showModal({
-            msg: '提交失败',
-          });
-        }
-      }
-    });
+
+    //提交成功并返回
+    wx.showToast({
+      title: '登记成功',
+      duration: 2000
+    })
+    setTimeout(function () {
+      //要延时执行的代码
+      wx.navigateBack({
+        
+      })
+    }, 2000)
+
+
+    // const params = e.detail.value;
+    // params.picturePath = this.data.images.join(',');
+    // params.eventDay = new Date();
+    // // console.log(params);
+    // if (!this.WxValidate.checkForm(params)) {
+    //   const error = this.WxValidate.errorList[0];
+    //   this.showModal(error);
+    //   return false;
+    // }
+    // wx.request({
+    //   url: app.globalData.host + '/report/reportInfo',
+    //   method: "POST",
+    //   data: params,
+    //   header: {
+    //     "Content-Type": "application/json;charset=UTF-8"
+    //   },
+    //   success(res) {
+    //     if (res.data && res.data.code == 200) {
+    //       that.showModal({
+    //         msg: '提交成功',
+    //       });
+    //       wx.navigateTo({
+    //         url: '/pages/jobdiary/jobdiary'
+    //       })
+    //     } else {
+    //       that.showModal({
+    //         msg: '提交失败',
+    //       });
+    //     }
+    //   }
+    // });
   },
   //报错 
   showModal(error) {
@@ -206,7 +220,11 @@ Page({
   onLoad: function (options) {
     this.initValidate();
     var that = this;
-
+    var event = JSON.parse(options.event)
+    console.log(event)
+    that.setData({
+      event: event
+    })
     // 实例化API核心类
     var qqmapsdk = new QQMapWX({
       key: 'PU4BZ-3ZPW6-JNJSB-EQLMY-4QZWZ-LAFEG' // 必填
@@ -233,14 +251,14 @@ Page({
             that.setData({
               current_location: res.address
             })
-            console.log(that.data.current_location)
+            // console.log(that.data.current_location)
             that.data.form.eventAddress = that.data.current_location
             that.setData({
               form: that.data.form
             })
           },
           fail: function (error) {
-            console.error(error);
+            // console.error(error);
           },
           complete: function (res) {
             // console.log(res);

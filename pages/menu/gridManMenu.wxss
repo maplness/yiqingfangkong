@@ -1,6 +1,7 @@
 /* pages/menu/gridManMenu.wxss */
 /**index.wxss**/
 @import "../record/jobdiary.wxss";
+@import "../mine/mine.wxss";
 page{
   display: flex;
   flex-direction: column;
@@ -27,9 +28,9 @@ page{
 .active{
     line-height:75rpx;
     text-align:center;
-    color:#fc5558;
+    color:#55abfc;
     flex:1;
-    border-bottom:1px solid red;
+    border-bottom:1px solid #55abfc;
     font-weight:bold;
     font-size:28rpx;
 }

@@ -18,6 +18,7 @@ Page({
     },
     charNumber: 0,
     images: [],
+    eventId: "",
 
     //multiple picker
     objectMultiShow: [],
@@ -42,7 +43,7 @@ Page({
         const images = this.data.images.concat(res.tempFilePaths)
         // 限制最多只能留下3张照片
         const images1 = images.length <= 3 ? images : images.slice(0, 3)
-        console.log(images1);
+        // console.log(images1);
         this.setData({
           images: images1
         })
@@ -50,7 +51,7 @@ Page({
     })
   },
   changeLocation(e){
-    console.log(this.data.form)
+    // console.log(this.data.form)
     this.setData({
       current_location: e.detail.value
     })
@@ -58,7 +59,7 @@ Page({
     this.setData({
       form: this.data.form
     })
-    console.log(this.data.form)
+    // console.log(this.data.form)
   },
   removeImage(e) {
     var that = this;
@@ -84,7 +85,16 @@ Page({
     const params = e.detail.value;
     params.picturePath = this.data.images.join(',');
     params.eventDay = new Date();
-    console.log(params);
+    
+    // console.log(params);
+    if(that.data.eventType == '请选择'){
+      wx.showModal({
+        content: '请选择事件类型',
+        showCancel: false
+      })
+      return false
+    }
+    params.eventType = that.data.eventId
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0];
       this.showModal(error);
@@ -193,14 +203,14 @@ Page({
             that.setData({
               current_location: res.address
             })
-            console.log(that.data.current_location)
+            // console.log(that.data.current_location)
             that.data.form.eventAddress = that.data.current_location
             that.setData({
               form: that.data.form
             })
           },
           fail: function (error) {
-            console.error(error);
+            // console.error(error);
           },
           complete: function (res) {
             // console.log(res);
@@ -230,7 +240,7 @@ Page({
       item = item.map(i => i.name)
       return item
     })
-    console.log(data.multiIndex)
+    // console.log(data.multiIndex)
     
     // 数据更新
     this.setData(data)
@@ -239,13 +249,13 @@ Page({
 
   //mutiple picker
   bindMultiPickerChange: function (e) {
-    console.log('picker发送选择改变，携带值为', e.detail.value)
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndex: e.detail.value
     })
   },
   bindMultiPickerColumnChange: function (e) {
-    console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
+    // console.log('修改的列为', e.detail.column, '，值为', e.detail.value);
     // 初始化数据
     var data = {
       objectMultiShow: this.data.objectMultiShow,
@@ -285,10 +295,15 @@ Page({
     var temp1 = data.multiArray[0][data.multiIndex[0]] ? data.multiArray[0][data.multiIndex[0]] : "请选择"
     var temp2 = data.multiArray[1][data.multiIndex[1]] ? data.multiArray[1][data.multiIndex[1]] : "请选择"
     var temp = temp1 + ' -- ' + temp2
-    console.log(temp)
+    var id1 = arry[0][data.multiIndex[0]].id
+    var id2 = arry[1][data.multiIndex[1]].id
+    // console.log(id1 + ',' + id2)
+    // console.log(temp)
     this.setData({
-      eventType: temp
+      eventType: temp,
+      eventId : id1+','+id2
     })
+
     this.setData(data);
   },
 

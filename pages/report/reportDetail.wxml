@@ -13,15 +13,15 @@
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>报事详情</label>
-        <textarea class='weui-textarea textarea_p' name='eventDetail' value='{{form.eventDetail}}' rows='4' disabled="true" maxlength="300" bindinput="signDetailInput">{{event.eventDetail}}</textarea>
+        <textarea class='weui-textarea textarea_p' name='eventDetail' value='{{event.eventDetail}}'  disabled="true" maxlength="300" bindinput="signDetailInput"></textarea>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>事件发生位置</label>
-        <view class="valueType1">{{event.eventAddress}}</view>
+        <view class="valueType2">{{event.eventAddress}}</view>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>定位网格</label>
-        <view class="valueType1">{{event.eventGridName}}</view>
+        <view class="valueType2">{{event.eventGrid}}</view>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>报事人身份号码</label>
@@ -37,7 +37,7 @@
       <view class='weui-cell display_block'>
         <label class='weui-label'>核实结果</label>
         <picker bindchange="validStateChange" value="{{index}}" range="{{validState}}">
-          <view class="valueType1">
+          <view class="valueType1" style="color:#888888">
             {{validValue}}
           </view>
         </picker>
@@ -71,7 +71,7 @@
       <view class='weui-cell display_block'>
         <label class='weui-label'>核实立案</label>
         <picker bindchange="eventToFileChange" value="{{index}}" range="{{eventToFile}}">
-          <view class="valueType1">
+          <view class="valueType1" style="color:#888888">
             {{eventToFileValue}}
           </view>
         </picker>

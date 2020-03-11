@@ -1,0 +1,46 @@
+<image class="mine-top-bg" src="../../images/mine-top-bg.png"></image>
+
+<view class="userinfo-wrapper">
+  <image class="avatar" src="../../images/avatar.jpg"></image>
+  <view class="info">
+    <view class="name">admin</view>
+    <view class="tel">15584231460</view>
+  </view>
+</view>
+
+<view class="mine-list-tab1">
+  <image class="icon" src="../../images/p.png"></image>
+  <view class="label">个人信息</view>
+  <image class="foot" src="../../images/art.png"></image>
+</view>
+
+
+
+<view class="mine-list-wrapper">
+  
+  <view class="mine-list-cell">
+    <image class="icon" src="../../images/noti.png"></image>
+    <view class="label">通知公告</view>
+    <image class="foot" src="../../images/art.png"></image>
+  </view>
+  <view class="grey-line"></view>
+  <view class="mine-list-cell" bindtap="reportRecord">
+    <image class="icon" src="../../images/wr.png"></image>
+    <view class="label">任务管理</view>
+    <image class="foot" src="../../images/art.png"></image>
+  </view>
+  <view class="grey-line"></view>
+  <view class="mine-list-cell" bindtap="clockIn">
+    <image class="icon" src="../../images/js.png"></image>
+    <view class="label">打卡</view>
+    <image class="foot" src="../../images/art.png"></image>
+  </view>
+  <view class="grey-line"></view>
+  <view class="mine-list-cell" bindtap="changePassword">
+    <image class="icon" src="../../images/password.png"></image>
+    <view class="label">密码修改</view>
+    <image class="foot" src="../../images/art.png"></image>
+  </view>
+  
+  <button class="logout" bindtap="logout">退出登录</button>
+</view>

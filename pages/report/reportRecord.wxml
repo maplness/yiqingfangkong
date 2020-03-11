@@ -1,10 +1,16 @@
 <!--pages/report/reportRecord.wxml-->
-<block wx:for="{{reportRecord}}">
-<view class="recordCell">
-  <view class="title">摊贩占道经营问题</view>
+<view class="things">
+  <view style="display:flex;flex-direction:row;">已处理： <view style="color:#47AB7A;">3</view>件</view>
+  <view style="display:flex;flex-direction:row;">未处理： <view style="color:red;">2</view>件</view>
+</view>
+
+
+<block wx:for="{{eventList}}">
+<view class="recordCell" bindtap="toDetail" data-index="{{index}}">
+  <view class="title">{{item.eventName}}</view>
   <view class="info">
-    <view>2019-11-01</view>
-    <view class="state">未处理</view>
+    <view>{{item.eventDay}}</view>
+  <view class="state" style="color: {{item.eventStatus == '1' ? 'red' : '#47AB7A'}}">{{item.eventStatus == '1'?"未完成":"已完成"}}</view>
   </view>
   <view class="divide"></view>
 </view>
