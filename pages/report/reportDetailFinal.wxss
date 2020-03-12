@@ -1,8 +1,6 @@
 /* pages/general/generalSign.wxss */
-@import '../../iconfont/iconfont.wxss';
 .weui-label{
   padding-right: 15px;
-  font-size: 14px;
   color: #A6A6A6;
   font-size: 34rpx;
 }

@@ -1,7 +1,17 @@
 {
   "pages": [
-    
+    "pages/mainpage/mainpage",
     "pages/login/login",
+    
+    
+    "pages/report/gridManReport",
+    
+    "pages/report/baoshixiangqing",
+    
+    
+    
+    
+    
     "pages/clock/clock",
     "pages/changePassword/changePassword",
     "pages/report/reportDetail",
@@ -11,7 +21,7 @@
     "pages/menu/gridManMenu",
     "pages/mine/mine",
     "pages/enterpriseReport",
-    "pages/report/gridManReport",
+    
     "pages/report/generalReport",
     "pages/record/jobdiary",
     "pages/record/detail",
@@ -26,6 +36,25 @@
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "WeChat",
     "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "backgroundColor": "#ffffff",
+    "color": "#666666",
+    "selectedColor": "#006EFE",
+    "list": [
+      {
+        "pagePath": "pages/mainpage/mainpage",
+        "text": "主页",
+        "iconPath": "images/mainpage.png",
+        "selectedIconPath": "images/mainpage_press.png"
+      },
+      {
+        "pagePath": "pages/mine/mine",
+        "text": "我的",
+        "iconPath": "images/mine.png",
+        "selectedIconPath": "images/mine_press.png"
+      }
+    ]
   },
   "sitemapLocation": "sitemap.json",
   "permission":{

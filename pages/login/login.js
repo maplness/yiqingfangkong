@@ -133,18 +133,19 @@ Page({
           } else {
             that.data.isGridMan = false;
           }
-          //普通群众
-          if (!that.data.isGridMan) {
-            wx.redirectTo({
-              url: '../menu/massesMenu',
-            })
-          }
-          //网格员
-          else {
-            wx.redirectTo({
-              url: '../menu/gridManMenu',
-            })
-          }
+          // if (!that.data.isGridMan) {
+          //   wx.redirectTo({
+          //     url: '../menu/massesMenu',
+          //   })
+          // }
+          // else {
+          //   wx.redirectTo({
+          //     url: '../menu/gridManMenu',
+          //   })
+          // }
+          wx.switchTab({
+            url: '../mainpage/mainpage',
+          })
         }
         
       }

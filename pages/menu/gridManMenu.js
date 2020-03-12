@@ -51,37 +51,7 @@ Page({
   },
   onLoad: function () {
     // console.log('onLoad')
-    var that = this
     
-    //获取事件类型
-    wx.request({
-      url: app.globalData.host + app.globalData.getEventTypeUrl,
-      header: {
-        "Authorization": app.globalData.access_token
-      },
-      success(res){
-        // console.log(res)
-        app.globalData.eventTypeArray = res.data.data
-      }
-    })
-
-    //获取用户信息
-    wx.request({
-      url: app.globalData.host + app.globalData.getInfoUrl,
-      header: {
-        "Authorization": app.globalData.access_token
-      },
-      success(res){
-        // console.log(res)
-        app.globalData.user = res.data.user
-        console.log(app.globalData.user)
-      }
-    })
-
-    //设置用户信息
-    that.setData({
-      user: app.globalData.user
-    })
   },
 
   masses(){

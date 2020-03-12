@@ -1,7 +1,6 @@
 /* pages/jobdiary/add.wxss */
 
 /* view{  border: 1rpx red solid;} */
-@import '../../iconfont/iconfont.wxss';
 input{
   background-color: red;
 }

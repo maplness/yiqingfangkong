@@ -16,9 +16,10 @@ Page({
     objectMultiShow: [],
     objectMultiArray: [],
     multiArray: [],
-    multiIndex: [],
+    multiIndex: [0,0],
     checkeIndex: [],
-    eventType: "请选择",
+    eventType: "请选择报事类型",
+    eventId: ""
   },
   chooseImage(e) {
     wx.chooseImage({
@@ -204,6 +205,7 @@ Page({
       objectMultiShow: this.data.objectMultiShow,
       objectMultiArray: this.data.objectMultiArray,
       multiArray: this.data.multiArray,
+      multiArray2: this.data.multiArray2,
       multiIndex: this.data.multiIndex,
       checkeIndex: this.data.checkeIndex
     }
@@ -219,6 +221,10 @@ Page({
       item = item.map(i => i.name)
       return item
     })
+    data.multiArray2 = data.objectMultiShow.map(item => {
+      item = item.map(i => i.id)
+      return item
+    })
     // console.log(data.multiIndex)
 
     // 数据更新
@@ -226,7 +232,7 @@ Page({
   },
   //mutiple picker
   bindMultiPickerChange: function (e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndex: e.detail.value
     })
@@ -237,6 +243,7 @@ Page({
     var data = {
       objectMultiShow: this.data.objectMultiShow,
       multiArray: this.data.multiArray,
+      multiArray2: this.data.multiArray2,
       multiIndex: this.data.multiIndex
     };
 
@@ -256,6 +263,7 @@ Page({
     for (let i = e.detail.column; i < data.multiIndex.length - 1; i++) {
       data.objectMultiShow[i + 1] = arry[i + 1].filter(item => item.parentId === data.objectMultiShow[i][data.multiIndex[i]].id)
       data.multiArray[i + 1] = data.objectMultiShow[i + 1].map(item => item.name)
+      data.multiArray2[i + 1] = data.objectMultiShow[i + 1].map(item => item.id)
     }
     /*switch (e.detail.column) {
       case 0:
@@ -272,8 +280,8 @@ Page({
     var temp1 = data.multiArray[0][data.multiIndex[0]] ? data.multiArray[0][data.multiIndex[0]] : "请选择"
     var temp2 = data.multiArray[1][data.multiIndex[1]] ? data.multiArray[1][data.multiIndex[1]] : "请选择"
     var temp = temp1 + ' -- ' + temp2
-    var id1 = arry[0][data.multiIndex[0]].id
-    var id2 = arry[1][data.multiIndex[1]].id
+    var id1 = data.multiArray2[0][data.multiIndex[0]]
+    var id2 = data.multiArray2[1][data.multiIndex[1]]
     // console.log(temp)
     this.setData({
       eventType: temp,
@@ -281,4 +289,9 @@ Page({
     })
     this.setData(data);
   },
+  inputDetail(){
+    wx.navigateTo({
+      url: './baoshixiangqing',
+    })
+  }
 })

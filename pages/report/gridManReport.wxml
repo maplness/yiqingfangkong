@@ -3,22 +3,25 @@
   <form bindsubmit="formSubmit">
     <view class="form-item">
       <text class="form-item-name">报事名称</text>
-      <input class="form-item-input" name="eventName" value="{{form.eventName}}" auto-focus placeholder="填写报事名称" />
+      <input class="form-item-input" placeholder-style='text-align:right' name="eventName" value="{{form.eventName}}" auto-focus placeholder="填写报事名称" />
     </view>
-    <view class='weui-cell display_block'>
-        <label class='weui-label'>事件类型</label>
+    <view class='form-item'>
+        <label class='form-item-name'>事件类型</label>
         <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-            <view class="weui-input">{{eventType}}</view>
-          </picker>
+          <view >{{eventType}}</view>
+        </picker>
     </view>
     <view class="form-item">
-      <text class="form-item-name">报事详情</text>
-      <textarea class="form-item-textarea" name="eventDetail" value="{{form.eventDetail}}" placeholder="请填写报事详情" />
-
+      <view class="form-item-name">报事详情</view>
+      <view bindtap="inputDetail">请填写报事详情</view>
     </view>
-    <view class="form-item">
-      <text class="form-item-name">事件发生位置</text>
-      <input class="form-item-input" name="eventAddress" value="{{current_location}}" placeholder="请填写时间发生位置"/>
+    <view class="map-cell">
+      <text class="label">事件发生位置</text>
+      <view class="l2">
+        <i class="icon iconfont iconlocation"></i>
+        <input class="p" name="eventAddress" value="{{current_location}}" placeholder="请填写时间发生位置"/>
+        <view class="tail">重新定位</view>
+      </view>
     </view>
     <view class="form-item">
       <text class="form-item-name">定位网格</text>
