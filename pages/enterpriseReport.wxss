@@ -1,5 +1,17 @@
 /* pages/enterpriseReport.wxss */
 @import './report/generalReport.wxss';
+@import '../assets/iconfont/iconfont.wxss';
+page{
+  background-color: #F7F7F7;
+  margin-top: 32rpx;
+}
+.form-item{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #F8F8F8;
+  background-color: #fff;
+  padding: 40rpx;
+}
 .legalInfo{
   color: #AFBEED;
   font-size: 25rpx;

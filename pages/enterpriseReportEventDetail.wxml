@@ -1,0 +1,6 @@
+<!--pages/enterpriseReportEventDetail.wxml-->
+<view class="l1">填写报事详情</view>
+<textarea value="{{eventDetail}}"  class="l2" placeholder="填写事件发生地点，起因、经过、结果" maxlength="300" bindinput="signDetailInput">
+  <text class="hint">{{charNumber}}/300</text>
+</textarea>
+<button class="l3" bindtap="commitEventDetail">确定</button>

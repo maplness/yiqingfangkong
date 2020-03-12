@@ -19,14 +19,15 @@ Page({
     charNumber: 0,
     images: [],
     eventId: "",
-
+    eventDetail: '',
     //multiple picker
     objectMultiShow: [],
     objectMultiArray: [],
     multiArray: [],
+    multiArray2: [],
     multiIndex: [],
     checkeIndex: [],
-    eventType: "请选择"
+    eventType: ''
 
   },
   signDetailInput(e) {
@@ -50,6 +51,49 @@ Page({
       }
     })
   },
+  getLocation(){
+    let that = this;
+    // 实例化API核心类
+    var qqmapsdk = new QQMapWX({
+      key: 'PU4BZ-3ZPW6-JNJSB-EQLMY-4QZWZ-LAFEG' // 必填
+    });
+    wx.getLocation({
+      success: function (res) {
+        // console.log(res)
+        //保存到data里面的location里面
+        that.setData({
+          location: {
+            longitude: res.longitude,
+            latitude: res.latitude
+          }
+        })
+        qqmapsdk.reverseGeocoder({
+          loc: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function (res) {
+            // console.log(res);
+            var res = res.result;
+            that.setData({
+              current_location: res.address
+            })
+            // console.log(that.data.current_location)
+            that.data.form.eventAddress = that.data.current_location
+            that.setData({
+              form: that.data.form
+            })
+          },
+          fail: function (error) {
+            // console.error(error);
+          },
+          complete: function (res) {
+            // console.log(res);
+          }
+        })
+      }
+    })
+  },
   changeLocation(e){
     // console.log(this.data.form)
     this.setData({
@@ -60,6 +104,11 @@ Page({
       form: this.data.form
     })
     // console.log(this.data.form)
+  },
+  canceltip() {
+    wx.navigateBack({
+      
+    })
   },
   removeImage(e) {
     var that = this;
@@ -80,14 +129,13 @@ Page({
       urls: images,  //所有要预览的图片
     })
   },
-  formSubmit(e) {
+  formSubmit: function(e) {
     var that = this
     const params = e.detail.value;
     params.picturePath = this.data.images.join(',');
     params.eventDay = new Date();
-    
-    // console.log(params);
-    if(that.data.eventType == '请选择'){
+    params.reportType = '1'
+    if (that.data.eventType == ''){
       wx.showModal({
         content: '请选择事件类型',
         showCancel: false
@@ -105,16 +153,23 @@ Page({
       method: "POST",
       data: params,
       header: {
-        "Content-Type": "application/json;charset=UTF-8"
+        "Content-Type": "application/json;charset=UTF-8",
+        "Authorization": app.globalData.access_token
       },
       success(res) {
         if (res.data && res.data.code == 200) {
           that.showModal({
             msg: '提交成功',
           });
-          wx.navigateTo({
-            url: '/pages/jobdiary/jobdiary'
-          })
+          // wx.navigateTo({
+          //   url: '/pages/jobdiary/jobdiary'
+          // })
+          setTimeout(function(){
+            wx.navigateBack({
+
+            })
+          },1000);
+          
         } else {
           that.showModal({
             msg: '提交失败',
@@ -225,6 +280,7 @@ Page({
       objectMultiShow: this.data.objectMultiShow,
       objectMultiArray: this.data.objectMultiArray,
       multiArray: this.data.multiArray,
+      multiArray2: this.data.multiArray2,
       multiIndex: this.data.multiIndex,
       checkeIndex: this.data.checkeIndex
     }
@@ -240,6 +296,10 @@ Page({
       item = item.map(i => i.name)
       return item
     })
+    data.multiArray2 = data.objectMultiShow.map(item => {
+      item = item.map(i => i.id)
+      return item
+    })
     // console.log(data.multiIndex)
     
     // 数据更新
@@ -249,7 +309,7 @@ Page({
 
   //mutiple picker
   bindMultiPickerChange: function (e) {
-    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    console.log('picker发送选择改变，携带值为', e.detail.value)
     this.setData({
       multiIndex: e.detail.value
     })
@@ -260,6 +320,7 @@ Page({
     var data = {
       objectMultiShow: this.data.objectMultiShow,
       multiArray: this.data.multiArray,
+      multiArray2: this.data.multiArray2,
       multiIndex: this.data.multiIndex
     };
 
@@ -279,6 +340,7 @@ Page({
     for (let i = e.detail.column; i < data.multiIndex.length - 1; i++) {
       data.objectMultiShow[i + 1] = arry[i + 1].filter(item => item.parentId === data.objectMultiShow[i][data.multiIndex[i]].id)
       data.multiArray[i + 1] = data.objectMultiShow[i + 1].map(item => item.name)
+      data.multiArray2[i + 1] = data.objectMultiShow[i + 1].map(item => item.id)
     }
     /*switch (e.detail.column) {
       case 0:
@@ -292,12 +354,18 @@ Page({
         data.multiArray[2] = data.objectMultiShow[2].map(item => item.name)
     }*/
     // 数据更新
+    if (data.multiIndex[0] == undefined || data.multiIndex[0] == 'undefined') {
+      data.multiIndex[0] = 0;
+    }
     var temp1 = data.multiArray[0][data.multiIndex[0]] ? data.multiArray[0][data.multiIndex[0]] : "请选择"
     var temp2 = data.multiArray[1][data.multiIndex[1]] ? data.multiArray[1][data.multiIndex[1]] : "请选择"
     var temp = temp1 + ' -- ' + temp2
-    var id1 = arry[0][data.multiIndex[0]].id
-    var id2 = arry[1][data.multiIndex[1]].id
-    // console.log(id1 + ',' + id2)
+  
+    var id1 = data.multiArray2[0][data.multiIndex[0]]
+    var id2 = data.multiArray2[1][data.multiIndex[1]]
+    console.log(data.multiArray2);
+    console.log(data.multiIndex[0]);
+    console.log(id1 + ',' + id2)
     // console.log(temp)
     this.setData({
       eventType: temp,
@@ -318,7 +386,18 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];
+    // console.log(currPage.__data__.eventDetail);//此处既是上一页面传递过来的值
+    this.data.form.eventDetail = currPage.__data__.eventDetail
+    this.setData({
+      "form.eventDetail": currPage.__data__.eventDetail
+    })
+  },
+  getEventDetail() {
+    wx.navigateTo({
+      url: '/pages/report/generalReportEventDetail?eventDetail='+ this.data.form.eventDetail,
+    })
   },
 
   /**

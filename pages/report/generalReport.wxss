@@ -1,11 +1,48 @@
 /* pages/general/generalSign.wxss */
-@import '../../iconfont/iconfont.wxss';
-.weui-label{
-  padding-right: 15px;
-  font-size: 14px;
+@import '../../assets/iconfont/iconfont.wxss';
+page{
+  background-color: #F7F7F7;
+  margin-top: 32rpx;
+}
+.form-item{
+  display: flex;
+  flex-direction: row;
+  border-bottom: 1px solid #F8F8F8;
+  background-color: #fff;
+  padding: 40rpx;
+}
+.form-item-name{
+  flex: 2
+}
+.form-item-input{
+  flex: 3
+}
+
+.form-item-location{
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.form-item-location-icon{
+  width: 40rpx;
+}
+.form-item-location-input{
+  width: 500rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.form-item-location-click{
+  width: 200rpx;
+  color: #55abfc;
+  text-align: right;
+}
+.addpic{
+  background-color: #F7F7F7;
 }
 .weui-input{
-  background-color: #efefef;
+  background-color: #ffffff;
   height: 2em;
   min-height: 2em;
   line-height: 2em;
@@ -22,13 +59,11 @@
   margin-top: 5px;
   padding: 20rpx;
 }
-.margin-top-5{
-  margin-top: 5px;
-}
 .q-image-wrap{
   width: 150rpx;
   height: 150rpx;
-  border: 2rpx solid #000000;
+  border: 2rpx dotted #000000;
+  border-radius: 10rpx;
   float: left;
   margin-right: 20rpx;
   position: relative;
@@ -42,7 +77,7 @@
   width: 100rpx;
   height: 100rpx;
   border-radius: 100%;
-  background: #2e82ff;
+  /* background: #2e82ff; */
   position: absolute;
   top:-50rpx;
   right:-50rpx;
@@ -52,7 +87,7 @@
   position: absolute;
   left:12rpx;
   bottom:12rpx;
-  color:#fff;
+  color:#ff0000;
 }
  
 .uploadImgBtn{
@@ -60,7 +95,8 @@
   height: 150rpx;
   text-align: center;
   line-height: 140rpx;
-  border: 2rpx solid #000000;
+  border: 2rpx dotted #000000;
+  border-radius: 10rpx;
   float: left;
 }
 .uploadImgBtn icon{

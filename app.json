@@ -1,11 +1,9 @@
 {
   "pages": [
-    
     "pages/login/login",
     "pages/clock/clock",
     "pages/changePassword/changePassword",
     "pages/report/reportDetail",
-    
     "pages/report/reportDetailFinal",
     "pages/report/reportRecord",
     "pages/menu/gridManMenu",
@@ -18,8 +16,9 @@
     "pages/record/add",
     "pages/menu/massesMenu",
     "pages/index/index",
-    "pages/logs/logs"
-    
+    "pages/logs/logs",
+    "pages/report/generalReportEventDetail",
+    "pages/enterpriseReportEventDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
@@ -28,7 +27,7 @@
     "navigationBarTextStyle": "black"
   },
   "sitemapLocation": "sitemap.json",
-  "permission":{
+  "permission": {
     "scope.userLocation": {
       "desc": "你的位置信息将用于小程序位置接口的效果展示"
     }
