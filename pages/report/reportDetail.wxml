@@ -48,7 +48,7 @@
         <view class="weui-textarea-counter"><span>{{charNumber}}</span>/300</view>
       </view>
       <view class='weui-cell display_block'>
-        <label class='weui-label'>照片</label>
+        <label class='weui-label'>添加图片</label>
         <view class="picRecord">
           <view class="question-images clearFloat">
             <block wx:for="{{images}}" wx:key="*this">
@@ -57,13 +57,13 @@
                 <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
                 <!-- 移除图片的按钮  -->
                 <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
-                  <icon class='iconfont icon-shanchu1'></icon>
+                  <icon class='iconfont iconchahao'></icon>
                 </view>
               </view>
             </block>
             <!-- 上传图片 -->
             <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
-              <icon class="iconfont icon-jia1"></icon>
+              <icon class="iconfont iconcamera"></icon>
             </view>
           </view>
         </view>

@@ -1,24 +1,27 @@
 {
   "pages": [
-    "pages/mainpage/mainpage",
+    
     "pages/login/login",
+    "pages/clock/clock",
+    "pages/mainpage/mainpage",
+    "pages/menu/gridManMenu",
     
     
     "pages/report/gridManReport",
     
     "pages/report/baoshixiangqing",
+    "pages/enterpriseReportEventDetail",
+    
+    "pages/report/generalReportEventDetail",
     
     
     
-    
-    
-    "pages/clock/clock",
     "pages/changePassword/changePassword",
     "pages/report/reportDetail",
     
     "pages/report/reportDetailFinal",
     "pages/report/reportRecord",
-    "pages/menu/gridManMenu",
+    
     "pages/mine/mine",
     "pages/enterpriseReport",
     

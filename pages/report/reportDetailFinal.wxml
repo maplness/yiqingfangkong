@@ -21,7 +21,7 @@
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>定位网格</label>
-        <view class="valueType2">{{event.eventGridName}}</view>
+        <view class="valueType2">{{event.eventGrid}}</view>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>报事人身份号码</label>
@@ -36,11 +36,11 @@
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>核实结果</label>
-        <view class="valueType1">{{event.eventConfirm}}</view>
+        <view class="valueType1">{{event.caseInfo.confirmStatus == '1'?"核实通过":"核实不通过"}}</view>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>核实意见</label>
-        <textarea class='weui-textarea textarea_p' name='eventDetail' value="{{event.eventConfirmRemark}}" rows='4' disabled="true"  maxlength="300" bindinput="signDetailInput"></textarea>
+        <textarea class='weui-textarea textarea_p' name='eventDetail' value="{{event.caseInfo.confirmRemark}}" rows='4' disabled="true"  maxlength="300" bindinput="signDetailInput"></textarea>
       </view>
       <view class='weui-cell display_block'>
         <label class='weui-label'>照片</label>
@@ -51,7 +51,7 @@
 
       <view class='weui-cell display_block'>
         <label class='weui-label'>核实立案</label>
-        <view class="valueType1">{{event.eventToFile}}</view>
+        <view class="valueType1">{{event.caseInfo.registerStatus == '1'?"立案处理":"销案处理"}}</view>
       </view>
 
       <view class='weui-cell display_block'>
@@ -70,7 +70,7 @@
       </view>
 
       <view class='weui-cell display_block'>
-        <label class='weui-label'>照片</label>
+        <label class='weui-label'>添加图片</label>
         <view class="picRecord">
           <view class="question-images clearFloat">
             <block wx:for="{{images}}" wx:key="*this">
@@ -79,13 +79,13 @@
                 <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
                 <!-- 移除图片的按钮  -->
                 <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
-                  <icon class='iconfont icon-shanchu1'></icon>
+                  <icon class='iconfont iconchahao'></icon>
                 </view>
               </view>
             </block>
             <!-- 上传图片 -->
             <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
-              <icon class="iconfont icon-jia1"></icon>
+              <icon class="iconfont iconcamera"></icon>
             </view>
           </view>
         </view>

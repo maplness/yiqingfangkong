@@ -1,8 +1,8 @@
 <!--pages/report/reportRecord.wxml-->
-<view class="things">
+<!-- <view class="things">
   <view style="display:flex;flex-direction:row;">已处理： <view style="color:#47AB7A;">3</view>件</view>
   <view style="display:flex;flex-direction:row;">未处理： <view style="color:red;">2</view>件</view>
-</view>
+</view> -->
 
 
 <block wx:for="{{eventList}}">
@@ -10,7 +10,7 @@
   <view class="title">{{item.eventName}}</view>
   <view class="info">
     <view>{{item.eventDay}}</view>
-  <view class="state" style="color: {{item.eventStatus == '1' ? 'red' : '#47AB7A'}}">{{item.eventStatus == '1'?"未完成":"已完成"}}</view>
+  <view class="state" style="color: {{item.statusDescColor}}">{{item.statusDesc}}</view>
   </view>
   <view class="divide"></view>
 </view>

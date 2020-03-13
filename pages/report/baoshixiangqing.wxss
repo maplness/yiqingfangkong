@@ -1,0 +1,33 @@
+/* pages/report/baoshixiangqing.wxss */
+page{
+  background-color: #f7f7f7;
+}
+.l1{
+  margin-top: 40rpx;
+  margin-left: 40rpx;
+}
+.l2{
+  background-color: #fff;
+  margin-top: 40rpx;
+  width: 670rpx;
+  height: 200rpx;
+  padding: 40rpx;
+}
+.l3{
+  margin-top: 40rpx;
+  width: 60%;
+  margin-left: 20%;
+  color: white;
+  background-color: #55abfc;
+  border-radius: 40rpx;
+}
+.l3::after{
+  border: none
+}
+.hint{
+  color: #55abfc;
+  font-size: 14px;
+  position: absolute;
+  top: 240rpx;
+
+}

@@ -1,6 +1,7 @@
 // pages/general/generalSign.js
 import WxValidate from '../../utils/WxValidate.js';
 var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
+const app = getApp()
 Page({
 
   /**
@@ -16,44 +17,20 @@ Page({
       current_location: ""
     },
     event: {
-      "eventDay": "2020-03-02",
-      "eventName": "摊贩占道经营问题",
-      "eventDetail": "恒大城东侧每到下午4点以后，就有一些商贩聚集在道路旁边，占道经营，影响正常交通",
-      "eventAddress": "高新区-槐安街158号",
-      "eventLatitude": "",
-      "eventLongitude": "",
-      "eventGridName": "高新区-槐安街道-恒大城居委会-第316网格-孙东磊",
-      "eventGrid": "",
-      "eventConfirm": "核实通过",
-      "eventConfirmRemark":"核实属实",
-      "eventToFile":"立案处理",
-      "reporterIdNum": "120223199608211214",
-      "picturePath": "",
-      "voicePath": "",
-      "reportType": "",//1，群众报事；2，网格员报事； 3，公司报事
-      "companyId": "",
-      "eventStatus": "",
-      "solvedInfo": "",
-      "solvedUser": "",
-      "nickName": "",
-      "companyName": "",
-      "userId": "",
-      "solvedTime": "",
-      "company": "",
-      "sort": "",
-      "order": ""
     },
     validState: ['核实通过', '核实不通过'],
     validValue: "请选择",
     eventToFile: ['核查通过', '核查不通过'],
     eventToFileValue: "请选择",
     charNumber: 0,
+    auditRemark: "",
     images: []
   },
   signDetailInput(e) {
     var v = e.detail.value || '';
     this.setData({
-      charNumber: v.length
+      charNumber: v.length,
+      auditRemark: e.detail.value
     });
   },
   chooseImage(e) {
@@ -122,6 +99,42 @@ Page({
   formSubmit(e) {
     var that = this
 
+    //核查结果
+    if(that.data.eventToFileValue == '核查通过'){
+      that.data.event.caseInfo.auditStatus = '1'
+    }else if (that.data.eventToFileValue == '核查不通过'){
+      that.data.event.caseInfo.auditStatus = '2'
+    }else{
+      wx.showToast({
+        title: '请选择核实结果',
+        duration: 2000
+      })
+      return false
+    }
+
+    //核查意见
+    that.data.event.caseInfo.auditRemark = that.data.auditRemark
+
+    wx.request({
+      url: app.globalData.host + app.globalData.dropCaseUrl,
+      method: "POST",
+      data: that.data.event.caseInfo,
+      header: {
+        "Authorization": app.globalData.access_token,
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      success(res) {
+        if (res.data && res.data.code == 200) {
+          that.showModal({
+            msg: '提交成功',
+          });
+        } else {
+          that.showModal({
+            msg: '提交失败',
+          });
+        }
+      }
+    });
     //提交成功并返回
     wx.showToast({
       title: '登记成功',
@@ -138,34 +151,13 @@ Page({
     // const params = e.detail.value;
     // params.picturePath = this.data.images.join(',');
     // params.eventDay = new Date();
-    // // console.log(params);
+    // console.log(params);
     // if (!this.WxValidate.checkForm(params)) {
     //   const error = this.WxValidate.errorList[0];
     //   this.showModal(error);
     //   return false;
     // }
-    // wx.request({
-    //   url: app.globalData.host + '/report/reportInfo',
-    //   method: "POST",
-    //   data: params,
-    //   header: {
-    //     "Content-Type": "application/json;charset=UTF-8"
-    //   },
-    //   success(res) {
-    //     if (res.data && res.data.code == 200) {
-    //       that.showModal({
-    //         msg: '提交成功',
-    //       });
-    //       wx.navigateTo({
-    //         url: '/pages/jobdiary/jobdiary'
-    //       })
-    //     } else {
-    //       that.showModal({
-    //         msg: '提交失败',
-    //       });
-    //     }
-    //   }
-    // });
+    
   },
   //报错 
   showModal(error) {

@@ -1,0 +1,86 @@
+<!--pages/mainpage/mainpage.wxml-->
+<image class="bg-img" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcsa4nllmzj30v90eudhh.jpg"></image>
+<image class="bg-img2" src="../../images/l1.png"></image>
+<view class="l1">
+  <view class="left">
+    <i class="icon iconfont iconlocation"></i>
+    <view>济南</view>
+  </view>
+
+  <view class="mid">城市综治平台</view>
+</view>
+
+<view class="swiper-container">
+  <swiper indicator-dots="{{indicatorDots}}" autoplay="{{autoplay}}" interval="{{interval}}" duration="{{duration}}" circular="{{duration}}" current="{{swiperCurrent}}" bindchange="swiperChange" class="swiper">
+    <block wx:for="{{imgUrls}}" wx:key="unique">
+      <swiper-item>
+        <image src="{{item}}" class="img" bindtap="swipclick" mode="scaleToFill" />
+      </swiper-item>
+    </block>
+  </swiper>
+</view>
+
+<view class="l2">
+  <view class="line1">
+    <view class="cell" bindtap="func1">
+      <image src="{{function[0].icon}}"  class="icon"/>
+      <view class="label">{{function[0].label}}</view>
+    </view>
+    <view class="cell" bindtap="func2">
+      <image src="{{function[1].icon}}"  class="icon"/>
+      <view class="label">{{function[1].label}}</view>
+    </view>
+    <view class="cell" bindtap="func3">
+      <image src="{{function[2].icon}}"  class="icon"/>
+      <view class="label">{{function[2].label}}</view>
+    </view>
+    <view class="cell" bindtap="func4">
+      <image src="{{function[3].icon}}"  class="icon"/>
+      <view class="label">{{function[3].label}}</view>
+    </view>
+  </view>
+  <view class="line2">
+    <view class="cell" bindtap="func5">
+      <image src="{{function[4].icon}}"  class="icon"/>
+      <view class="label">{{function[4].label}}</view>
+    </view>
+    <view class="cell">
+      <image src="{{function[5].icon}}"  class="icon"/>
+      <view class="label">{{function[5].label}}</view>
+    </view>
+    <view class="cell">
+      <image src="{{function[6].icon}}"  class="icon"/>
+      <view class="label">{{function[6].label}}</view>
+    </view>
+    <view class="cell">
+      <image src="{{function[7].icon}}"  class="icon"/>
+      <view class="label">{{function[7].label}}</view>
+    </view>
+  </view>
+</view>
+
+<view class="l3">
+  <view class="head">
+    <view class="title">通知公告</view>
+    <view class="vertical-divider"></view>
+    <view class="subtitle">news</view>
+  </view>
+
+  <view class="h-divider"></view>
+
+  <view class="body">
+    <block wx:for="{{news}}" wx:key="news">
+    <view class="news-cell">
+      <view class="news-title">{{news[index].title}}</view>
+      <view class="subline">
+        <view class="desc">{{news[index].author}}</view>
+        <view class="desc" >{{news[0].date}}</view>
+      </view>
+      <view class="l3-divider"></view>
+    
+
+    </view>
+    </block>
+  </view>
+  
+</view>

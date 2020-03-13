@@ -2,40 +2,40 @@
 <!--<text>pages/general/generalSign.wxml</text>-->
 <view class='page'>
   <form bindsubmit="formSubmit">
-    <view class='weui-cells weui-cells_form'>
-      <view class='weui-cell'>
-        <view class='weui-cell__hd'>
-          <label class='weui-label'>报事名称</label>
+    <view class="form-item">
+        <text class="form-item-name">报事名称</text>
+        <input class="form-item-input" name="eventName" value="{{form.eventName}}" auto-focus placeholder="填写报事名称" placeholder-style="text-align:right"/>
+    </view>
+    <view class="form-item">
+        <view class="form-item-name">事件类型</view>
+        <picker class="form-item-input" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+          <input class="form-item-input" name="" value="{{eventType}}" placeholder="请选择事件类型" placeholder-style="text-align:right" disabled="true"/>
+        </picker>
+    </view>
+    <view class="form-item">
+        <text class="form-item-name">报事详情</text>
+        <input class="form-item-input" name="eventDetail" value="{{form.eventDetail}}" placeholder="请填写报事详情" placeholder-style="text-align:right" disabled="true" bindtap="getEventDetail"/>
+    </view>
+    <view class="form-item display_block">
+        <text class="form-item-name ">当前位置</text>
+        <view class="form-item-location">
+        <view class="form-item-location-icon"><icon class="iconfont iconlocation"></icon></view>
+        <view class="">
+        <input class='form-item-location-input' name='eventAddress' value='{{current_location}}' placeholder="填写事件发生位置" bindinput="changeLocation"></input>
         </view>
-        <view class='weui-cell__bd'>
-          <input class='weui-input' name='eventName' value='{{form.eventName}}' placeholder="请填写报事名称"></input>
+        <view class="form-item-location-click" bindtap="getLocation">重新定位</view>
         </view>
-      </view>
+    </view>
+    <view class="form-item">
+        <text class="form-item-name">定位网格</text>
+        <input class="form-item-input" name="eventGrid" value="{{form.eventGrid}}" placeholder="请填写定位网格" placeholder-style="text-align:right"/>
+    </view>
+    <view class="form-item">
+        <text class="form-item-name">报事人身份号码</text>
+        <input class='form-item-input' name='reporterIdNum' value='{{form.reporterIdNum}}' placeholder="请填写身份号码" placeholder-style="text-align:right"></input>
+    </view>
       <view class='weui-cell display_block'>
-        <label class='weui-label'>事件类型</label>
-        <picker mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
-            <view class="weui-input">{{eventType}}</view>
-          </picker>
-      </view>
-      <view class='weui-cell display_block'>
-        <label class='weui-label'>报事详情</label>
-        <textarea class='weui-textarea textarea_p' name='eventDetail' value='{{form.eventDetail}}' rows='4' placeholder="填写事件发生地点、起因、经过、结果" maxlength="300" bindinput="signDetailInput"></textarea>
-        <view class="weui-textarea-counter"><span>{{charNumber}}</span>/300</view>
-      </view>
-      <view class='weui-cell display_block'>
-        <label class='weui-label'>事件发生位置</label>
-        <input class='weui-input margin-top-5' name='eventAddress' value='{{current_location}}' placeholder="填写事件发生位置" bindinput="changeLocation"></input>
-      </view>
-      <view class='weui-cell display_block'>
-        <label class='weui-label'>定位网格</label>
-        <input class='weui-input margin-top-5' name='eventGrid' value='{{form.eventGrid}}' placeholder="填写定位网格"></input>
-      </view>
-      <view class='weui-cell display_block'>
-        <label class='weui-label'>报事人身份号码</label>
-        <input class='weui-input margin-top-5' name='reporterIdNum' value='{{form.reporterIdNum}}' placeholder="填写身份号码"></input>
-      </view>
-      <view class='weui-cell display_block'>
-        <label class='weui-label'>图片</label>
+        <label class='weui-label'>添加图片</label>
         <view class="picRecord">
           <view class="question-images clearFloat">
             <block wx:for="{{images}}" wx:key="*this">
@@ -44,13 +44,13 @@
                 <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
                 <!-- 移除图片的按钮  -->
                 <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
-                  <icon class='iconfont icon-shanchu1'></icon>
+                  <icon class='iconfont iconchahao'></icon>
                 </view>
               </view>
             </block>
             <!-- 上传图片 -->
             <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
-              <icon class="iconfont icon-jia1"></icon>
+              <icon class="iconfont iconcamera"></icon>
             </view>
           </view>
         </view>
@@ -59,6 +59,5 @@
         <button class="submit" bindtap="" size="mini" formType="submit">提交</button>
         <button class="cancel" bindtap="canceltip" size="mini">取消</button>
       </view>
-    </view>
   </form>
 </view>

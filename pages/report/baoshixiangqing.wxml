@@ -1,0 +1,6 @@
+<!--pages/report/baoshixiangqing.wxml-->
+<view class="l1">填写报事详情</view>
+<textarea class="l2" value="{{eventDetail}}" placeholder="填写事件发生地点，起因、经过、结果" maxlength="300" bindinput="signDetailInput">
+  <text class="hint">{{charNumber}}/300</text>
+</textarea>
+<button class="l3" bindtap="sure">确定</button>

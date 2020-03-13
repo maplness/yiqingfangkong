@@ -29,6 +29,30 @@ page {
 .form-item-input{
   flex: 2
 }
+.display_block{
+  display: block;
+}
+
+.form-item-location{
+  display: flex;
+  flex-direction: row;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+
+.form-item-location-icon{
+  width: 40rpx;
+}
+.form-item-location-input{
+  width: 500rpx;
+  height: 80rpx;
+  line-height: 80rpx;
+}
+.form-item-location-click{
+  width: 200rpx;
+  color: #55abfc;
+  text-align: right;
+}
 .map-cell{
   display: flex;
   flex-direction: column;
@@ -72,17 +96,22 @@ page {
 .q-image-wrap{
   width: 150rpx;
   height: 150rpx;
-  border: 2rpx solid #000000;
+  border: 2px dotted #000000;
+  border-radius: 10rpx;
   float: left;
   margin-right: 20rpx;
   position: relative;
   overflow: hidden;
 }
+.q-image-wrap image{
+  width: 100%;
+  height: 100%;
+}
 .q-image-remover{
   width: 100rpx;
   height: 100rpx;
   border-radius: 100%;
-  background: #2e82ff;
+  /* background: #2e82ff; */
   position: absolute;
   top:-50rpx;
   right:-50rpx;
@@ -90,9 +119,9 @@ page {
 }
 .q-image-remover icon{
   position: absolute;
-  left:12rpx;
+  left:20rpx;
   bottom:12rpx;
-  color:#fff;
+  color:#FD5C4C;
 }
  
 .uploadImgBtn{
@@ -100,7 +129,8 @@ page {
   height: 150rpx;
   text-align: center;
   line-height: 140rpx;
-  border: 2rpx solid #000000;
+  border: 2px dotted #000000;
+  border-radius: 10rpx;
   float: left;
 }
 .uploadImgBtn icon{

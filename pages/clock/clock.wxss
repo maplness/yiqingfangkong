@@ -1,7 +1,10 @@
 /* pages/clock/clock.wxss */
 /* pages/items/map.wxss */
+page{
+  background-color: #F7F7F7;
+}
 .grey_line{
-  height: 1rpx;
+  height: 2rpx;
   border-top: 1rpx solid #E5E5E5;
 }
 .TL_info{
@@ -13,18 +16,47 @@
   font-size: 10px;
   padding-left: 32rpx;
 }
+.text_desc{
+  padding-left: 32rpx;
+  padding-top: 32rpx;
+}
 .TL_info_detail{
   margin-right: 30rpx;
   color: #888888;
   font-size:22rpx;
   font-family:PingFangSC-Regular;
   font-weight:400;
+  margin-left: 20rpx;
 }
 .map_cell{
   height: 399rpx;
+  background-color: #ffffff;
 }
-.clock-btn{
+.clock{
   display: flex;
   flex-direction: row;
-  margin-top: 40rpx;
+  margin-top: 80rpx;
+}
+.clock-btn{
+  width: 300rpx;
+  height: 300rpx;
+  text-align: center;
+  /* line-height: 240rpx; */
+  background-color: #FD9287;
+  border-radius: 50%;
+  margin: 0 auto;
+}
+.clock-tool{
+  display: flex;
+  height: 300rpx;
+  flex-direction: column;
+  justify-content: center;
+  color: #ffffff;
+}
+.clock-tool .l1{
+  font-size: 18px;
+  opacity: 0.7;
+}
+.clock-tool .l2{
+  font-size: 24px;
 }

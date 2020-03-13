@@ -18,8 +18,9 @@ Page({
     multiArray: [],
     multiIndex: [0,0],
     checkeIndex: [],
-    eventType: "请选择报事类型",
-    eventId: ""
+    eventType: "",
+    eventId: "",
+    eventDetail: ""
   },
   chooseImage(e) {
     wx.chooseImage({
@@ -76,31 +77,29 @@ Page({
     }
     params.eventType = that.data.eventId
     params.picturePath = ''
-    // console.log(params)
-    // that.submitForm(params)
-    
+    that.submitForm(params)
     //先上传照片，再提交表单
-    for(var i=0;i<that.data.images.length;i++){
-      wx.uploadFile({
-        url: app.globalData.host + app.globalData.uploadImgUrl,
-        header: {
-          "Authorization": app.globalData.access_token
-        },
-        filePath: that.data.images[0],
-        name: 'file',
-        success(res) {
-          params.picturePath += JSON.parse(res.data).url+','
-          console.log(i)
-          console.log(params.picturePath)
-          var n = (params.picturePath.split(',')).length - 1;
-          //传完了图片
-          if(n == (that.data.images.length)){
-            console.log(params)
-            that.submitForm(params)
-          }
-        }
-      })
-    }
+    // for(var i=0;i<that.data.images.length;i++){
+    //   wx.uploadFile({
+    //     url: app.globalData.host + app.globalData.uploadImgUrl,
+    //     header: {
+    //       "Authorization": app.globalData.access_token
+    //     },
+    //     filePath: that.data.images[0],
+    //     name: 'file',
+    //     success(res) {
+    //       params.picturePath += JSON.parse(res.data).url+','
+    //       console.log(i)
+    //       console.log(params.picturePath)
+    //       var n = (params.picturePath.split(',')).length - 1;
+    //       //传完了图片
+    //       if(n == (that.data.images.length)){
+    //         console.log(params)
+    //         that.submitForm(params)
+    //       }
+    //     }
+    //   })
+    // }
   },
   submitForm(e){
     console.log("上传表单")
@@ -116,6 +115,50 @@ Page({
         console.log(res)
         that.showModal({
           msg: '提交成功',
+        })
+        setTimeout(function () {
+          wx.navigateBack({
+
+          })
+        }, 1000);
+      }
+    })
+  },
+  getLocation() {
+    let that = this;
+    // 实例化API核心类
+    var qqmapsdk = new QQMapWX({
+      key: 'PU4BZ-3ZPW6-JNJSB-EQLMY-4QZWZ-LAFEG' // 必填
+    });
+    wx.getLocation({
+      success: function (res) {
+        // console.log(res)
+        //保存到data里面的location里面
+        that.setData({
+          location: {
+            longitude: res.longitude,
+            latitude: res.latitude
+          }
+        })
+        qqmapsdk.reverseGeocoder({
+          loc: {
+            latitude: res.latitude,
+            longitude: res.longitude
+          },
+          success: function (res) {
+            // console.log(res);
+            var res = res.result;
+            that.setData({
+              current_location: res.address
+            })
+            // console.log(that.data.current_location)
+          },
+          fail: function (error) {
+            // console.error(error);
+          },
+          complete: function (res) {
+            // console.log(res);
+          }
         })
       }
     })
@@ -277,6 +320,9 @@ Page({
         data.multiArray[2] = data.objectMultiShow[2].map(item => item.name)
     }*/
     // 数据更新
+    if (data.multiIndex[0] == undefined || data.multiIndex[0] == 'undefined') {
+      data.multiIndex[0] = 0;
+    }
     var temp1 = data.multiArray[0][data.multiIndex[0]] ? data.multiArray[0][data.multiIndex[0]] : "请选择"
     var temp2 = data.multiArray[1][data.multiIndex[1]] ? data.multiArray[1][data.multiIndex[1]] : "请选择"
     var temp = temp1 + ' -- ' + temp2
@@ -291,7 +337,16 @@ Page({
   },
   inputDetail(){
     wx.navigateTo({
-      url: './baoshixiangqing',
+      url: './baoshixiangqing'+"?eventDetail="+this.data.eventDetail,
+    })
+  },
+  onShow(){
+    var pages = getCurrentPages();
+    var currPage = pages[pages.length - 1];
+    // console.log(currPage.__data__.eventDetail);//此处既是上一页面传递过来的值
+    this.data.eventDetail = currPage.__data__.eventDetail
+    this.setData({
+      eventDetail: currPage.__data__.eventDetail
     })
   }
 })

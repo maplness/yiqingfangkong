@@ -46,12 +46,14 @@ Page({
     eventToFile:  ['立案处理','销案处理'],
     eventToFileValue: "请选择",
     charNumber: 0,
+    confirmRemark: "",
     images: []
   },
   signDetailInput(e) {
     var v = e.detail.value || '';
     this.setData({
-      charNumber: v.length
+      charNumber: v.length,
+      confirmRemark: e.detail.value
     });
   },
   chooseImage(e) {
@@ -119,21 +121,36 @@ Page({
   },
   formSubmit(e) {
     var that = this
-
-    var temp = {
-      eventId : 11,
-      confirmStatus : '1',
-      confirmRemark : "确实",
-      registerStatus : "1"
+    // that.data.event.caseInfo.id = that.data.event.id
+    //eventid
+    that.data.event.caseInfo.eventId = that.data.event.id
+    //confirm status
+    if (that.data.validValue == '核实通过'){
+      that.data.event.caseInfo.confirmStatus = '1'
+    }else if(that.data.validValue == '核实不通过'){
+      that.data.event.caseInfo.confirmStatus = '2'
+    }else{
+      wx.showToast({
+        title: '请选择核实结果',
+        duration: 2000
+      })
+      return false
     }
+    //confirm remark
+    that.data.event.caseInfo.confirmRemark = that.data.confirmRemark
+    //register status
+    if (that.data.eventToFileValue == '立案处理'){
+      that.data.event.caseInfo.registerStatus = '1'
+    }
+    console.log(that.data.event.caseInfo)
     //rigester case
     wx.request({
       url: app.globalData.host + app.globalData.registerCaseUrl,
       header: {
-        "Authroization" : app.globalData.access_token
+        "Authorization": app.globalData.access_token
       },
       method: "POST",
-      data: temp,
+      data: that.data.event.caseInfo,
       success(res){
         console.log(res)
       }

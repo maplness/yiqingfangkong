@@ -5,6 +5,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    user: {}
   },
 
   
@@ -21,6 +22,26 @@ Page({
    */
   onReady: function () {
 
+  },
+  changePassword() {
+    wx.navigateTo({
+      url: '../changePassword/changePassword',
+    })
+  },
+  reportRecord() {
+    wx.navigateTo({
+      url: '../report/reportRecord',
+    })
+  },
+  logout() {
+    wx.redirectTo({
+      url: '../login/login',
+    })
+  },
+  clockIn() {
+    wx.navigateTo({
+      url: '../clock/clock',
+    })
   },
 
   /**

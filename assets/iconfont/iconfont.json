@@ -1,0 +1,51 @@
+{
+  "id": "1667728",
+  "name": "城市综治平台",
+  "font_family": "iconfont",
+  "css_prefix_text": "icon",
+  "description": "城市综治平台小程序项目图标资源",
+  "glyphs": [
+    {
+      "icon_id": "485741",
+      "name": "叉号",
+      "font_class": "chahao",
+      "unicode": "e604",
+      "unicode_decimal": 58884
+    },
+    {
+      "icon_id": "485842",
+      "name": "1 ",
+      "font_class": "1",
+      "unicode": "e626",
+      "unicode_decimal": 58918
+    },
+    {
+      "icon_id": "722172",
+      "name": "arrow-right",
+      "font_class": "previewright",
+      "unicode": "e75c",
+      "unicode_decimal": 59228
+    },
+    {
+      "icon_id": "2207679",
+      "name": "icon-location",
+      "font_class": "location",
+      "unicode": "e640",
+      "unicode_decimal": 58944
+    },
+    {
+      "icon_id": "8952491",
+      "name": "camera",
+      "font_class": "camera",
+      "unicode": "e7e3",
+      "unicode_decimal": 59363
+    },
+    {
+      "icon_id": "13253853",
+      "name": "time",
+      "font_class": "time",
+      "unicode": "e611",
+      "unicode_decimal": 58897
+    }
+  ]
+}

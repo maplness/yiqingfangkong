@@ -15,6 +15,7 @@ Page({
    */
   onLoad: function (options) {
     var that = this
+    
     //获取事件数据
     wx.request({
       url: app.globalData.host + app.globalData.getEventInfoUrl,
@@ -23,6 +24,28 @@ Page({
       },
       success(res) {
         console.log(res)
+        wx.stopPullDownRefresh()
+        var eventList = res.data.rows
+        for(var i=0;i<eventList.length;i++){
+          if(eventList[i].startCase == '1'){
+            eventList[i].statusDesc = "待核实"
+            eventList[i].statusDescColor = "#BF197B"
+          }
+          // else if(parseInt(eventList[i].startCase)>=2 && parseInt(eventList[i].startCase)<=5){
+          //   eventList[i].statusDesc = "核实完成"
+          //   eventList[i].statusDescColor = "#F4550F"
+          // }
+          else if (eventList[i].startCase == '6'){
+            eventList[i].statusDesc = "待核查"
+            eventList[i].statusDescColor = "#8AC23E"
+          } else if(eventList[i].startCase == '7'){
+            eventList[i].statusDesc = "核查完成"
+            eventList[i].statusDescColor = "#2CA49C"
+          }else{
+            eventList[i].statusDesc = "核实完成"
+            eventList[i].statusDescColor = "#F4550F"
+          }
+        }
         that.setData({
           eventList: res.data.rows
         })
@@ -34,10 +57,18 @@ Page({
     console.log(e)
     var index = e.currentTarget.dataset.index
     var temp = this.data.eventList[index]
-    var str = JSON.stringify(temp)
-    wx.navigateTo({
-      url: temp.eventStatus == '1' ? "./reportDetail?event="+str : "./reportDetailFinal?event="+str
-    })
+    if(parseInt(temp.startCase)>=1 &&parseInt(temp.startCase)<6){
+      var str = JSON.stringify(temp)
+      wx.navigateTo({
+        url: "./reportDetail?event=" + str,
+      })
+    }else{
+      var str = JSON.stringify(temp)
+      wx.navigateTo({
+        url: "./reportDetailFinal?event=" + str,
+      })
+    }
+    
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -71,7 +102,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
+    this.onLoad()
   },
 
   /**
