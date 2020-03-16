@@ -1,0 +1,169 @@
+<!--pages/task/taskInfo.wxml-->
+
+<view class="nav-tabs">
+    <view class="tab-list  {{currentTab == idx?'active':'default'}}" wx:for="{{tabArray}}" wx:key="nav" wx:for-index="idx" wx:for-item="item" data-current="{{idx}}" bindtap="swichNav">
+    {{item.name}}
+    <view class="circle" wx:if="{{item.name == '待核实' || item.name == '待核查'}}">{{item.countNum}}</view>
+    </view>
+</view>
+<!-- 报事 -->
+<wxs module="refresh">
+
+module.exports = {
+  onPulling: function(evt, instance) {
+    var p = Math.min(evt.detail.dy / 80, 1)
+    console.log(p)
+    var view = instance.selectComponent('.refresh-container')
+    view.setStyle({
+      opacity: p,
+      transform: "scale(" + p + ")"
+    })
+  }
+}
+
+</wxs>
+<scroll-view
+  scroll-y="true" style='width: 100%; height: {{scrollHeight}}px;margin-top: 90rpx;'
+  refresher-enabled="{{true}}"
+  refresher-threshold="{{100}}"
+  refresher-triggered="{{triggered}}"
+  bindrefresherpulling="onPulling"
+  bindrefresherrefresh="onRefresh"
+  bindrefresherrestore="onRestore"
+  bindrefresherabort="onAbort"
+  bindscrolltolower="onReachBottom"
+>
+<view class="{{currentTab == 0?'show':'hidden'}} tab-content">
+  <block wx:for="{{toBeAuditEventList}}" wx:for-item="item">
+    <view class="card">
+      <view class="card-title">
+        <view class="card-title-image">
+          <image src="../../images/tobeverified.png"></image>
+        </view>
+        <view class="card-title-t"><text>{{item.eventName}}</text></view>
+      </view>
+      <view class="card-content">
+        <view class="card-content-con">
+        <view class="card-content-text">
+          <text class="">事件地址：</text>
+        </view>
+        <view class="card-content-loc">
+          <text class="">{{item.eventAddress}}</text>
+        </view>
+          
+        </view>
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="">报事时间：</text>
+          </view>
+          <view class="card-content-loc">
+            <text>{{item.eventDay}}</text>
+          </view>
+        </view>
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="">报事人员：</text>
+          </view>
+          <view class="card-content-loc">
+            <text>{{item.nickName}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="card-foot">
+        <view class="card-foot-time">{{item.createTime}}</view>
+        <view class="card-foot-detail">查看详情</view>
+      </view>
+    </view>
+  </block>
+ 
+</view>
+<view class="{{currentTab == 1?'show':'hidden'}} tab-content">
+
+  <block wx:for="{{toBeCheckEventList}}" wx:for-item="item">
+    <view class="card">
+      <view class="card-title">
+        <view class="card-title-image">
+          <image src="../../images/pendingverified.png"></image>
+        </view>
+        <view class="card-title-t"><text>{{item.eventName}}</text></view>
+      </view>
+      <view class="card-content">
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="">事件地址：</text>
+          </view>
+          <view class="card-content-loc">
+            <text class="">{{item.eventAddress}}</text>
+          </view>
+          
+        </view>
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="card-content-text">核实时间：</text>
+          </view>
+          <view class="card-content-loc">
+            <text>{{item.updateTime}}</text>
+          </view>
+        </view>
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="">核实人员：</text>
+          </view>
+          <view class="card-content-loc">
+            <text>{{item.nickName}}</text>
+          </view>
+        </view>
+      </view>
+      <view class="card-foot">
+        <view class="card-foot-time">{{item.updateTime}}</view>
+        <view class="card-foot-detail">查看详情</view>
+      </view>
+    </view>
+  </block>
+</view>
+<view class="{{currentTab == 2?'show':'hidden'}} tab-content">
+  <block wx:for="{{processedEventList}}" wx:for-item="item">
+    <view class="card">
+      <view class="card-title">
+        <view class="card-title-image">
+          <image src="../../images/processed.png"></image>
+        </view>
+        <view class="card-title-t"><text>{{item.eventName}}</text></view>
+      </view>
+      <view class="card-content">
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="">事件地址：</text>
+          </view>
+          <view class="card-content-loc">
+            <text class="">{{item.eventAddress}}</text>
+          </view>
+        </view>
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="">报事人员：</text>
+          </view>
+          <view class="card-content-loc">
+            <text class="">未知</text>
+          </view>
+        </view>
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="">核查人员：</text>
+          </view>
+          <view class="card-content-loc">
+            <text>未知</text>
+          </view>
+        </view>
+      </view>
+      <view class="card-foot">
+        <view class="card-foot-time">{{item.updateTime}}</view>
+        <view class="card-foot-detail-ok">
+          <text>{{item.statusDesc}}</text>
+        </view>
+      </view>
+    </view>
+  </block>
+</view>
+ </scroll-view>
+
