@@ -36,8 +36,8 @@ App({
   globalData: {
     userInfo: null,
     access_token: "",
-    host:"https://createsharp.cn/scgp",
-    // host:"http://localhost:8888/scgp",
+    // host:"https://createsharp.cn/scgp",
+    host:"http://localhost:8888/scgp",
     login_url: "/loginWechat",
     getInfoUrl: "/getInfo",
     getEventInfoUrl: "/report/reportInfo/list",

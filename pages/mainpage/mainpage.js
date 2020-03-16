@@ -124,6 +124,11 @@ Page({
       url: '../record/jobdiary',
     })
   },
+  func6() {
+    wx.navigateTo({
+      url: '../task/taskInfo',
+    })
+  },
   onLoad(){
     var that = this
 
