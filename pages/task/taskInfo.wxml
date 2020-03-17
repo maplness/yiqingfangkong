@@ -31,7 +31,7 @@ module.exports = {
   bindrefresherrefresh="onRefresh"
   bindrefresherrestore="onRestore"
   bindrefresherabort="onAbort"
-  bindscrolltolower="onReachBottom"
+  bindscrolltolower="scrollLoading"
 >
 <view class="{{currentTab == 0?'show':'hidden'}} tab-content">
   <block wx:for="{{toBeAuditEventList}}" wx:for-item="item">
@@ -75,7 +75,7 @@ module.exports = {
       </view>
     </view>
   </block>
- 
+  <view wx:if='{{noData1}}'class="noData">没有更多了~</view>
 </view>
 <view class="{{currentTab == 1?'show':'hidden'}} tab-content">
 
@@ -102,7 +102,7 @@ module.exports = {
             <text class="card-content-text">核实时间：</text>
           </view>
           <view class="card-content-loc">
-            <text>{{item.updateTime}}</text>
+            <text>{{item.caseInfo.registerTime}}</text>
           </view>
         </view>
         <view class="card-content-con">
@@ -110,7 +110,7 @@ module.exports = {
             <text class="">核实人员：</text>
           </view>
           <view class="card-content-loc">
-            <text>{{item.nickName}}</text>
+            <text>{{item.caseInfo.registerPersonName}}</text>
           </view>
         </view>
       </view>
@@ -120,6 +120,7 @@ module.exports = {
       </view>
     </view>
   </block>
+  <view wx:if='{{noData2}}'class="noData">没有更多了~</view>
 </view>
 <view class="{{currentTab == 2?'show':'hidden'}} tab-content">
   <block wx:for="{{processedEventList}}" wx:for-item="item">
@@ -144,26 +145,30 @@ module.exports = {
             <text class="">报事人员：</text>
           </view>
           <view class="card-content-loc">
-            <text class="">未知</text>
+            <text class="">{{item.nickName}}</text>
           </view>
         </view>
         <view class="card-content-con">
           <view class="card-content-text">
-            <text class="">核查人员：</text>
+            <text class="" wx:if="{{item.statusDesc == '已核查'}}">核查人员：</text>
+            <text class="" wx:if="{{item.statusDesc == '已核实'}}">核实人员：</text>
           </view>
           <view class="card-content-loc">
-            <text>未知</text>
+            <text wx:if="{{item.statusDesc == '已核查'}}">{{item.caseInfo.dropPersonName}}</text>
+            <text wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerPersionName}}</text>
           </view>
         </view>
       </view>
       <view class="card-foot">
-        <view class="card-foot-time">{{item.updateTime}}</view>
+        <view class="card-foot-time">{{item.caseInfo.dropTime}}</view>
         <view class="card-foot-detail-ok">
           <text>{{item.statusDesc}}</text>
         </view>
       </view>
     </view>
   </block>
+  <view wx:if='{{noData3}}'class="noData">没有更多了~</view>
 </view>
  </scroll-view>
+ 
 

@@ -6,6 +6,14 @@ Page({
    * 页面的初始数据
    */
   data: {
+    stopLoadMoreTiem1: false,
+    stopLoadMoreTiem2: false,
+    stopLoadMoreTiem3: false,
+    noData1: false,
+    noData2: false,
+    noData3: false,
+    hideBottom: true,
+    loadMoreData: '加载更多...',
     triggered: true,
     toBeAuditEventList: [],
     toBeCheckEventList: [],
@@ -28,7 +36,7 @@ Page({
     pageNum1: 1, //当前tab1页
     pageNum2: 1, //当前tab2页
     pageNum3: 1, //当前tab3页
-    pageSize: 3, //每页显示条数
+    pageSize: 10, //每页显示条数
     scrollHeight: 200
   },
   onPulling(e) {
@@ -43,17 +51,20 @@ Page({
     // })
     if (that.data.currentTab == 0) {
       that.setData({
-        pageNum1: 1
+        pageNum1: 1,
+        noData1: false
       })
       that.gettoBeAuditEventList();
     } else if (that.data.currentTab == 1) {
       that.setData({
-        pageNum2: 1
+        pageNum2: 1,
+        noData2: false
       })
       that.gettoBeCheckEventList();
     } else {
       that.setData({
-        pageNum3: 1
+        pageNum3: 1,
+        noData3: false
       })
       that.getprocessedEventList();
     }
@@ -106,6 +117,7 @@ Page({
   //获取待核实事件数据
   gettoBeAuditEventList() {
     let that = this;
+    that.stopLoadMoreTiem1 = true;
     wx.request({
       url: app.globalData.host + app.globalData.getEventInfoUrl,
       data: {
@@ -133,6 +145,10 @@ Page({
               wx.showToast({
                 title: '已加载全部',
               })
+              that.setData({
+                noData1: true,
+              })
+              return ;
             }
             that.setData({
               toBeAuditEventList: arr1,
@@ -145,7 +161,7 @@ Page({
             icon: 'none'
           })
         }
-        
+        that.stopLoadMoreTiem1 = false
       },
       fail: function (err) { 
         wx.showToast({
@@ -154,7 +170,7 @@ Page({
         })
       },//请求失败
       complete: function () {
-          console.log("我已经请求完毕了")
+          // console.log("我已经请求完毕了")
           setTimeout(function(){
             wx.hideLoading()
           },1000)
@@ -166,6 +182,7 @@ Page({
   //获取待核查事件数据
   gettoBeCheckEventList() {
     let that = this;
+    that.stopLoadMoreTiem2 = true
     wx.request({
       url: app.globalData.host + app.globalData.getEventInfoUrl,
       data: {
@@ -194,6 +211,10 @@ Page({
               wx.showToast({
                 title: '已加载全部',
               })
+              that.setData({
+                noData2: true,
+              })
+              return 
             }
             that.setData({
               toBeCheckEventList: arr1,
@@ -206,6 +227,7 @@ Page({
             icon: 'none'
           })
         }
+        that.stopLoadMoreTiem2 = false
 
       },
       fail: function (err) {
@@ -226,6 +248,7 @@ Page({
   //获取已处理事件数据（包括已核实和已核查）
   getprocessedEventList() {
     let that = this;
+    that.stopLoadMoreTiem3 = true
     wx.request({
       url: app.globalData.host + app.globalData.getEventInfoUrl,
       data: {
@@ -265,6 +288,10 @@ Page({
               wx.showToast({
                 title: '已加载全部',
               })
+              that.setData({
+                noData3: true,
+              })
+              return 
             }
             that.setData({
               processedEventList: arr1,
@@ -277,6 +304,7 @@ Page({
             icon: 'none'
           })
         }
+        that.stopLoadMoreTiem3 = false
       },
       fail: function (err) {
         wx.showToast({
@@ -309,7 +337,7 @@ Page({
   computeScrollViewHeight(){
     let that = this;
     let windowHeight = wx.getSystemInfoSync().windowHeight
-    let scrollHeight = windowHeight - 90*0.5;
+    let scrollHeight = windowHeight - 90*0.5 - 10;
     that.setData({
       scrollHeight: scrollHeight
     })
@@ -342,30 +370,48 @@ Page({
    * 页面上拉触底事件的处理函数
    */
   onReachBottom: function () {
+
+  },
+  scrollLoading: function () {
     let that = this;
-    wx.showLoading({
-      title: '玩命加载中',
-    })
-    if(that.data.currentTab == 0){
+    if (that.data.currentTab == 0) {
+      if (that.stopLoadMoreTiem1) {
+        return;
+      }
+      wx.showLoading({
+        title: '玩命加载中',
+      })
       var pageNum = that.data.pageNum1 + 1; //获取当前页数并+1
       that.setData({
         pageNum1: pageNum
       })
       that.gettoBeAuditEventList();
-    } else if (that.data.currentTab == 1){
+    } else if (that.data.currentTab == 1) {
+      if (that.stopLoadMoreTiem2) {
+        return;
+      }
+      wx.showLoading({
+        title: '玩命加载中',
+      })
       var pageNum = that.data.pageNum2 + 1; //获取当前页数并+1
       that.setData({
         pageNum2: pageNum
       })
       that.gettoBeCheckEventList();
-    }else{
+    } else {
+      if (that.stopLoadMoreTiem3) {
+        return;
+      }
+      wx.showLoading({
+        title: '玩命加载中',
+      })
       var pageNum = that.data.pageNum3 + 1; //获取当前页数并+1
       that.setData({
         pageNum3: pageNum
       })
       that.getprocessedEventList();
     }
-    
+
   },
 
   /**
