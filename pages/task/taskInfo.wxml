@@ -155,12 +155,13 @@ module.exports = {
           </view>
           <view class="card-content-loc">
             <text wx:if="{{item.statusDesc == '已核查'}}">{{item.caseInfo.dropPersonName}}</text>
-            <text wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerPersonName}}</text>
+            <text wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerTime}}</text>
           </view>
         </view>
       </view>
       <view class="card-foot">
-        <view class="card-foot-time">{{item.caseInfo.dropTime}}</view>
+        <view class="card-foot-time" wx:if="{{item.statusDesc == '已核查'}}">{{item.caseInfo.dropTime}}               </view>
+        <view class="card-foot-time" wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.dropTime}}               </view>
         <view class="card-foot-detail-ok">
           <text>{{item.statusDesc}}</text>
         </view>
