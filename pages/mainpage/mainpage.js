@@ -151,7 +151,7 @@ Page({
         "Authorization": app.globalData.access_token
       },
       success(res) {
-        // console.log(res)
+        console.log(res)
         app.globalData.user = res.data.user
         console.log(app.globalData.user)
       }

@@ -11,6 +11,8 @@
 		"newFeature": true,
 		"coverView": true,
 		"autoAudits": false,
+		"showShadowRootInWxmlPanel": true,
+		"scopeDataCheck": false,
 		"checkInvalidKey": true,
 		"checkSiteMap": true,
 		"uploadWithSourceMap": true,
@@ -22,7 +24,7 @@
 	},
 	"compileType": "miniprogram",
 	"libVersion": "2.10.1",
-	"appid": "wxb47a803332d784be",
+	"appid": "wx77569db900852ddb",
 	"projectname": "yiqingfangkong",
 	"debugOptions": {
 		"hidedInDevtools": []
@@ -56,8 +58,8 @@
 			"list": [
 				{
 					"id": -1,
-					"name": "generalReport",
-					"pathName": "pages/report/generalReport",
+					"name": "pages/report/gridManReport",
+					"pathName": "pages/report/gridManReport",
 					"query": "",
 					"scene": null
 				},
@@ -70,43 +72,22 @@
 				},
 				{
 					"id": -1,
-					"name": "pages/report/generalReport",
-					"pathName": "pages/report/generalReport",
+					"name": "pages/mainpage/mainpage",
+					"pathName": "pages/mainpage/mainpage",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "pages/report/gridManReport",
-					"pathName": "pages/report/gridManReport",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": 4,
-					"name": "pages/report/generalReportEventDetail",
-					"pathName": "pages/report/generalReportEventDetail",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "enterpriseReport",
-					"pathName": "pages/enterpriseReport",
-					"query": "",
-					"scene": null
-				},
-				{
-					"id": -1,
-					"name": "clock",
+					"name": "pages/clock/clock",
 					"pathName": "pages/clock/clock",
 					"query": "",
 					"scene": null
 				},
 				{
 					"id": -1,
-					"name": "taskInfo",
-					"pathName": "pages/task/taskInfo",
+					"name": "pages/task/taskDetail",
+					"pathName": "pages/task/taskDetail",
 					"scene": null
 				}
 			]
