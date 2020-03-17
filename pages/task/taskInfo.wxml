@@ -34,8 +34,8 @@ module.exports = {
   bindscrolltolower="scrollLoading"
 >
 <view class="{{currentTab == 0?'show':'hidden'}} tab-content">
-  <block wx:for="{{toBeAuditEventList}}" wx:key="beAudit" wx:for-item="item">
-    <view class="card">
+  <block wx:for="{{toBeAuditEventList}}" wx:for-item="item" wx:key="tab1">
+    <view class="card" bindtap="ToDetail"  data-index="{{index}}" data-cur_page="{{currentTab}}">
       <view class="card-title">
         <view class="card-title-image">
           <image src="../../images/tobeverified.png"></image>
@@ -79,7 +79,7 @@ module.exports = {
 </view>
 <view class="{{currentTab == 1?'show':'hidden'}} tab-content">
 
-  <block wx:for="{{toBeCheckEventList}}" wx:key="beCheck" wx:for-item="item">
+  <block wx:for="{{toBeCheckEventList}}" wx:for-item="item" wx:key="tab2" data-index="{{index}}">
     <view class="card">
       <view class="card-title">
         <view class="card-title-image">
@@ -123,7 +123,7 @@ module.exports = {
   <view wx:if='{{noData2}}'class="noData">没有更多了~</view>
 </view>
 <view class="{{currentTab == 2?'show':'hidden'}} tab-content">
-  <block wx:for="{{processedEventList}}" wx:key="processed" wx:for-item="item">
+  <block wx:for="{{processedEventList}}" wx:for-item="item" wx:key="tab3">
     <view class="card">
       <view class="card-title">
         <view class="card-title-image">
@@ -155,7 +155,7 @@ module.exports = {
           </view>
           <view class="card-content-loc">
             <text wx:if="{{item.statusDesc == '已核查'}}">{{item.caseInfo.dropPersonName}}</text>
-            <text wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerTime}}</text>
+            <text wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerPersonName}}</text>
           </view>
         </view>
       </view>

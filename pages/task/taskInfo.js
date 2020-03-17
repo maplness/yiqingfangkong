@@ -36,11 +36,11 @@ Page({
     pageNum1: 1, //当前tab1页
     pageNum2: 1, //当前tab2页
     pageNum3: 1, //当前tab3页
-    pageSize: 3, //每页显示条数
+    pageSize: 10, //每页显示条数
     scrollHeight: 200
   },
   onPulling(e) {
-    console.log('onPulling:', e)
+    // console.log('onPulling:', e)
   },
   onRefresh() {
     let that = this;
@@ -77,11 +77,11 @@ Page({
     
   },
   onRestore(e) {
-    console.log('onRestore:', e)
+    // console.log('onRestore:', e)
   },
 
   onAbort(e) {
-    console.log('onAbort', e)
+    // console.log('onAbort', e)
   },
 
   //事件处理函数
@@ -195,7 +195,7 @@ Page({
         "Authorization": app.globalData.access_token
       },
       success(res) {
-        console.log(res)
+        // console.log(res)
         if (res.data.code == 200) {
           if (that.data.pageNum2 == 1) {
             that.setData({
@@ -321,6 +321,32 @@ Page({
       }//请求完成后执行的函数
     })
   },
+  ToDetail(e){
+    var that = this
+    // console.log(e)
+    var currentPage = e.currentTarget.dataset.cur_page
+    var index = e.currentTarget.dataset.index
+    switch(currentPage){
+      case 0:
+        var currentEvent = that.data.toBeAuditEventList[index]
+        wx.navigateTo({
+          url: './taskDetail?currentEvent='+JSON.stringify(currentEvent),
+        })
+        break;
+      case 1:
+        var currentEvent = that.data.toBeCheckEventList[index]
+        wx.navigateTo({
+          url: './taskDetail?currentEvent=' + JSON.stringify(currentEvent),
+        })
+        break;
+      case 2:
+        var currentEvent = that.data.processedEventList[index]
+        wx.navigateTo({
+          url: './taskDetail?currentEvent=' + JSON.stringify(currentEvent),
+        })
+
+    }
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
@@ -342,7 +368,6 @@ Page({
       scrollHeight: scrollHeight
     })
     // console.log(that.data.scrollHeight);
-    console.log(app.globalData.pr_rate);
   },
 
   /**

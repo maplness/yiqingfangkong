@@ -29,20 +29,20 @@
         </view>
         <view class="p2">
             <view class="title">事件发生时间：</view>
-            <view class="value">{{event.eventTime}}</view>
+            <view class="value">{{event.eventDay}}</view>
         </view>
         <view class="p2">
             <view class="title">定位网格：</view>
-            <view class="value">{{event.gridName}}</view>
+            <view class="value">{{event.eventGrid}}</view>
         </view>
         <view class="p2">
             <view class="title">事件发生位置：</view>
-            <view class="value">{{event.eventPosition}}</view>
+            <view class="value">{{event.eventAddress}}</view>
         </view>
         <view class="p2">
             <view class="title">事件相关影像：</view>
             <view class="image-wrapper">
-                <block wx:for="{{event.eventImage}}">
+                <block wx:for="{{event.eventImage}}" wx:key="image">
                     <image class="picture" src="{{item}}" />
                 </block>
 

@@ -3,23 +3,25 @@
   <component name="ChangeListManager">
     <list default="true" id="59ff060f-0678-4ddc-a8cd-0b841b55e29a" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/app.json" beforeDir="false" afterPath="$PROJECT_DIR$/app.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/enterpriseReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/enterpriseReport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/enterpriseReport.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/enterpriseReport.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/enterpriseReport.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/enterpriseReport.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/enterpriseReport.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/enterpriseReport.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/mine/mine.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/mine/mine.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/report/generalReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/report/generalReport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/report/generalReport.json" beforeDir="false" afterPath="$PROJECT_DIR$/pages/report/generalReport.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/report/generalReport.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/report/generalReport.wxml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/report/generalReport.wxss" beforeDir="false" afterPath="$PROJECT_DIR$/pages/report/generalReport.wxss" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/report/gridManReport.js" beforeDir="false" afterPath="$PROJECT_DIR$/pages/report/gridManReport.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/pages/report/gridManReport.wxml" beforeDir="false" afterPath="$PROJECT_DIR$/pages/report/gridManReport.wxml" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileEditorManager">
+    <leaf>
+      <file pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/app.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="450">
+              <caret line="30" column="37" selection-start-line="30" selection-start-column="37" selection-end-line="30" selection-end-column="37" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+    </leaf>
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
@@ -38,6 +40,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="PackagesPane" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -49,11 +53,10 @@
           <select />
         </subPane>
       </pane>
-      <pane id="Scope" />
-      <pane id="PackagesPane" />
     </panes>
   </component>
   <component name="PropertiesComponent">
+    <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
@@ -95,7 +98,7 @@
     <frame x="0" y="0" width="3008" height="1692" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2515172" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.25320297" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.25" />
       <window_info id="Image Layers" order="2" />
       <window_info id="Designer" order="3" />
