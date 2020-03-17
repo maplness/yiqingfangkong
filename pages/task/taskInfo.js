@@ -36,7 +36,7 @@ Page({
     pageNum1: 1, //当前tab1页
     pageNum2: 1, //当前tab2页
     pageNum3: 1, //当前tab3页
-    pageSize: 10, //每页显示条数
+    pageSize: 3, //每页显示条数
     scrollHeight: 200
   },
   onPulling(e) {
@@ -337,11 +337,12 @@ Page({
   computeScrollViewHeight(){
     let that = this;
     let windowHeight = wx.getSystemInfoSync().windowHeight
-    let scrollHeight = windowHeight - 90*0.5 - 10;
+    let scrollHeight = windowHeight - 90 * app.globalData.pr_rate - 5;
     that.setData({
       scrollHeight: scrollHeight
     })
-    console.log(that.data.scrollHeight);
+    // console.log(that.data.scrollHeight);
+    console.log(app.globalData.pr_rate);
   },
 
   /**
