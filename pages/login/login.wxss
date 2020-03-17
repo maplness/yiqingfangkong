@@ -19,7 +19,7 @@ page{
 .app-title{
   margin-top: 160rpx;
   font-family: PingFangSC-Medium;
-  font-size: 26px;
+  font-size: 20px;
   color: #FFFFFF;
   letter-spacing: 0;
   text-align: center;

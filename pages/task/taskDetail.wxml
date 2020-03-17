@@ -1,0 +1,80 @@
+<view class="l1">
+    <image class="left" src="../../images/task2.png" />
+    <view class="mid">
+        <view class="title">郑州发现一名“毒王”</view>
+        <view class="desc">网格员： 王大力</view>
+    </view>
+    <view class="right">核实中</view>
+</view>
+<view class="l2">
+    <view class="title">
+        <view id="title1" class="item {{activeIndex==0?'active':''}}" bindtap="ToDetail">事件详情</view>
+        <view id="title2" class="item {{activeIndex==1?'active':''}}" bindtap="ToProcess">处理进程</view>
+        <view id="title3" class="item {{activeIndex==2?'active':''}}" bindtap="ToRemark">处理意见</view>
+    </view>
+    <view id="indicator" style="left: {{indicatorLeft}}px" class="indicator"></view>
+    
+</view>
+
+<scroll-view scroll-y class="l3" style="height:{{l3_height}}px;" bindscroll="scroll" scroll-with-animation scroll-into-view="{{ViewTo}}">
+
+    <view id="detail" class="detail">
+        <view class="p1">
+            <view class="title">事件详情：</view>
+            <view class="value">{{event.eventDetail}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件类型：</view>
+            <view class="value">{{event.eventType}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件发生时间：</view>
+            <view class="value">{{event.eventTime}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">定位网格：</view>
+            <view class="value">{{event.gridName}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件发生位置：</view>
+            <view class="value">{{event.eventPosition}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件相关影像：</view>
+            <view class="image-wrapper">
+                <block wx:for="{{event.eventImage}}">
+                    <image class="picture" src="{{item}}" />
+                </block>
+
+            </view>
+            
+            
+        </view>
+    </view>
+    <view id="process" class="process">
+        <view class="cell" style="">
+            <view class="left">
+                <image class="avatar" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
+                <image class="avatar-badge" src="../../images/done.png" />
+                
+                <view class="bar"></view>
+            </view>
+            <view class="mid">
+                <view >申报事件</view>
+                <view class="mid-l2">李大力</view>
+            </view>
+            <view class="right">03-13 09:53</view>
+        </view>
+        
+    </view>
+    <view id="remark" class="remark"></view>
+    <view class="null"></view>
+
+</scroll-view>
+
+
+<view class="l4">
+    <view class="title">审批通过</view>
+    <view class="v-divider"></view>
+    <view class="title">审批不通过</view>
+</view>

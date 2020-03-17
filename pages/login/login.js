@@ -34,6 +34,7 @@ Page({
    */
   onLoad: function (options) {
     this.initValidate();
+    
   },
 
 

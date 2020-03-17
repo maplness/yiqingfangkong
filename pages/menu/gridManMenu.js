@@ -22,7 +22,6 @@ Page({
   },
   swichNav: function (e) {
     var that = this;
-    // console.log(e.target)
     if (this.data.currentTab === e.target.dataset.current) {
       return false;
     } else {
@@ -50,7 +49,6 @@ Page({
     })
   },
   onLoad: function () {
-    // console.log('onLoad')
     
   },
 

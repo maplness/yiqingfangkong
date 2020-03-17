@@ -6,6 +6,12 @@ App({
     logs.unshift(Date.now())
     wx.setStorageSync('logs', logs)
 
+    //get pr_rate
+    var systemInfo = wx.getSystemInfoSync();
+    this.globalData.pr_rate = systemInfo.windowWidth/750
+    this.globalData.windowHeight = systemInfo.windowHeight
+    console.log(this.globalData.pr_rate)
+
     // 登录
     wx.login({
       success: res => {
@@ -50,6 +56,8 @@ App({
 
     eventTypeArray: [],
     user: {},
+    pr_rate: 0,
+    windowHeight: 0
 
   }
 })

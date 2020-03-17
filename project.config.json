@@ -81,6 +81,13 @@
 					"id": -1,
 					"name": "pages/clock/clock",
 					"pathName": "pages/clock/clock",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/task/taskDetail",
+					"pathName": "pages/task/taskDetail",
 					"scene": null
 				}
 			]
