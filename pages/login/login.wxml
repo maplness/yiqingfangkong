@@ -4,7 +4,7 @@
 <!--pages/phlogin/pglogin.wxml-->
 <view class='page'>
 
-  <view class="app-title">城市信息综合监管信息系统</view>
+  <view class="app-title">万安街道社会治理大数据智慧平台</view>
 
   <image class="bg-img" src="https://tva1.sinaimg.cn/large/00831rSTly1gchkxv6dboj30ku0t0wsp.jpg"></image>
 
