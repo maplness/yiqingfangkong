@@ -17,9 +17,9 @@ Page({
       eventName : "郑州发现一名“毒王”",
       eventDetail : "2020-03-13日，在郑州市XXX区金域国际小区发现一名新冠状肺炎疫区归来人员，该人员是回国后隐瞒出国史病且在出现症状后仍欺骗社区工作人员及警方该男子被媒体戏称郑州“毒王”",
       eventType: "市容环境问题",
-      eventTime: "2020-03-13",
-      gridName: "郑州市XXX区金裕网格",
-      eventPosition: "郑州市XXX区金域国际小区1号楼1单元412",
+      eventDay: "2020-03-13",
+      eventGrid: "郑州市XXX区金裕网格",
+      eventAddress: "郑州市XXX区金域国际小区1号楼1单元412",
       eventImage: [
         "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
         "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
@@ -32,7 +32,11 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    
+    var currentEvent = JSON.parse(options.currentEvent)
+    console.log(currentEvent)
+    this.setData({
+      event: currentEvent
+    })
   },
 
   /**
@@ -55,9 +59,9 @@ Page({
     var pr_rate = app.globalData.pr_rate
     var windowHeight = app.globalData.windowHeight
     var l3_height = windowHeight - (158+108+166)*pr_rate
-    console.log(pr_rate)
-    console.log(windowHeight)
-    console.log(l3_height)
+    // console.log(pr_rate)
+    // console.log(windowHeight)
+    // console.log(l3_height)
     that.setData({
       l3_height: l3_height
     })
@@ -71,14 +75,14 @@ Page({
   },
   animateIndicator12(){
     var that = this
-    console.log('调用了12')
+    // console.log('调用了12')
     var offsetX = 250*app.globalData.pr_rate
     this.animate('#indicator', [
       {  ease: 'ease-in'},
       {  translate: [offsetX,0] ,ease: 'ease-out'}
     ], 100 , function(){
       that.clearAnimation('#indicator', { translate: true }, function () {
-        console.log("清除了#container上的动画属性")
+        // console.log("清除了#container上的动画属性")
       })
       that.setIndicator(350)
     })
@@ -87,14 +91,14 @@ Page({
   },
   animateIndicator21(){
     var that = this
-    console.log('调用了21')
+    // console.log('调用了21')
     var offsetX = 250*app.globalData.pr_rate
     this.animate('#indicator', [
       {  ease: 'ease-in'},
       {  translate: [-offsetX,0] ,ease: 'ease-out'}
     ], 100, function(){
       that.clearAnimation('#indicator', { translate: true }, function () {
-        console.log("清除了#container上的动画属性")
+        // console.log("清除了#container上的动画属性")
       })
       that.setIndicator(100)
     })
@@ -102,14 +106,14 @@ Page({
   },
   animateIndicator13(){
     var that = this
-    console.log('调用了13')
+    // console.log('调用了13')
     var offsetX = 500*app.globalData.pr_rate
     this.animate('#indicator', [
       {  ease: 'ease-in'},
       {  translate: [offsetX,0] ,ease: 'ease-out'}
     ], 100 , function(){
       that.clearAnimation('#indicator', { translate: true }, function () {
-        console.log("清除了#container上的动画属性")
+        // console.log("清除了#container上的动画属性")
       })
       that.setIndicator(600)
     })
@@ -117,14 +121,14 @@ Page({
   },
   animateIndicator31(){
     var that = this
-    console.log('调用了31')
+    // console.log('调用了31')
     var offsetX = 500*app.globalData.pr_rate
     this.animate('#indicator', [
       {  ease: 'ease-in'},
       {  translate: [-offsetX,0] ,ease: 'ease-out'}
     ], 100, function(){
       that.clearAnimation('#indicator', { translate: true }, function () {
-        console.log("清除了#container上的动画属性")
+        // console.log("清除了#container上的动画属性")
       })
       that.setIndicator(100)
     })
@@ -132,14 +136,14 @@ Page({
   },
   animateIndicator23(){
     var that = this
-    console.log('调用了23')
+    // console.log('调用了23')
     var offsetX = 250*app.globalData.pr_rate
     this.animate('#indicator', [
       {  ease: 'ease-in'},
       {  translate: [offsetX,0] ,ease: 'ease-out'}
     ], 100 , function(){
       that.clearAnimation('#indicator', { translate: true }, function () {
-        console.log("清除了#container上的动画属性")
+        // console.log("清除了#container上的动画属性")
       })
       that.setIndicator(600)
     })
@@ -147,14 +151,14 @@ Page({
   },
   animateIndicator32(){
     var that = this
-    console.log('调用了32')
+    // console.log('调用了32')
     var offsetX = 250*app.globalData.pr_rate
     this.animate('#indicator', [
       {  ease: 'ease-in'},
       {  translate: [-offsetX,0] ,ease: 'ease-out'}
     ], 100, function(){
       that.clearAnimation('#indicator', { translate: true }, function () {
-        console.log("清除了#container上的动画属性")
+        // console.log("清除了#container上的动画属性")
       })
       that.setIndicator(350)
     })
