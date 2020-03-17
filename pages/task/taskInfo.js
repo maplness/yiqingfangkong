@@ -363,7 +363,7 @@ Page({
   computeScrollViewHeight(){
     let that = this;
     let windowHeight = wx.getSystemInfoSync().windowHeight
-    let scrollHeight = windowHeight - 90*0.5 - 10;
+    let scrollHeight = windowHeight - 90 * app.globalData.pr_rate - 5;
     that.setData({
       scrollHeight: scrollHeight
     })
