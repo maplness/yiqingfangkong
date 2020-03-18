@@ -330,19 +330,19 @@ Page({
       case 0:
         var currentEvent = that.data.toBeAuditEventList[index]
         wx.navigateTo({
-          url: './taskDetail?currentEvent='+JSON.stringify(currentEvent),
+          url: './taskDetail?currentEvent='+JSON.stringify(currentEvent)+"&statusIndex=1",
         })
         break;
       case 1:
         var currentEvent = that.data.toBeCheckEventList[index]
         wx.navigateTo({
-          url: './taskDetail?currentEvent=' + JSON.stringify(currentEvent),
+          url: './taskDetail?currentEvent=' + JSON.stringify(currentEvent) + "&statusIndex=2",
         })
         break;
       case 2:
         var currentEvent = that.data.processedEventList[index]
         wx.navigateTo({
-          url: './taskDetail?currentEvent=' + JSON.stringify(currentEvent),
+          url: './taskDetail?currentEvent=' + JSON.stringify(currentEvent) + "&statusIndex=3",
         })
 
     }

@@ -100,37 +100,64 @@ Page({
     })
   },
   func1(){
-    wx.navigateTo({
-      url: '../report/generalReport',
-    })
+    if(!app.globalData.isLogin){
+      this.checkLogIn()
+    }else{
+      wx.navigateTo({
+        url: '../report/generalReport',
+      })
+    }
+    
+    
   },
   func2() {
+    if (!app.globalData.isLogin){
+      this.checkLogIn()
+    } else {
     wx.navigateTo({
       url: '../report/gridManReport',
     })
+    }
   },
   func3() {
+    if (!app.globalData.isLogin){
+      this.checkLogIn()
+    } else {
     wx.navigateTo({
       url: '../enterpriseReport',
     })
+    }
   },
   func4() {
+    if (!app.globalData.isLogin){
+      this.checkLogIn()
+    } else {
     wx.navigateTo({
       url: '../clock/clock',
     })
+    }
   },
-  func5(){
+  func5() {
+    if (!app.globalData.isLogin){
+      this.checkLogIn()
+    } else {
     wx.navigateTo({
       url: '../record/jobdiary',
     })
+    }
   },
   func6() {
+    if (!app.globalData.isLogin){
+      this.checkLogIn()
+    } else {
     wx.navigateTo({
       url: '../task/taskInfo',
     })
+    }
   },
   onLoad(){
     var that = this
+    //未登录点击返回登陆页
 
     //获取事件类型
     wx.request({
@@ -140,6 +167,10 @@ Page({
       },
       success(res) {
         console.log(res)
+        if(res.data.code != 200){
+          //没有登录
+          app.globalData.isLogin = false
+        }
         app.globalData.eventTypeArray = res.data.data
       }
     })
@@ -161,7 +192,28 @@ Page({
     that.setData({
       user: app.globalData.user
     })
+  },
+  checkLogIn(){
+    
+      wx.showModal({
+        title: '未登录',
+        content: '您还未登录，将不能使用此功能，是否跳转登陆页',
+        success(res){
+          if (res.confirm) {
+            wx.redirectTo({
+              url: '../login/login',
+            })
+            return false
+          } else if (res.cancel) {
+            console.log('用户点击取消')
+          }
+        }
+      })
+      
+    
+
   }
+
 
   
 })

@@ -127,6 +127,7 @@ Page({
       success(res) {
         // console.log(res);
         if(res.data.msg == '操作成功'){
+          app.globalData.isLogin = true
           app.globalData.access_token = res.data.token;
 
           if (params.tel == 'admin') {

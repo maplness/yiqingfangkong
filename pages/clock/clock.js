@@ -106,6 +106,7 @@ Page({
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
+        console.log(res)
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,

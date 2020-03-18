@@ -27,7 +27,8 @@ Page({
     multiArray2: [],
     multiIndex: [],
     checkeIndex: [],
-    eventType: ''
+    eventType: '',
+    location: {}
 
   },
   signDetailInput(e) {
@@ -134,6 +135,8 @@ Page({
     const params = e.detail.value;
     params.eventDay = new Date();
     params.reportType = '1'
+    params.eventLongitude = that.data.location.longitude
+    params.eventLatitude = that.data.location.latitude
     if (that.data.eventType == ''){
       wx.showModal({
         content: '请选择事件类型',

@@ -25,19 +25,86 @@ Page({
         "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
         "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg"
       ]
-    }
+    },
+    taskStatusImg: "../../images/task1.png",
+    stateIndex: '1',
+    eventType1: '',
+    eventType2: '',
+    eventToFile: ['立案处理', '销案处理'],
+    eventToFileValue: '请选择是否立案',
+    index: 0,
+    opinion: ''
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
+    var that = this
     var currentEvent = JSON.parse(options.currentEvent)
     console.log(currentEvent)
     this.setData({
       event: currentEvent
     })
+    var stateIndex = options.statusIndex
+    switch (stateIndex){
+      case '1':
+        that.setData({
+          taskStatusImg:"../../images/task1.png",
+          stateIndex: stateIndex
+        })
+        break;
+      case '2':
+        that.setData({
+          taskStatusImg: "../../images/task2.png",
+          stateIndex: stateIndex
+        })
+        break;
+      case '3':
+        that.setData({
+          taskStatusImg: "../../images/task3.png",
+          stateIndex: stateIndex
+        })
+        break;
+    }
+    that.parseEventType(that.data.event.eventType)
+    console.log(app.globalData.eventTypeArray)
   },
+  parseEventType(e){
+    var that = this
+    var array = e.split(',')
+    var eventType1 = app.globalData.eventTypeArray[0]
+    var eventType2 = app.globalData.eventTypeArray[1]
+    for(var i = 0;i<eventType1.length;i++){
+      if(parseInt(array[0]) == eventType1[i].id){
+        that.setData({
+          eventType1: eventType1[i].name
+        })
+      }
+    }
+    for(var i = 0;i<eventType2.length;i++){
+      if(parseInt(array[1]) == eventType2[i].id){
+        that.setData({
+          eventType2: eventType2[i].name
+        })
+      }
+    }
+  }, 
+  eventToFileChange: function (e) {
+    // console.log('picker发送选择改变，携带值为', e.detail.value)
+    let index = e.detail.value
+    let eventToFile = this.data.eventToFile
+    this.setData({
+      index,
+      eventToFileValue: eventToFile[index]
+    })
+  },
+  opinionChange(e){
+    this.setData({
+      opinion: e.detail.value
+    })
+  },
+
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -229,6 +296,89 @@ Page({
     this.setData({
       ViewTo: "detail"
     })
+  },
+  approved(){
+    var that = this
+    that.data.event.caseInfo.eventId = that.data.event.id
+    //confirm status
+    
+      that.data.event.caseInfo.confirmStatus = '1'
+    //confirm remark
+    that.data.event.caseInfo.confirmRemark = that.data.opinion
+    //register status
+    if (that.data.eventToFileValue == '立案处理') {
+      that.data.event.caseInfo.registerStatus = '1'
+    } else{
+      that.data.event.caseInfo.registerStatus = '2'
+    }
+    // console.log(that.data.event.caseInfo)
+    //rigester case
+    wx.request({
+      url: app.globalData.host + app.globalData.registerCaseUrl,
+      header: {
+        "Authorization": app.globalData.access_token
+      },
+      method: "POST",
+      data: that.data.event.caseInfo,
+      success(res) {
+        console.log(res)
+      }
+    })
+
+
+    //提交成功并返回
+    wx.showToast({
+      title: '登记成功',
+      duration: 2000
+    })
+    setTimeout(function () {
+      //要延时执行的代码
+      wx.navigateBack({
+
+      })
+    }, 2000)
+  },
+  approvedFail(){
+    var that = this
+    // that.data.event.caseInfo.id = that.data.event.id
+    //eventid
+    that.data.event.caseInfo.eventId = that.data.event.id
+    //confirm status
+      that.data.event.caseInfo.confirmStatus = '2'
+    //confirm remark
+    that.data.event.caseInfo.confirmRemark = that.data.opinion
+    //register status
+    if (that.data.eventToFileValue == '立案处理') {
+      that.data.event.caseInfo.registerStatus = '1'
+    }else{
+      that.data.event.caseInfo.registerStatus = '2'
+    }
+    console.log(that.data.event.caseInfo)
+    //rigester case
+    wx.request({
+      url: app.globalData.host + app.globalData.registerCaseUrl,
+      header: {
+        "Authorization": app.globalData.access_token
+      },
+      method: "POST",
+      data: that.data.event.caseInfo,
+      success(res) {
+        console.log(res)
+      }
+    })
+
+
+    //提交成功并返回
+    wx.showToast({
+      title: '登记成功',
+      duration: 2000
+    })
+    setTimeout(function () {
+      //要延时执行的代码
+      wx.navigateBack({
+
+      })
+    }, 2000)
   }
 })
 

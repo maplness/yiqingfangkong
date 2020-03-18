@@ -40,34 +40,32 @@ module.exports = {
         <view class="card-title-image">
           <image src="../../images/tobeverified.png"></image>
         </view>
-        <view class="card-title-t"><text>{{item.eventName}}</text></view>
+        <view class="card-title-t">{{item.eventName}}</view>
       </view>
       <view class="card-content">
         <view class="card-content-con">
-        <view class="card-content-text">
-          <text class="">事件地址：</text>
-        </view>
-        <view class="card-content-loc">
-          <text class="">{{item.eventAddress}}</text>
-        </view>
-          
-        </view>
-        <view class="card-content-con">
-          <view class="card-content-text">
-            <text class="">报事时间：</text>
-          </view>
+          <view class="card-content-text">事件地址：</view>
           <view class="card-content-loc">
-            <text>{{item.eventDay}}</text>
+            <text class="">{{item.eventAddress}}</text>
           </view>
-        </view>
-        <view class="card-content-con">
-          <view class="card-content-text">
-            <text class="">报事人员：</text>
+            
           </view>
-          <view class="card-content-loc">
-            <text>{{item.nickName}}</text>
+          <view class="card-content-con">
+            <view class="card-content-text">
+              <text class="">报事时间：</text>
+            </view>
+            <view class="card-content-loc">
+              <text>{{item.eventDay}}</text>
+            </view>
           </view>
-        </view>
+          <view class="card-content-con">
+            <view class="card-content-text">
+              <text class="">报事人员：</text>
+            </view>
+            <view class="card-content-loc">
+              <text>{{item.nickName}}</text>
+            </view>
+          </view>
       </view>
       <view class="card-foot">
         <view class="card-foot-time">{{item.createTime}}</view>
@@ -80,7 +78,7 @@ module.exports = {
 <view class="{{currentTab == 1?'show':'hidden'}} tab-content">
 
   <block wx:for="{{toBeCheckEventList}}" wx:for-item="item" wx:key="tab2" data-index="{{index}}">
-    <view class="card">
+    <view class="card" bindtap="ToDetail"  data-index="{{index}}" data-cur_page="{{currentTab}}">
       <view class="card-title">
         <view class="card-title-image">
           <image src="../../images/pendingverified.png"></image>
@@ -124,10 +122,10 @@ module.exports = {
 </view>
 <view class="{{currentTab == 2?'show':'hidden'}} tab-content">
   <block wx:for="{{processedEventList}}" wx:for-item="item" wx:key="tab3">
-    <view class="card">
+    <view class="card" bindtap="ToDetail"  data-index="{{index}}" data-cur_page="{{currentTab}}">
       <view class="card-title">
         <view class="card-title-image">
-          <image src="../../images/processed.png"></image>
+          <image src="../../images/task3.png"></image>
         </view>
         <view class="card-title-t"><text>{{item.eventName}}</text></view>
       </view>
