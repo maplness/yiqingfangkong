@@ -1,4 +1,4 @@
-@import "../record/jobdiary.wxss";
+/* pages/task/taskInfo.wxss */
 page{
   display: flex;
   flex-direction: column;
@@ -17,6 +17,12 @@ page{
 .tab-list{
   display: flex;
   flex-direction: row;
+  font-size:16px;
+  font-family:PingFangSC-Regular,PingFang SC;
+  justify-content: center;
+  align-items: center;
+  flex:1;
+  border-bottom:1px solid #eee;
 }
 .circle{
   width: 35rpx;
@@ -36,26 +42,11 @@ page{
   flex: 1;
 }
 .default{
-    /* line-height:90rpx;
-    text-align:center; */
-    justify-content: center;
-    align-items: center;
-    flex:1;
-    border-bottom:1px solid #eee;
     color:#000;
-    font-weight:bold;
-    font-size:28rpx;  
 }
 .active{
-    /* line-height:90rpx;
-    text-align:center; */
-    justify-content: center;
-    align-items: center;
     color:#55abfc;
-    flex:1;
     border-bottom:2px solid #55abfc;
-    font-weight:bold;
-    font-size:28rpx;
 }
 .show{
     display:block;
@@ -79,10 +70,11 @@ page{
   justify-items: center; */
   height: 100rpx;
   /* padding: 20rpx; */
-  margin-left: 20rpx;
-  margin-right: 20rpx;
+  margin-left: 32rpx;
+  margin-right: 32rpx;
   border-bottom: 1px solid #f7f7f7;
 }
+
 .card-title-image{
   display: flex;
   justify-content: center;
@@ -96,14 +88,16 @@ page{
   overflow: hidden;
 }
 .card-title-t text{
-  font-weight: bold;
+  font-size: 32rpx;
+  font-family:PingFangSC-Semibold,PingFang SC;
+  font-weight:600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
 }
 .card-title image{
-  width: 64rpx;
-  height: 64rpx;
+  width: 44rpx;
+  height: 44rpx;
 }
 .card-content{
   height: 270rpx;
@@ -117,17 +111,21 @@ page{
   flex-direction: row;
   height: 90rpx;
   line-height: 90rpx;
-  padding: 0 20rpx;
+  padding: 0 32rpx;
 }
 .card-content-text{
   width: 200rpx;
   color: #B9B9B9;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
 }
 .card-content-loc{
   width: 550rpx;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
 }
 .card-foot{
   height: 100rpx;
@@ -135,16 +133,20 @@ page{
   flex-direction: row;
   justify-items: center;
   align-items: center;
-  padding: 0 20rpx;
+  padding: 0 32rpx;
 }
 .card-foot-time{
   flex: 2;
   color: #D1D1D1;
+  font-size:12px;
+  font-family:PingFangSC-Regular,PingFang SC;
 }
 .card-foot-detail{
   flex: 1;
   text-align: right;
   color: #3BA6FE;
+  font-size:14px;
+  font-family:PingFangSC-Regular,PingFang SC;
 }
 .card-foot .card-foot-detail-ok{
   background-color: #D3F2E8;

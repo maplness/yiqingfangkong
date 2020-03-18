@@ -1,0 +1,84 @@
+<!--pages/record/jobdiaryInfo.wxml-->
+<view class="{{activeIndex == 0? 'show': 'hidden'}}">
+  <scroll-view scroll-y="true" style='width: 100%; height: {{scrollHeight}}px;'
+    refresher-enabled="{{true}}"
+    refresher-threshold="{{100}}"
+    refresher-triggered="{{triggered}}"
+    bindrefresherpulling="onPulling"
+    bindrefresherrefresh="onRefresh"
+    bindrefresherrestore="onRestore"
+    bindrefresherabort="onAbort"
+    bindscrolltolower="scrollLoading"
+  >
+    <view class="tabContent">
+      <block wx:for="{{arr}}" wx:key="record">
+        <view class="list" bindtap="detailtip" data-index="{{item.id}}">
+          <view class="list-date">{{item.workDay}}</view>
+          <view class="list-title">
+            <view class="work-objective padding">{{item.workGoal}}</view>
+            <view class="work-time padding">{{item.reportTime}}</view>
+          </view>
+        </view>
+      </block>
+      <view wx:if='{{noData}}'class="noData">{{noDataText}}</view>
+    </view>
+  </scroll-view>
+</view>
+<view class="{{activeIndex == 1? 'show': 'hidden'}}">
+<scroll-view scroll-y="true" style='width: 100%; height: {{scrollHeight}}px;'>
+  <view class="tabContent">
+    <form bindsubmit="submitForm">
+      <view class="l1">
+        <view>填报人</view>
+        <input class="l1-input" name="userName" value="{{form.userName}}" placeholder="填写填报人" disabled="true" />
+      </view>
+      <view class="l1">
+        <view>工作目标</view>
+        <input class="l1-input" name="workGoal" value="{{form.workGoal}}"  placeholder="填写工作目标" />
+      </view>
+      <view class="l1">
+        <view>工作记录</view>
+        <textarea class="l1-input" name="workDetail" value="{{form.workDetail}}" placeholder="填写工作记录，包含工作目标的完成情况"></textarea>
+      </view>
+      <view class="l2">
+        <view>图片</view>
+        <view class="question-images clearFloat">
+          <block wx:for="{{images}}" wx:key="*this">
+            <view class="q-image-wrap">
+              <!-- 图片缩略图  -->
+              <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+              <!-- 移除图片的按钮  -->
+              <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+                <icon class='iconfont iconchahao'></icon>
+              </view>
+            </view>
+          </block>
+        <!-- 上传图片 -->
+          <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
+            <icon class="iconfont iconcamera"></icon>
+          </view>
+       </view>
+      </view>
+      <view class="l3">
+        <button size="default" formType="submit">提交日志</button>
+      </view>
+      
+    </form>
+  </view>
+  </scroll-view>
+</view>
+<view class="l-bottom">
+  <view class="title">
+      <view id="title1" class="item {{activeIndex==0?'active':'default'}}" bindtap="ToDetail">
+        <view class="tab-i">
+          <image src="{{imageO}}"></image>
+          日志记录</view>
+        </view>
+        
+      <view id="title2" class="item {{activeIndex==1?'active':'default'}}" bindtap="addJobDiary">
+        <view class="tab-i">
+          <image src="{{imageT}}"></image>
+          新增日志</view>
+      </view>
+    </view> 
+</view>

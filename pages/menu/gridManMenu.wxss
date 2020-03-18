@@ -1,6 +1,6 @@
 /* pages/menu/gridManMenu.wxss */
 /**index.wxss**/
-@import "../record/jobdiary.wxss";
+/* @import "../record/jobdiary.wxss"; */
 @import "../mine/mine.wxss";
 page{
   display: flex;

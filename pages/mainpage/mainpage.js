@@ -121,7 +121,7 @@ Page({
   },
   func5(){
     wx.navigateTo({
-      url: '../record/jobdiary',
+      url: '../record/jobdiaryInfo',
     })
   },
   func6() {

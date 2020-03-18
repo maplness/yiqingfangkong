@@ -44,6 +44,7 @@ App({
     access_token: "",
     // host:"https://createsharp.cn/scgp",
     host:"http://localhost:8888/scgp",
+    imageHost: "http://10.110.2.83:58888/",
     login_url: "/loginWechat",
     getInfoUrl: "/getInfo",
     getEventInfoUrl: "/report/reportInfo/list",
@@ -53,7 +54,7 @@ App({
     clockUrl: "/workcheck/attendance",
     dropCaseUrl: "/caseInfo/dropCase",
     uploadImgUrl: "/fdfs/uploadImageAndCrtThumbImage",
-
+    jobdiaryRecord: "/worklog/workLog/list",
     eventTypeArray: [],
     user: {},
     pr_rate: 0,
