@@ -42,7 +42,7 @@ Page({
   onLoad: function (options) {
     var that = this
     var currentEvent = JSON.parse(options.currentEvent)
-    console.log(currentEvent)
+    // console.log(currentEvent)
     this.setData({
       event: currentEvent
     })
@@ -68,7 +68,7 @@ Page({
         break;
     }
     that.parseEventType(that.data.event.eventType)
-    console.log(app.globalData.eventTypeArray)
+    // console.log(app.globalData.eventTypeArray)
   },
   parseEventType(e){
     var that = this
@@ -321,7 +321,7 @@ Page({
       method: "POST",
       data: that.data.event.caseInfo,
       success(res) {
-        console.log(res)
+        // console.log(res)
       }
     })
 

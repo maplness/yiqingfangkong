@@ -42,28 +42,16 @@ page{
   flex: 1;
 }
 .default{
-<<<<<<< HEAD
-    /* line-height:90rpx;
-    text-align:center; */
-    
-    color:#000;
-    /* font-weight:bold; */
-    /* font-size:28rpx;   */
-}
-.active{
-    /* line-height:90rpx;
-    text-align:center; */
-    color:#55abfc;
-    border-bottom:2px solid #55abfc;
-    /* font-weight:bold; */
-    /* font-size:28rpx; */
-=======
     color:#000;
 }
 .active{
     color:#55abfc;
     border-bottom:2px solid #55abfc;
->>>>>>> 0305ff4072507de5634a10863250507c15ea8b2e
+    color:#000;
+}
+.active{
+    color:#55abfc;
+    border-bottom:2px solid #55abfc;
 }
 .show{
     display:block;
@@ -103,21 +91,14 @@ page{
   align-items: center;
   padding-left: 20rpx;
   overflow: hidden;
-<<<<<<< HEAD
   font-size: 32rpx;
   font-family:PingFangSC-Semibold,PingFang SC;
   font-weight:600;
-  word-break: break-all;
-=======
 }
 .card-title-t text{
-  font-size: 32rpx;
-  font-family:PingFangSC-Semibold,PingFang SC;
-  font-weight:600;
   overflow: hidden;
   text-overflow: ellipsis;
   white-space: nowrap;
->>>>>>> 0305ff4072507de5634a10863250507c15ea8b2e
 }
 .card-title image{
   width: 44rpx;

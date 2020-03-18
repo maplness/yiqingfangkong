@@ -48,7 +48,7 @@
       <image src="{{function[5].icon}}"  class="icon"/>
       <view class="label">{{function[5].label}}</view>
     </view>
-    <view class="cell">
+    <view class="cell" bindtap="func7">
       <image src="{{function[6].icon}}"  class="icon"/>
       <view class="label">{{function[6].label}}</view>
     </view>

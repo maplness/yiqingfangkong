@@ -49,7 +49,7 @@ Page({
       },
       {
         icon:"../../images/f3.png",
-        label:"意见反馈"
+        label:"工作日志"
       },
       {
         icon:"../../images/f8.png",
@@ -138,13 +138,7 @@ Page({
     }
   },
   func5() {
-    if (!app.globalData.isLogin){
-      this.checkLogIn()
-    } else {
-    wx.navigateTo({
-      url: '../record/jobdiaryInfo',
-    })
-    }
+    
   },
   func6() {
     if (!app.globalData.isLogin){
@@ -153,6 +147,15 @@ Page({
     wx.navigateTo({
       url: '../task/taskInfo',
     })
+    }
+  },
+  func7(){
+    if (!app.globalData.isLogin) {
+      this.checkLogIn()
+    } else {
+      wx.navigateTo({
+        url: '../record/jobdiaryInfo',
+      })
     }
   },
   onLoad(){
