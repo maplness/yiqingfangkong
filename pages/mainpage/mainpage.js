@@ -142,7 +142,7 @@ Page({
       this.checkLogIn()
     } else {
     wx.navigateTo({
-      url: '../record/jobdiary',
+      url: '../record/jobdiaryInfo',
     })
     }
   },

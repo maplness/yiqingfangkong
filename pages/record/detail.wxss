@@ -1,81 +1,56 @@
 /* pages/jobdiary/detail.wxss */
-
-/* view{  border: 1rpx red solid;} */
-input{
-  background-color: red;
+Page{
+  background-color: #f7f7f7;
 }
-page{
-  width: 100%; height: 100%;
+.tabContent{
+  margin-top: 32rpx;
 }
-.page_add{
-  width: 100%;
-  height: 100%;
+.tabContent .l1{
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding: 30rpx;
+  border-bottom: 1px solid #F9F9F9;
 }
-
-.page_add .line_box{ 
-  width: 100%; 
-  height: 120rpx; 
-  line-height: 120rpx; 
-  border-bottom: 1rpx #eee solid; 
-  display: flex; 
-  align-items: center;
+.tabContent .l1 .l1-title{
+  color: #6D6D6D
 }
-.page_add .line_box .name{
-  width: 180rpx; 
-  padding-left: 20rpx;
-}
-.page_add .line_box input{  
-  width: 520rpx; 
-  height: 80rpx; 
-  background-color: #eeeeee; 
-  border-radius: 10rpx;
-  padding-left: 10rpx;
-}
-.page_add .line_box_text{ 
-  width: 100%; 
-  /* height: 120rpx;  */
-  /* line-height: 120rpx;  */
-  /* height: 300rpx; */
-  border-bottom: 1rpx #eee solid; 
-  /* display: flex; 
-  align-items: center; */
-}
-.page_add .line_box_text .name{
-  width: 180rpx;
-  height: 100rpx;
-  line-height: 120rpx; 
-  padding-left: 20rpx;
-}
-
-.page_add .line_box_text .textRecord{
-  padding: 10rpx 20rpx 20rpx 20rpx;
-}
-.page_add .line_box_text .picRecord{
-  height: 160rpx;
-  padding: 10rpx 20rpx 20rpx 20rpx;
-}
-
-.page_add .line_box_text textarea{  
-  width: 100%; 
-  background-color: #eeeeee; 
-  border-radius: 10rpx;
-  padding-left: 10rpx;
+.tabContent .l1 .l1-input{
   padding-top: 10rpx;
+  width: 100%;
+}
+.tabContent .l2{
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  margin-top: 20rpx;
+  padding: 30rpx;
+  border-bottom: 1px solid #F9F9F9;
+}
+.tabContent .l2 .l2-title{
+  color: #6D6D6D
+}
+.question-images{
+  padding-top: 20rpx;
 }
 .q-image-wrap{
   width: 150rpx;
   height: 150rpx;
-  border: 2rpx solid #000000;
+  border: 2px dotted #000000;
+  border-radius: 10rpx;
   float: left;
   margin-right: 20rpx;
   position: relative;
   overflow: hidden;
 }
+.q-image-wrap image{
+  width: 100%;
+  height: 100%;
+}
 .q-image-remover{
   width: 100rpx;
   height: 100rpx;
   border-radius: 100%;
-  background: #2e82ff;
   position: absolute;
   top:-50rpx;
   right:-50rpx;
@@ -83,42 +58,7 @@ page{
 }
 .q-image-remover icon{
   position: absolute;
-  left:12rpx;
+  left:20rpx;
   bottom:12rpx;
-  color:#fff;
-}
- 
-.uploadImgBtn{
-  width: 150rpx;
-  height: 150rpx;
-  text-align: center;
-  line-height: 140rpx;
-  border: 2rpx solid #000000;
-  float: left;
-}
-.uploadImgBtn icon{
-  font-size: 80rpx;
-  color: #999;
-}
-
-.submitButton{
-  margin-top: 20rpx;
-  text-align: center;
-}
-
-.submitButton button{
-  width: 200rpx;
-  height: 80rpx;
-  line-height: 80rpx;
-}
-.submitButton .submit{
-  margin-right: 20rpx;
-  background-color: #55abfc;
-  color: white;
-}
-.submitButton .cancel{
-  margin-left: 20rpx;
-  border: 1rpx solid #000000;
-  background-color: white;
-  color: #000000;
+  color:#FD5C4C;
 }

@@ -11,7 +11,8 @@ Page({
       userName: '',
       workDay: '',
       workGoal: '',
-      workDetail: ''
+      workDetail: '',
+      picturePath: ''
     },
     id: '',
     images: []
@@ -64,7 +65,7 @@ Page({
       url: app.globalData.host +'/worklog/workLog/'+id,
       method: 'GET',
       header:{
-        "Content-Type": "application/x-www-form-urlencoded",
+        // "Content-Type": "application/x-www-form-urlencoded",
         "Authorization": app.globalData.access_token
       },
       success(res){
@@ -74,6 +75,16 @@ Page({
           that.setData({
             form: r.data
           })
+          if (that.data.form.picturePath != '' && that.data.form.picturePath != null){
+            let imgArr = that.data.form.picturePath.split(',')
+            for(let i = 0;i<imgArr.length;i++){
+              imgArr[i] = app.globalData.imageHost + imgArr[i]
+            }
+            that.setData({
+              images: imgArr
+            })
+            // console.log(imgArr)
+          }
         }else{
           wx.showModal({
             content: r.msg,
