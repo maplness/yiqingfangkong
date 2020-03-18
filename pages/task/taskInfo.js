@@ -12,6 +12,9 @@ Page({
     noData1: false,
     noData2: false,
     noData3: false,
+    noDataText1: '没有更多了~',
+    noDataText2: '没有更多了~',
+    noDataText3: '没有更多了~',
     hideBottom: true,
     loadMoreData: '加载更多...',
     triggered: true,
@@ -46,9 +49,9 @@ Page({
     let that = this;
     if (that._freshing) return
     that._freshing = true
-    // wx.showLoading({
-    //   title: '刷新中',
-    // })
+    wx.showLoading({
+      title: '刷新中',
+    })
     if (that.data.currentTab == 0) {
       that.setData({
         pageNum1: 1,
@@ -110,6 +113,9 @@ Page({
     that.data.pageNum1 = 1;
     that.data.pageNum2 = 1;
     that.data.pageNum3 = 1;
+    wx.showLoading({
+      title: '玩命加载中'
+    })
     that.gettoBeAuditEventList();
     that.gettoBeCheckEventList();
     that.getprocessedEventList();
@@ -117,7 +123,9 @@ Page({
   //获取待核实事件数据
   gettoBeAuditEventList() {
     let that = this;
-    that.stopLoadMoreTiem1 = true;
+    that.setData({
+      stopLoadMoreTiem1: true
+    })
     wx.request({
       url: app.globalData.host + app.globalData.getEventInfoUrl,
       data: {
@@ -136,6 +144,18 @@ Page({
               toBeAuditEventList: res.data.rows,
               'tabArray[0].countNum': res.data.total
             })
+            if (res.data.total == 0){
+              that.setData({
+                noData1: true,
+                noDataText1: '暂无数据'
+              })
+              return;
+            } else {
+              that.setData({
+                noData1: false,
+                noDataText1: '没有更多了~'
+              })
+            }
           }else{
             let arr1 = that.data.toBeAuditEventList;
             let arr2 = res.data.rows;
@@ -147,6 +167,7 @@ Page({
               })
               that.setData({
                 noData1: true,
+                noDataText1: '没有更多了~'
               })
               return ;
             }
@@ -161,7 +182,9 @@ Page({
             icon: 'none'
           })
         }
-        that.stopLoadMoreTiem1 = false
+        that.setData({
+          stopLoadMoreTiem1: false
+        })
       },
       fail: function (err) { 
         wx.showToast({
@@ -182,7 +205,9 @@ Page({
   //获取待核查事件数据
   gettoBeCheckEventList() {
     let that = this;
-    that.stopLoadMoreTiem2 = true
+    that.setData({
+      stopLoadMoreTiem2: true
+    })
     wx.request({
       url: app.globalData.host + app.globalData.getEventInfoUrl,
       data: {
@@ -202,6 +227,18 @@ Page({
               toBeCheckEventList: res.data.rows,
               'tabArray[1].countNum': res.data.total
             })
+            if (res.data.total == 0){
+              that.setData({
+                noData2: true,
+                noDataText2: '暂无数据'
+              })
+              return 
+            }else{
+              that.setData({
+                noData2: false,
+                noDataText2: '没有更多了~'
+              })
+            }
           }else{
             let arr1 = that.data.toBeCheckEventList;
             let arr2 = res.data.rows;
@@ -213,6 +250,7 @@ Page({
               })
               that.setData({
                 noData2: true,
+                noDataText2: '没有更多了~'
               })
               return 
             }
@@ -227,7 +265,9 @@ Page({
             icon: 'none'
           })
         }
-        that.stopLoadMoreTiem2 = false
+        that.setData({
+          stopLoadMoreTiem2: false
+        })
 
       },
       fail: function (err) {
@@ -248,7 +288,9 @@ Page({
   //获取已处理事件数据（包括已核实和已核查）
   getprocessedEventList() {
     let that = this;
-    that.stopLoadMoreTiem3 = true
+    that.setData({
+      stopLoadMoreTiem3: true
+    })
     wx.request({
       url: app.globalData.host + app.globalData.getEventInfoUrl,
       data: {
@@ -279,6 +321,18 @@ Page({
               processedEventList: eventList,
               'tabArray[2].countNum': res.data.total
             })
+            if (res.data.total == 0){
+              that.setData({
+                noData3: true,
+                noDataText3: '暂无数据'
+              })
+              return
+            }else{
+              that.setData({
+                noData3: false,
+                noDataText3: '没有更多了~'
+              })
+            }
           }else{
             let arr1 = that.data.processedEventList;
             let arr2 = eventList;
@@ -290,6 +344,7 @@ Page({
               })
               that.setData({
                 noData3: true,
+                noDataText3: '没有更多了~'
               })
               return 
             }
@@ -304,7 +359,9 @@ Page({
             icon: 'none'
           })
         }
-        that.stopLoadMoreTiem3 = false
+        that.setData({
+          stopLoadMoreTiem3: false
+        })
       },
       fail: function (err) {
         wx.showToast({
@@ -388,8 +445,7 @@ Page({
    * 页面相关事件处理函数--监听用户下拉动作
    */
   onPullDownRefresh: function () {
-
-    this.onLoad();
+    // this.onLoad();
   },
 
   /**
@@ -401,7 +457,7 @@ Page({
   scrollLoading: function () {
     let that = this;
     if (that.data.currentTab == 0) {
-      if (that.stopLoadMoreTiem1) {
+      if (that.data.stopLoadMoreTiem1) {
         return;
       }
       wx.showLoading({
@@ -413,7 +469,7 @@ Page({
       })
       that.gettoBeAuditEventList();
     } else if (that.data.currentTab == 1) {
-      if (that.stopLoadMoreTiem2) {
+      if (that.data.stopLoadMoreTiem2) {
         return;
       }
       wx.showLoading({
@@ -425,7 +481,7 @@ Page({
       })
       that.gettoBeCheckEventList();
     } else {
-      if (that.stopLoadMoreTiem3) {
+      if (that.data.stopLoadMoreTiem3) {
         return;
       }
       wx.showLoading({

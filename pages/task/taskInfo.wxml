@@ -73,7 +73,7 @@ module.exports = {
       </view>
     </view>
   </block>
-  <view wx:if='{{noData1}}'class="noData">没有更多了~</view>
+  <view wx:if='{{noData1}}'class="noData">{{noDataText1}}</view>
 </view>
 <view class="{{currentTab == 1?'show':'hidden'}} tab-content">
 
@@ -118,7 +118,7 @@ module.exports = {
       </view>
     </view>
   </block>
-  <view wx:if='{{noData2}}'class="noData">没有更多了~</view>
+  <view wx:if='{{noData2}}'class="noData">{{noDataText2}}</view>
 </view>
 <view class="{{currentTab == 2?'show':'hidden'}} tab-content">
   <block wx:for="{{processedEventList}}" wx:for-item="item" wx:key="tab3">
@@ -166,7 +166,7 @@ module.exports = {
       </view>
     </view>
   </block>
-  <view wx:if='{{noData3}}'class="noData">没有更多了~</view>
+  <view wx:if='{{noData3}}'class="noData">{{noDataText3}}</view>
 </view>
  </scroll-view>
  

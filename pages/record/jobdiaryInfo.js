@@ -51,6 +51,9 @@ Page({
       pageNum: 1,
       noData: false
     })
+    wx.showLoading({
+      title: '刷新中',
+    })
     that.getjobdiaryInfo()
     setTimeout(function () {
       that.setData({
@@ -69,12 +72,15 @@ Page({
   },
   scrollLoading(){
     let that = this;
-    if (that.stopLoadMoreTiem) {
+    if (that.data.stopLoadMoreTiem) {
       return;
     }
     var pageNum = that.data.pageNum + 1; //当前页加1
     that.setData({
       pageNum: pageNum
+    })
+    wx.showLoading({
+      title: '玩命加载中',
     })
     that.getjobdiaryInfo()
   },
@@ -244,9 +250,8 @@ Page({
   },
   getjobdiaryInfo: function () {
     var that = this;
-    that.stopLoadMoreTiem = true
-    wx.showLoading({
-      title: '玩命加载中',
+    that.setData({
+      stopLoadMoreTiem: true
     })
     var params = {
       userId: app.globalData.user.userId,
@@ -307,8 +312,9 @@ Page({
               arr: arr1
             })
           }
-          that.stopLoadMoreTiem = false
-          
+          that.setData({
+            stopLoadMoreTiem: false
+          })
         } else {
           wx.showToast({
             title: r.msg,
@@ -335,6 +341,9 @@ Page({
    */
   onLoad: function (options) {
     this.computeScrollViewHeight()
+    wx.showLoading({
+      title: '玩命加载中',
+    })
     this.getjobdiaryInfo()
     this.initValidate()
   },

@@ -164,5 +164,6 @@ page{
   font-size: 10pt;
 }
 .noData{
-  text-align: center
+  text-align: center;
+  margin-top: 20rpx;
 }
