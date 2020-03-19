@@ -10,7 +10,7 @@ App({
     var systemInfo = wx.getSystemInfoSync();
     this.globalData.pr_rate = systemInfo.windowWidth/750
     this.globalData.windowHeight = systemInfo.windowHeight
-    console.log(this.globalData.pr_rate)
+    // console.log(this.globalData.pr_rate)
 
     // 登录
     wx.login({
@@ -55,6 +55,7 @@ App({
     dropCaseUrl: "/caseInfo/dropCase",
     uploadImgUrl: "/fdfs/uploadImageAndCrtThumbImage",
     jobdiaryRecord: "/worklog/workLog/list",
+    getGridInfoUrl: "/grid/gridInfo/findGridByPoint",
     eventTypeArray: [],
     user: {},
     pr_rate: 0,

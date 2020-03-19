@@ -12,7 +12,7 @@ Page({
     var pages = getCurrentPages();
     var prevPage = pages[pages.length - 2];//上一个页面
     //直接调用上一个页面的setData()方法，把数据存到上一个页面中去
-    console.log(this.data.eventDetail);
+    // console.log(this.data.eventDetail);
     if (this.data.eventDetail == '') {
       wx.showModal({
         content: '请输入报事详情',
@@ -38,7 +38,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    console.log(options);
+    // console.log(options);
     this.setData({
       charNumber: options.eventDetail.length,
       eventDetail: options.eventDetail

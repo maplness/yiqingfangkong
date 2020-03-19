@@ -14,7 +14,7 @@ Page({
   },
   submit(e){
     var that = this
-    console.log(e.detail.value)
+    // console.log(e.detail.value)
     var params = e.detail.value
     if (!that.WxValidate.checkForm(e.detail.value)) {
       const error = this.WxValidate.errorList[0];
@@ -29,7 +29,7 @@ Page({
       },
       method: "PUT",
       success(res){
-        console.log(res)
+        // console.log(res)
       }
     })
   },

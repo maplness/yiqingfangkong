@@ -28,7 +28,8 @@ Page({
     multiIndex: [],
     checkeIndex: [],
     eventType: '',
-    location: {}
+    location: {},
+    adCode: ''
 
   },
   signDetailInput(e) {
@@ -59,6 +60,7 @@ Page({
       key: 'PU4BZ-3ZPW6-JNJSB-EQLMY-4QZWZ-LAFEG' // 必填
     });
     wx.getLocation({
+      type: 'gcj02',
       success: function (res) {
         // console.log(res)
         //保存到data里面的location里面
@@ -74,15 +76,36 @@ Page({
             longitude: res.longitude
           },
           success: function (res) {
-            // console.log(res);
+            console.log(res);
             var res = res.result;
+            var adCode = res.ad_info.adcode
             that.setData({
-              current_location: res.address
+              current_location: res.address,
+              adCode: adCode
             })
             // console.log(that.data.current_location)
             that.data.form.eventAddress = that.data.current_location
             that.setData({
               form: that.data.form
+            })
+            wx.request({
+              url: app.globalData.host + app.globalData.getGridInfoUrl,
+              header: {
+                'Authorization': app.globalData.access_token
+              },
+              method: 'GET',
+              data: {
+                adCode: that.data.adCode,
+                lng: that.data.location.longitude,
+                lat: that.data.location.latitude,
+                mapType: 1
+              },
+              success(res) {
+                console.log(res)
+                that.setData({
+                  gridName: res.data.data.gridName
+                })
+              }
             })
           },
           fail: function (error) {
@@ -94,6 +117,8 @@ Page({
         })
       }
     })
+    //get grid name
+    
   },
   changeLocation(e){
     // console.log(this.data.form)
@@ -231,8 +256,7 @@ Page({
         required: true
       },
       reporterIdNum: {
-        required: true,
-        idcard: true
+        required: true
       }
     }
     const messages = {
@@ -249,8 +273,7 @@ Page({
         required: '请填写定位网格'
       },
       reporterIdNum: {
-        required: '请填写报事人身份证号',
-        idcard: '请输入正确的身份证号'
+        required: '请填写报事人联系方式'
       }
     }
     this.WxValidate = new WxValidate(rules, messages)
@@ -261,48 +284,50 @@ Page({
   onLoad: function (options) {
     this.initValidate();
     var that = this;
+    console.log("generalReport")
 
     // 实例化API核心类
     var qqmapsdk = new QQMapWX({
       key: 'PU4BZ-3ZPW6-JNJSB-EQLMY-4QZWZ-LAFEG' // 必填
     });
+    that.getLocation()
 
-    wx.getLocation({
-      success: function (res) {
-        // console.log(res)
-        //保存到data里面的location里面
-        that.setData({
-          location: {
-            longitude: res.longitude,
-            latitude: res.latitude
-          }
-        })
-        qqmapsdk.reverseGeocoder({
-          loc: {
-            latitude: res.latitude,
-            longitude: res.longitude
-          },
-          success: function (res) {
-            // console.log(res);
-            var res = res.result;
-            that.setData({
-              current_location: res.address
-            })
-            // console.log(that.data.current_location)
-            that.data.form.eventAddress = that.data.current_location
-            that.setData({
-              form: that.data.form
-            })
-          },
-          fail: function (error) {
-            // console.error(error);
-          },
-          complete: function (res) {
-            // console.log(res);
-          }
-        })
-      }
-    })
+    // wx.getLocation({
+    //   success: function (res) {
+    //     // console.log(res)
+    //     //保存到data里面的location里面
+    //     that.setData({
+    //       location: {
+    //         longitude: res.longitude,
+    //         latitude: res.latitude
+    //       }
+    //     })
+    //     qqmapsdk.reverseGeocoder({
+    //       loc: {
+    //         latitude: res.latitude,
+    //         longitude: res.longitude
+    //       },
+    //       success: function (res) {
+    //         // console.log(res);
+    //         var res = res.result;
+    //         that.setData({
+    //           current_location: res.address
+    //         })
+    //         // console.log(that.data.current_location)
+    //         that.data.form.eventAddress = that.data.current_location
+    //         that.setData({
+    //           form: that.data.form
+    //         })
+    //       },
+    //       fail: function (error) {
+    //         // console.error(error);
+    //       },
+    //       complete: function (res) {
+    //         // console.log(res);
+    //       }
+    //     })
+    //   }
+    // })
 
     //mutiple picker
     // 初始化

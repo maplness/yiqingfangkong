@@ -98,7 +98,7 @@ Page({
     params.userId = app.globalData.user.userId
     params.workDay = util.formatDate(new Date())
 
-    console.log(params);
+    // console.log(params);
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0]
       this.showModal(error)
@@ -117,7 +117,7 @@ Page({
           filePath: that.data.images[i],
           name: 'file',
           success(res) {
-            console.log(res.data)
+            // console.log(res.data)
             params.picturePath += JSON.parse(res.data).url + ','
             // console.log(i)
             // console.log(params.picturePath)

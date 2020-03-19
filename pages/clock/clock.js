@@ -41,7 +41,7 @@ Page({
     // console.log(new Date())
     // console.log(this.data.current_time)
     let timeNow = new Date(this.data.current_time).getHours();
-    console.log(timeNow);
+    // console.log(timeNow);
     if(timeNow >=0 && timeNow < 12){
       this.setData({
         signState: '签到'
@@ -82,7 +82,7 @@ Page({
     that.requestLocation();
     wx.getLocation({
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         //保存到data里面的location里面
         
         that.setData({
@@ -106,7 +106,7 @@ Page({
     wx.getLocation({
       type: 'gcj02',
       success: function (res) {
-        console.log(res)
+        // console.log(res)
         that.setData({
           latitude: res.latitude,
           longitude: res.longitude,
@@ -120,7 +120,7 @@ Page({
             longitude: res.longitude
           },
           success: function (res) {
-            console.log(res);
+            // console.log(res);
             var res = res.result;
             var areaName = 'params.areaName'
             that.setData({
@@ -129,11 +129,11 @@ Page({
             })
           },
           fail: function (error) {
-            console.error(error);
+            // console.error(error);
           },
           complete: function (res) {
-            console.log(res);
-            console.log(that.data.params)
+            // console.log(res);
+            // console.log(that.data.params)
           }
         })
       },
@@ -143,7 +143,7 @@ Page({
    * 移动到中心点
    */
   moveTolocation: function () {
-    console.log("move to location")
+    // console.log("move to location")
     var mapCtx = wx.createMapContext(mapId);
     mapCtx.moveToLocation();
   },
@@ -166,7 +166,7 @@ Page({
       data: that.data.params,
       method: "POST",
       success(res) {
-        console.log(res);
+        // console.log(res);
         if(res.data.code == 200){
           wx.showToast({
             title: that.data.signState + '成功',
@@ -198,7 +198,7 @@ Page({
       data: that.data.params,
       method: "POST",
       success(res){
-        console.log(res);
+        // console.log(res);
         wx.showToast({
           title: '签到成功',
         })
@@ -222,7 +222,7 @@ Page({
       data: that.data.params,
       method: "POST",
       success(res) {
-        console.log(res)
+        // console.log(res)
         wx.showToast({
           title: '签退成功',
         })

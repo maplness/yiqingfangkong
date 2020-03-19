@@ -48,7 +48,7 @@ Page({
   },
   getEventDetail() {
     let that = this;
-    console.log(that.data.form.eventDetail);
+    // console.log(that.data.form.eventDetail);
     if (that.data.form.eventDetail == undefined){
       that.data.form.eventDetail = '';
     }
@@ -318,7 +318,7 @@ Page({
             // console.log(that.data.current_location)
           },
           fail: function (error) {
-            console.error(error);
+            // console.error(error);
           },
           complete: function (res) {
             // console.log(res);
@@ -338,7 +338,7 @@ Page({
       checkeIndex: this.data.checkeIndex
     }
     data.objectMultiArray = app.globalData.eventTypeArray
-    console.log(app.globalData.eventTypeArray);
+    // console.log(app.globalData.eventTypeArray);
 
     data.objectMultiShow = data.objectMultiArray.map((item, index) => {
       if (index > 0) {
@@ -416,9 +416,9 @@ Page({
     // console.log(temp)
     var id1 = data.multiArray2[0][data.multiIndex[0]]
     var id2 = data.multiArray2[1][data.multiIndex[1]]
-    console.log(data.multiArray2);
-    console.log(data.multiIndex[0]);
-    console.log(id1 + ',' + id2)
+    // console.log(data.multiArray2);
+    // console.log(data.multiIndex[0]);
+    // console.log(id1 + ',' + id2)
     this.setData({
       eventType: temp,
       eventId: id1 + ',' + id2
@@ -440,7 +440,7 @@ Page({
   onShow: function () {
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];
-    console.log(currPage.__data__.eventDetail);//此处既是上一页面传递过来的值
+    // console.log(currPage.__data__.eventDetail);//此处既是上一页面传递过来的值
     this.data.form.eventDetail = currPage.__data__.eventDetail
     this.setData({
       "form.eventDetail": currPage.__data__.eventDetail
