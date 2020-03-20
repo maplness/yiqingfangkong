@@ -20,7 +20,10 @@ Page({
     checkeIndex: [],
     eventType: "",
     eventId: "",
-    eventDetail: ""
+    eventDetail: "",
+    location: {},
+    adCode: '',
+    grid: {}
   },
   chooseImage(e) {
     wx.chooseImage({
@@ -76,30 +79,40 @@ Page({
       return false
     }
     params.eventType = that.data.eventId
+    params.eventLongitude = that.data.location.longitude
+    params.eventLatitude = that.data.location.latitude
     params.picturePath = ''
-    that.submitForm(params)
+    // that.submitForm(params)
     //先上传照片，再提交表单
-    // for(var i=0;i<that.data.images.length;i++){
-    //   wx.uploadFile({
-    //     url: app.globalData.host + app.globalData.uploadImgUrl,
-    //     header: {
-    //       "Authorization": app.globalData.access_token
-    //     },
-    //     filePath: that.data.images[0],
-    //     name: 'file',
-    //     success(res) {
-    //       params.picturePath += JSON.parse(res.data).url+','
-    //       console.log(i)
-    //       console.log(params.picturePath)
-    //       var n = (params.picturePath.split(',')).length - 1;
-    //       //传完了图片
-    //       if(n == (that.data.images.length)){
-    //         console.log(params)
-    //         that.submitForm(params)
-    //       }
-    //     }
-    //   })
-    // }
+    if (that.data.images.length > 0) {
+      // console.log(that.data.images)
+      for (var i = 0; i < that.data.images.length; i++) {
+        wx.uploadFile({
+          url: app.globalData.host + app.globalData.uploadImgUrl,
+          header: {
+            "Authorization": app.globalData.access_token
+          },
+          filePath: that.data.images[i],
+          name: 'file',
+          success(res) {
+            // console.log(res.data)
+            params.picturePath += JSON.parse(res.data).url + ','
+            // console.log(i)
+            // console.log(params.picturePath)
+            var n = (params.picturePath.split(',')).length - 1;
+            //传完了图片
+            if (n == (that.data.images.length)) {
+              // console.log(params)
+              // console.log("图片上传完毕")
+              params.picturePath = params.picturePath.substring(0, params.picturePath.length - 1)
+              that.submitForm(params)
+            }
+          }
+        })
+      }
+    } else {
+      that.submitForm(params)
+    }
   },
   submitForm(e){
     console.log("上传表单")
@@ -146,10 +159,33 @@ Page({
             longitude: res.longitude
           },
           success: function (res) {
-            // console.log(res);
+            console.log(res);
             var res = res.result;
+            var adCode = res.ad_info.adcode
             that.setData({
-              current_location: res.address
+              current_location: res.address,
+              adCode: adCode
+            })
+            // console.log(that.data.current_location)
+            wx.request({
+              url: app.globalData.host + app.globalData.getGridInfoUrl,
+              header: {
+                'Authorization': app.globalData.access_token
+              },
+              method: 'GET',
+              data: {
+                adCode: that.data.adCode,
+                lng: that.data.location.longitude,
+                lat: that.data.location.latitude,
+                mapType: 1
+              },
+              success(res) {
+                console.log(res)
+                that.setData({
+                  grid: res.data.data,
+                  gridName: res.data.data.gridName
+                })
+              }
             })
             // console.log(that.data.current_location)
           },
@@ -208,39 +244,40 @@ Page({
     var qqmapsdk = new QQMapWX({
       key: 'PU4BZ-3ZPW6-JNJSB-EQLMY-4QZWZ-LAFEG' // 必填
     });
+    that.getLocation()
 
-    wx.getLocation({
-      success: function (res) {
-        // console.log(res)
-        //保存到data里面的location里面
-        that.setData({
-          location: {
-            longitude: res.longitude,
-            latitude: res.latitude
-          }
-        })
-        qqmapsdk.reverseGeocoder({
-          loc: {
-            latitude: res.latitude,
-            longitude: res.longitude
-          },
-          success: function (res) {
-            // console.log(res);
-            var res = res.result;
-            that.setData({
-              current_location: res.address
-            })
-            // console.log(that.data.current_location)
-          },
-          fail: function (error) {
-            // console.error(error);
-          },
-          complete: function (res) {
-            // console.log(res);
-          }
-        })
-      }
-    })
+    // wx.getLocation({
+    //   success: function (res) {
+    //     // console.log(res)
+    //     //保存到data里面的location里面
+    //     that.setData({
+    //       location: {
+    //         longitude: res.longitude,
+    //         latitude: res.latitude
+    //       }
+    //     })
+    //     qqmapsdk.reverseGeocoder({
+    //       loc: {
+    //         latitude: res.latitude,
+    //         longitude: res.longitude
+    //       },
+    //       success: function (res) {
+    //         // console.log(res);
+    //         var res = res.result;
+    //         that.setData({
+    //           current_location: res.address
+    //         })
+    //         // console.log(that.data.current_location)
+    //       },
+    //       fail: function (error) {
+    //         // console.error(error);
+    //       },
+    //       complete: function (res) {
+    //         // console.log(res);
+    //       }
+    //     })
+    //   }
+    // })
 
     //mutiple picker
     // 初始化

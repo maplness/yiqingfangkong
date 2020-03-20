@@ -27,7 +27,7 @@
     </view>
     <view class="form-item">
       <text class="form-item-name">定位网格</text>
-      <input class="form-item-input" placeholder-style='text-align:right' name="eventGrid" value="{{form.eventGrid}}" placeholder="请输入定位网格"/>
+      <input class="form-item-input" placeholder-style='text-align:right' name="eventGrid" value="{{gridName}}" placeholder="请输入定位网格"/>
     </view>
     <view class="form-item">
       <text class="form-item-name">网格员</text>

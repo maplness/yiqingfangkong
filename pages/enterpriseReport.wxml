@@ -48,11 +48,11 @@
     </view>
     <view class="form-item">
         <text class="form-item-name">定位网格</text>
-        <input class="form-item-input" name="eventGrid" placeholder="请填写定位网格" placeholder-style="text-align:right"/>
+        <input class="form-item-input" name="eventGrid" placeholder="请填写定位网格" value="{{gridName}}" placeholder-style="text-align:right"/>
     </view>
     <view class="form-item">
-        <text class="form-item-name">报事人身份号码</text>
-        <input class='form-item-input' name='reporterIdNum' placeholder="请填写身份号码" placeholder-style="text-align:right"></input>
+        <text class="form-item-name">联系电话</text>
+        <input class='form-item-input' name='reporterIdNum' placeholder="请填写联系电话" placeholder-style="text-align:right"></input>
     </view>
 <view class='weui-cell display_block'>
         <label class='weui-label'>添加图片</label>
