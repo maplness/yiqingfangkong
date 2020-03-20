@@ -1,0 +1,153 @@
+<view class="l1">
+    <image class="left" src="{{taskStatusImg}}" />
+    <view class="mid">
+        <view class="title">{{event.eventName}}</view>
+        <view class="desc">网格员： {{event.nickName}}</view>
+    </view>
+    <view wx:if="{{stateIndex == '1'}}" class="right" style="color:#32C5FF;background-color:#D7FFFF;">核实中</view>
+    <view wx:if="{{stateIndex == '2'}}" class="right" style="color:#D2A162;background-color:#FDF0DF;">核查中</view>
+    <view wx:if="{{stateIndex == '3'}}" class="right" style="color:#69CEAC;background-color:#D3F2E8;">已完成</view>
+</view>
+<view class="l2">
+    <view class="title">
+        <view id="title1" class="item {{activeIndex==0?'active':'default'}}" bindtap="ToDetail">事件详情</view>
+        <view id="title2" class="item {{activeIndex==1?'active':'default'}}" bindtap="ToProcess">处理进程</view>
+        <view id="title3" class="item {{activeIndex==2?'active':'default'}}" bindtap="ToRemark">处理意见</view>
+    </view>
+    <view id="indicator" style="left: {{indicatorLeft}}px" class="indicator"></view>
+    
+</view>
+
+<scroll-view scroll-y class="l3" style="height:{{l3_height}}px;" bindscroll="scroll" scroll-with-animation scroll-into-view="{{ViewTo}}">
+
+    <view id="detail" class="detail">
+        <view class="p1">
+            <view class="title">事件详情：</view>
+            <view class="value" style="height:200rpx;">{{event.eventDetail}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件类型：</view>
+            <view class="value">{{eventType1}} - {{eventType2}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件发生时间：</view>
+            <view class="value">{{event.eventDay}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">定位网格：</view>
+            <view class="value">{{event.eventGrid}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件发生位置：</view>
+            <view class="value">{{event.eventAddress}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件相关影像：</view>
+            <view class="image-wrapper">
+                <block wx:for="{{images}}" wx:key="image">
+                    <image class="picture" src="{{item}}" />
+                </block>
+            </view>
+        </view>
+        <view class="h-divider"></view>
+        <view class="p2 title2" >核实详情</view>
+        <view class="p2">
+            <view class="title">是否立案</view>
+            <view class="value">已立案调查</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件处理部门</view>
+            <view class="value">郑州市XXX区市场管理局</view>
+        </view>
+        <view class="p2">
+            <view class="title">核实意见</view>
+            <view class="value">2020-03-13日，在郑州市XXX区金域国际小区发现一名新冠状肺炎疫区归来人员，该人员是回国后隐瞒出国史病且在出现症状后仍欺骗社区工作人员及警方该男子被媒体戏称郑州“毒王”</view>
+        </view>
+        <view class="p2">
+            <view class="title">照片</view>
+            <view class="image-wrapper">
+                <block wx:for="{{images}}" wx:key="image">
+                    <image class="picture" src="{{item}}" />
+                </block>
+            </view>
+        </view>
+
+        <view class="h-divider"></view>
+        <view class="p2 title2" >核查详情</view>
+        <view class="p2">
+            <view class="title">处理结果</view>
+            <view class="value">已完成</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件处理部门</view>
+            <view class="value">郑州市XXX区市场管理局</view>
+        </view>
+        <view class="p2">
+            <view class="title">核查意见</view>
+            <view class="value">2020-03-13日，在郑州市XXX区金域国际小区发现一名新冠状肺炎疫区归来人员，该人员是回国后隐瞒出国史病且在出现症状后仍欺骗社区工作人员及警方该男子被媒体戏称郑州“毒王”</view>
+        </view>
+        <view class="p2">
+            <view class="title">照片</view>
+            <view class="image-wrapper">
+                <block wx:for="{{images}}" wx:key="image">
+                    <image class="picture" src="{{item}}" />
+                </block>
+            </view>
+        </view>
+        
+        
+    </view>
+    <view id="process" class="process">
+        <view style="height:40rpx"></view>
+        <block wx:for="{{processArray}}" wx:key="process">
+            <view wx:if="{{index != 0}}" class="{{item.active == '1'? 'bar':'bar-active'}}"></view>
+            <view class="cell" style="">
+                <view class="left">
+                    
+                    <image class="avatar" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
+                    <image class="avatar-badge" src="{{item.active == '1'? '../../images/done.png': '../../images/loading.png'}}" />
+                    
+                </view>
+                <view class="mid">
+                    <view >{{item.stepName}}</view>
+                    <view class="mid-l2">李大力</view>
+                </view>
+                <view class="right">03-13 09:53</view>
+            </view>
+        </block>
+    </view>
+    <view id="remark" class="remark">
+    
+      <!-- 是否立案 -->
+      <view class="remark-l1">
+        <view class="left">处理结果</view>
+        <view class="right">
+            <radio-group class="radio-group" bindchange="radioChange">
+                <radio class="radio" wx:for-items="{{caseOption}}" wx:key="name" value="{{item.name}}" checked="{{item.checked}}">
+                    <text>{{item.value}}</text>
+                </radio>
+            </radio-group>
+        </view>
+      </view>
+
+      <view class="remark-l2">
+          <view class="title">反馈意见</view>
+          <view class="opinion">
+              <image class="avatar" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg" />
+              <input class="input" bindinput="opinionChange" placeholder="请输入审批意见" />
+          </view>
+          
+      </view>
+
+      <view class="remark-l3">
+          <view >照片</view>
+          
+        
+
+      </view>
+      
+    </view>
+    <view class="null"></view>
+
+</scroll-view>
+
