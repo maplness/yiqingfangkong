@@ -179,7 +179,7 @@ Page({
       return false;
     }
     params.picturePath = ''
-    that.submitForm(params)
+    // that.submitForm(params)
     // 先上传照片，再提交表单
     if (that.data.images.length > 0){
       // console.log(that.data.images)
