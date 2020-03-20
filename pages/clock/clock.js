@@ -15,6 +15,7 @@ Page({
    * 页面的初始数据
    */
   data: {
+    timer: '',
     icon_clock: "../../images/clock.png",
     icon_position: "../../images/position.png",
     current_time: "now",
@@ -39,9 +40,9 @@ Page({
   },
   getTime(){
     // console.log(new Date())
-    // console.log(this.data.current_time)
-    let timeNow = new Date(this.data.current_time).getHours();
-    // console.log(timeNow);
+    // console.log(this.data.params.checkTime)
+    let timeNow = new Date(this.data.params.checkTime).getHours();
+    console.log(timeNow);
     if(timeNow >=0 && timeNow < 12){
       this.setData({
         signState: '签到'
@@ -62,14 +63,11 @@ Page({
    */
   onLoad: function (options) {
     var that = this;
-
-    
-
     var workDay = 'params.workDay'
     var checkTime = 'params.checkTime'
     var nickName = 'params.nickName'
-
-    setInterval(function () {
+    var interval = null;
+    interval = setInterval(function () {
       that.setData({
         current_time: time.getNowTime(),
         [workDay]: time.getDate(),
@@ -79,6 +77,9 @@ Page({
       })
       that.getTime()
     }, 1000)
+    that.setData({
+      timer: interval
+    })
     that.requestLocation();
     wx.getLocation({
       success: function (res) {
@@ -233,5 +234,9 @@ Page({
         }, 1000)
       }
     })
+  },
+  onUnload(){
+    let that = this;
+    clearInterval(that.data.timer)
   }
 })

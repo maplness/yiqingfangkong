@@ -42,7 +42,7 @@ page{
   height: 300rpx;
   text-align: center;
   /* line-height: 240rpx; */
-  background-color: #FD9287;
+  background-color: #58A5ff;
   border-radius: 50%;
   margin: 0 auto;
 }

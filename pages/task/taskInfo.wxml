@@ -159,7 +159,7 @@ module.exports = {
       </view>
       <view class="card-foot">
         <view class="card-foot-time" wx:if="{{item.statusDesc == '已核查'}}">{{item.caseInfo.dropTime}}               </view>
-        <view class="card-foot-time" wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.dropTime}}               </view>
+        <view class="card-foot-time" wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerTime}}               </view>
         <view class="card-foot-detail-ok">
           <text>{{item.statusDesc}}</text>
         </view>

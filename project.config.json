@@ -88,6 +88,34 @@
 					"id": -1,
 					"name": "pages/task/taskDetail",
 					"pathName": "pages/task/taskDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "taskInfo",
+					"pathName": "pages/task/taskInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "jobdiaryInfo",
+					"pathName": "pages/record/jobdiaryInfo",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/task/taskProcess",
+					"pathName": "pages/task/taskProcess",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "taskProcessDetail",
+					"pathName": "pages/task/taskProcessDetail",
 					"scene": null
 				}
 			]

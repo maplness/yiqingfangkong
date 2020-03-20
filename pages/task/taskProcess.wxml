@@ -1,0 +1,109 @@
+<!--pages/task/taskProcess.wxml-->
+<view class="nav-tabs">
+    <view class="tab-list  {{currentTab == idx?'active':'default'}}" wx:for="{{tabArray}}" wx:key="nav" wx:for-index="idx" wx:for-item="item" data-current="{{idx}}" bindtap="swichNav">
+    {{item.name}}
+    <view class="circle" wx:if="{{item.name == '待处理'}}">{{item.countNum}}</view>
+    </view>
+</view>
+<scroll-view
+  scroll-y="true" style='width: 100%; height: {{scrollHeight}}px;margin-top: 90rpx;'
+  refresher-enabled="{{true}}"
+  refresher-threshold="{{100}}"
+  refresher-triggered="{{triggered}}"
+  bindrefresherpulling="onPulling"
+  bindrefresherrefresh="onRefresh"
+  bindrefresherrestore="onRestore"
+  bindrefresherabort="onAbort"
+  bindscrolltolower="scrollLoading"
+>
+<view class="{{currentTab == 0?'show':'hidden'}} tab-content">
+  <block wx:for="{{untreatedTaskDetailList}}" wx:for-item="item" wx:key="tab1">
+    <view class="card" bindtap="ToDetail"  data-index="{{index}}" data-id="{{item.id}}" data-cur_page="{{currentTab}}">
+      <view class="card-title">
+        <view class="card-title-image">
+          <image src="../../images/task1.png"></image>
+        </view>
+        <view class="card-title-t">{{item.taskName}}</view>
+      </view>
+      <view class="card-content">
+        <view class="card-content-con">
+            <view class="card-content-text">
+              <text class="">处理人：</text>
+            </view>
+            <view class="card-content-loc">
+              <text>{{item.solveUserName}}</text>
+            </view>
+        </view>
+        <view class="card-content-con">
+            <view class="card-content-text">
+              <text class="">处理时间：</text>
+            </view>
+            <view class="card-content-loc">
+              <text>{{item.solveTime}}</text>
+            </view>
+        </view>
+        <view class="card-content-con">
+          <view class="card-content-text">处理详情：</view>
+          <view class="card-content-loc">
+            <text class="">{{item.solveInfo}}</text>
+          </view>
+            
+        </view>
+      </view>
+      <view class="card-foot">
+        <view class="card-foot-time">{{item.createTime}}</view>
+        <view class="card-foot-detail">查看详情</view>
+      </view>
+    </view>
+  </block>
+  <view wx:if='{{noData1}}'class="noData">{{noDataText1}}</view>
+</view>
+<view class="{{currentTab == 1?'show':'hidden'}} tab-content">
+
+  <block wx:for="{{processedTaskDetailList}}" wx:for-item="item" wx:key="tab2" data-index="{{index}}">
+    <view class="card" bindtap="ToDetail"  data-index="{{index}}" data-id="{{item.id}}" data-cur_page="{{currentTab}}">
+      <view class="card-title">
+        <view class="card-title-image">
+          <image src="../../images/task3.png"></image>
+        </view>
+        <view class="card-title-t"><text>{{item.taskName}}</text></view>
+      </view>
+      <view class="card-content">
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="">处理人：</text>
+          </view>
+          <view class="card-content-loc">
+            <text>{{item.solveUserName}}</text>
+          </view>
+        </view>
+        
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="card-content-text">处理时间：</text>
+          </view>
+          <view class="card-content-loc">
+            <text>{{item.solveTime}}</text>
+          </view>
+        </view>
+
+        <view class="card-content-con">
+          <view class="card-content-text">
+            <text class="">处理详情：</text>
+          </view>
+          <view class="card-content-loc">
+            <text class="">{{item.solveInfo}}</text>
+          </view>
+          
+        </view>
+        
+      </view>
+      <view class="card-foot">
+        <view class="card-foot-time">{{item.createTime}}</view>
+        <view class="card-foot-detail">查看详情</view>
+      </view>
+    </view>
+  </block>
+  <view wx:if='{{noData2}}'class="noData">{{noDataText2}}</view>
+</view>
+</scroll-view>

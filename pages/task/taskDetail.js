@@ -302,7 +302,7 @@ Page({
     that.data.event.caseInfo.eventId = that.data.event.id
     //confirm status
     
-      that.data.event.caseInfo.confirmStatus = '1'
+    that.data.event.caseInfo.confirmStatus = '1'
     //confirm remark
     that.data.event.caseInfo.confirmRemark = that.data.opinion
     //register status

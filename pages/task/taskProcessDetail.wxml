@@ -1,0 +1,111 @@
+<!--pages/task/taskProcessDetail.wxml-->
+<view class="l1">
+    <image class="left" src="{{taskStatusImg}}" />
+    <view class="mid">
+      <view class="mid-1">
+        <view class="title">{{event.taskInfo.taskName}}</view>
+        <view wx:if="{{stateIndex == '1'}}" class="right" style="color:#32C5FF;background-color:#D7FFFF;">处理中</view>
+    <view wx:if="{{stateIndex == '2'}}" class="right" style="color:#69CEAC;background-color:#D3F2E8;">已处理</view>
+      </view>
+      <view class="desc">处理人： {{event.taskInfo.assigneeName}}</view>
+    </view>
+</view>
+<view class="l2">
+    <view class="title">
+        <view id="title1" class="item {{activeIndex==0?'active':'default'}}" bindtap="ToDetail">事件详情</view>
+        <view id="title2" class="item {{activeIndex==1?'active':'default'}}" bindtap="ToProcess">处理进程</view>
+        <view id="title3" class="item {{activeIndex==2?'active':'default'}}" bindtap="ToRemark">处理意见</view>
+    </view>
+    <view id="indicator" style="left: {{indicatorLeft}}px" class="indicator"></view>
+    
+</view>
+<scroll-view scroll-y class="l3" style="height:{{l3_height}}px;" bindscroll="scroll" scroll-with-animation scroll-into-view="{{ViewTo}}">
+
+    <view id="detail" class="detail">
+        <view class="p1">
+            <view class="title">事件详情：</view>
+            <view class="value"><text>{{event.eventDetail}}</text></view>
+        </view>
+        <view class="p2">
+            <view class="title">事件类型：</view>
+            <view class="value">{{eventType1}} - {{eventType2}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件发生时间：</view>
+            <view class="value">{{event.eventDay}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">定位网格：</view>
+            <view class="value">{{event.eventGrid}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件发生位置：</view>
+            <view class="value">{{event.eventAddress}}</view>
+        </view>
+        <view class="p2">
+            <view class="title">事件相关影像：</view>
+            <view class="image-wrapper">
+                <block wx:for="{{images}}" wx:key="image">
+                    <image class="picture" src="{{item}}" />
+                </block>
+                <view class="noImage" wx:if="{{images.length == 0}}">暂无相关影像</view>
+            </view>
+        </view>
+    </view>
+    <view id="process" class="process">
+      <block wx:for="{{processList}}" wx:key="process" wx:index="index">
+        <view class="cell" style="">
+            <view class="left">
+                <image class="avatar" src="{{item.avatar}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
+                <image wx:if="{{item.active == '1'}}" class="avatar-badge" src="../../images/done.png" />
+                <view wx:if="{{item.active == '1' && index !=processList.length -1}}" class="bar"></view>
+            </view>
+            <view class="mid">
+                <view >{{item.stepName}}</view>
+                <view class="mid-l2">{{item.auditPerson}}</view>
+            </view>
+            <view class="right">{{item.time}}</view>
+        </view>
+      </block> 
+    </view>
+    <view id="remark" class="remark">
+      <!-- 审批意见详情 -->
+      <view class="solveInfo">
+        <view>处理详情</view>
+        <view class="textarea">
+          <textarea wx:if="{{stateIndex == 1}}" class="opinion"  placeholder="请输入处理详情" bindinput="opinionChange"></textarea>
+          <textarea wx:if="{{stateIndex == 2}}" class="opinion" value="{{event.taskDetailList[0].solveInfo}}" placeholder="请输入处理详情" disabled="true"></textarea>
+        </view>
+      </view>
+      <view class="solveInfo">
+        <view>图片</view>
+        <view class="question-images clearFloat">
+          <block wx:for="{{solveImages}}" wx:key="*this">
+            <view class="q-image-wrap">
+              <!-- 图片缩略图  -->
+              <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+              <!-- 移除图片的按钮  -->
+              <view wx:if="{{stateIndex == 1}}" class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+                <icon class='iconfont iconchahao'></icon>
+              </view>
+            </view>
+          </block>
+          <view class="noImage" wx:if="{{stateIndex == 2 && solveImages.length == 0}}">暂无相关图片</view>
+        <!-- 上传图片 -->
+          <view wx:if="{{stateIndex == 1}}">
+            <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{solveImages.length < 3}}">
+              <icon class="iconfont iconcamera"></icon>
+            </view>
+          </view>
+          
+       </view>
+      </view>
+      
+    </view>
+    <view class="null"></view>
+
+</scroll-view>
+
+<view wx:if="{{stateIndex == 1}}" class="l4">
+    <button bindtap="approved" size="default">处理完成</button>
+</view>

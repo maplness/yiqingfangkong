@@ -49,6 +49,7 @@ App({
     getInfoUrl: "/getInfo",
     getEventInfoUrl: "/report/reportInfo/list",
     getEventTypeUrl: "/report/reportType/listForWechat",
+    getEventTaskDetailUrl: "/taskDetail/taskDetail/list",
     registerCaseUrl: "/caseInfo/registerCase",
     changePasswordUrl: "/system/user/profile/updatePwd",
     clockUrl: "/workcheck/attendance",
