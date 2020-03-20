@@ -1,6 +1,8 @@
 {
   "pages": [
+    
     "pages/login/login",
+    "pages/test/testImg",
     "pages/task/taskDetail",
     "pages/clock/clock",
     "pages/mainpage/mainpage",

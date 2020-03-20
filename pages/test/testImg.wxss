@@ -1,0 +1,12 @@
+/* pages/test/testImg.wxss */
+.badge{
+    width: 32rpx;
+    height: 32rpx;
+    position: relative;
+    left: -40rpx;
+    z-index: 999;
+}
+.wrapper{
+    margin-top: 400rpx;
+    position: relative;
+}

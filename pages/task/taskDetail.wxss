@@ -1,4 +1,6 @@
 /* pages/task/taskDetail.wxss */
+
+@import '../../assets/iconfont/iconfont.wxss';
 page{
   background-color: #f5f5f5;
 }
@@ -110,13 +112,12 @@ page{
 .l3 .process{
   background-color: #ffffff;
   width: 702rpx;
-  height: 1120rpx;
+  height: 1160rpx;
   margin-left: 24rpx;
   margin-top: 24rpx;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .l3 .avatar{
@@ -124,29 +125,44 @@ page{
   height: 88rpx;
   border-radius: 50%;
 }
-.l3 .process .cell .left .avatar-badge{
-  width: 32rpx;
-  height: 32rpx;
-  position: absolute;
-  left: 150;
-  top: 30;
-  z-index: 10;
-}
+
 .l3 .process .cell{
   display: flex;
   flex-direction: row;
   position: relative;
-  top: 52rpx;
+  width: 620rpx;
+  left: 50rpx;
 }
 .l3 .process .cell .left{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
 }
-.l3 .process .cell .left .bar{
+.l3 .process .cell .left .avatar-badge{
+  width: 32rpx;
+  height: 32rpx;
+  position: relative;
+  left: -20rpx;
+  z-index: 10;
+}
+.l3 .process .cell .left .avatar{
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  position: relative;
+}
+
+.l3 .process  .bar{
   width: 4rpx;
   height: 72rpx;
   background-color: #07c160;
+  position: relative;
+  left: 94rpx;
+}
+.l3 .process  .bar-active{
+  width: 4rpx;
+  height: 72rpx;
+  background-color: #EEB76C;
+  position: relative;
+  left: 94rpx;
 }
 .l3 .process .cell .mid{
   display: flex;
@@ -165,7 +181,7 @@ page{
 .l3 .remark{
   background-color: #ffffff;
   width: 702rpx;
-  height: 448rpx;
+  height: 548rpx;
   margin-left: 24rpx;
   margin-top: 24rpx;
   border-radius: 5px;
@@ -173,32 +189,37 @@ page{
 }
 .l3 .remark .remark-l1{
   position: relative;
-  left: 60rpx;
-  top: 64rpx;
+  height: 108rpx;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 40rpx;
+  border-bottom: #F5F5F5 1px solid;
+}
+.l3 .remark .remark-l1 .right{
   display: flex;
   flex-direction: row;
 }
+.l3 .remark .remark-l1 .right .radio{
+  padding: 0 20rpx;
+}
+.l3 .remark .remark-l2 {
+  padding: 20rpx 40rpx;
+  border-bottom: #F5F5F5 1px solid;
+}
+.l3 .remark .remark-l3 {
+  padding: 20rpx 40rpx;
+}
+.l3 .remark .remark-l2 .title{
 
-.l3 .remark .remark-l1 .case{
-  width: 400rpx;
-  height: 80rpx;
-  border-radius: 20rpx;
-  background-color: #F5F5F5;
-  margin-left: 50rpx;
+}
+.l3 .remark .remark-l2 .opinion{
   display: flex;
-  justify-content: center;
-  align-items: center;
+  flex-direction: row;
+  margin-top: 20rpx;
 }
-.l3 .remark  .opinion{
-  background-color: #F5F5F5;
-  width: 500rpx;
-  height: 150rpx;
-  position: relative;
-  top: 100rpx;
-  left: 60rpx;
-  border-radius: 20rpx;
-  padding: 20rpx;
-}
+
 .l4{
   position: fixed;
   bottom: 0rpx;
@@ -248,3 +269,4 @@ page{
   width: 100%;
   height: 60rpx;
 }
+

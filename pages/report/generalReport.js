@@ -29,7 +29,8 @@ Page({
     checkeIndex: [],
     eventType: '',
     location: {},
-    adCode: ''
+    adCode: '',
+    grid:{}
 
   },
   signDetailInput(e) {
@@ -103,6 +104,7 @@ Page({
               success(res) {
                 console.log(res)
                 that.setData({
+                  grid: res.data.data,
                   gridName: res.data.data.gridName
                 })
               }
@@ -162,6 +164,7 @@ Page({
     params.reportType = '1'
     params.eventLongitude = that.data.location.longitude
     params.eventLatitude = that.data.location.latitude
+    params.eventGrid = that.data.grid.gridCode
     if (that.data.eventType == ''){
       wx.showModal({
         content: '请选择事件类型',
@@ -177,28 +180,36 @@ Page({
     }
     params.picturePath = ''
     that.submitForm(params)
-    //先上传照片，再提交表单
-    // for (var i = 0; i < that.data.images.length; i++) {
-    //   wx.uploadFile({
-    //     url: app.globalData.host + app.globalData.uploadImgUrl,
-    //     header: {
-    //       "Authorization": app.globalData.access_token
-    //     },
-    //     filePath: that.data.images[0],
-    //     name: 'file',
-    //     success(res) {
-    //       params.picturePath += JSON.parse(res.data).url + ','
-    //       console.log(i)
-    //       console.log(params.picturePath)
-    //       var n = (params.picturePath.split(',')).length - 1;
-    //       //传完了图片
-    //       if (n == (that.data.images.length)) {
-    //         console.log(params)
-    //         that.submitForm(params)
-    //       }
-    //     }
-    //   })
-    // }
+    // 先上传照片，再提交表单
+    if (that.data.images.length > 0){
+      // console.log(that.data.images)
+      for (var i = 0; i < that.data.images.length; i++) {
+        wx.uploadFile({
+          url: app.globalData.host + app.globalData.uploadImgUrl,
+          header: {
+            "Authorization": app.globalData.access_token
+          },
+          filePath: that.data.images[i],
+          name: 'file',
+          success(res) {
+            // console.log(res.data)
+            params.picturePath += JSON.parse(res.data).url + ','
+            // console.log(i)
+            // console.log(params.picturePath)
+            var n = (params.picturePath.split(',')).length - 1;
+            //传完了图片
+            if (n == (that.data.images.length)) {
+              // console.log(params)
+              // console.log("图片上传完毕")
+              params.picturePath = params.picturePath.substring(0, params.picturePath.length-1)
+              that.submitForm(params)
+            }
+          }
+        })
+      }
+    }else{
+      that.submitForm(params)
+    }
     
   },
   submitForm(e){

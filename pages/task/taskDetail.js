@@ -9,7 +9,7 @@ Page({
   data: {
     l3_height: 300,
     pre_scrollTop: 0,
-    heightArr: [0,583,677,900],
+    heightArr: [0,583,677,1400],
     activeIndex: 0,
     indicatorLeft: 0,
     ViewTo: "",
@@ -30,10 +30,66 @@ Page({
     stateIndex: '1',
     eventType1: '',
     eventType2: '',
-    eventToFile: ['立案处理', '销案处理'],
-    eventToFileValue: '请选择是否立案',
+    eventToFileValue: '',
     index: 0,
-    opinion: ''
+    opinion: '',
+    processArray: [
+      {
+        avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+        stepName: "事件上报",
+        auditPerson: "李大力",
+        active: "1",
+        time: "03-13 09:53"
+      },
+      {
+        avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+        stepName: "案卷建立",
+        auditPerson: "李大力",
+        active: "1",
+        time: "03-13 09:53"
+      },
+      {
+        avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+        stepName: "任务派遣",
+        auditPerson: "李大力",
+        active: "0",
+        time: "03-13 09:53"
+      },
+      {
+        avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+        stepName: "任务处理",
+        auditPerson: "李大力",
+        active: "0",
+        time: "03-13 09:53"
+      },
+      {
+        avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+        stepName: "处理反馈",
+        auditPerson: "李大力",
+        active: "0",
+        time: "03-13 09:53"
+      },
+      {
+        avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+        stepName: "核查结案",
+        auditPerson: "李大力",
+        active: "0",
+        time: "03-13 09:53"
+      },
+      {
+        avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+        stepName: "完成",
+        auditPerson: "李大力",
+        active: "0",
+        time: "03-13 09:53"
+      },
+      
+    ],
+    caseOption: [
+      { name: 'caseIn', value: '立案处理', checked: 'true' },
+      { name: 'caseOff', value: '销案处理' }
+    ],
+    images: []
   },
 
   /**
@@ -42,7 +98,19 @@ Page({
   onLoad: function (options) {
     var that = this
     var currentEvent = JSON.parse(options.currentEvent)
-    // console.log(currentEvent)
+    console.log(currentEvent)
+    //将事件图片塞到里边
+    if (currentEvent.picturePath != null && currentEvent.picturePath != '') {
+      let imagesPath = currentEvent.picturePath.split(',')
+      let imagesArr = []
+      for (let i = 0; i < imagesPath.length; i++) {
+        imagesArr.push(app.globalData.imageHost + imagesPath[i])
+      }
+      console.log(imagesArr)
+      that.setData({
+        images: imagesArr
+      })
+    }
     this.setData({
       event: currentEvent
     })
@@ -99,6 +167,13 @@ Page({
       eventToFileValue: eventToFile[index]
     })
   },
+  radioChange: function (e) {
+    　　console.log('radio发生change事件，携带value值为：', e.detail.value)
+        this.setData({
+          eventToFile: e.detail.value
+        })
+  },
+
   opinionChange(e){
     this.setData({
       opinion: e.detail.value
@@ -306,10 +381,10 @@ Page({
     //confirm remark
     that.data.event.caseInfo.confirmRemark = that.data.opinion
     //register status
-    if (that.data.eventToFileValue == '立案处理') {
+    if (that.data.eventToFileValue == 'caseIn') {
       that.data.event.caseInfo.registerStatus = '1'
     } else{
-      that.data.event.caseInfo.registerStatus = '2'
+      that.data.event.caseInfo.registerStatus = '1'
     }
     // console.log(that.data.event.caseInfo)
     //rigester case
@@ -321,7 +396,7 @@ Page({
       method: "POST",
       data: that.data.event.caseInfo,
       success(res) {
-        // console.log(res)
+        console.log(res)
       }
     })
 
@@ -348,7 +423,7 @@ Page({
     //confirm remark
     that.data.event.caseInfo.confirmRemark = that.data.opinion
     //register status
-    if (that.data.eventToFileValue == '立案处理') {
+    if (that.data.eventToFileValue == 'caseOff') {
       that.data.event.caseInfo.registerStatus = '1'
     }else{
       that.data.event.caseInfo.registerStatus = '2'

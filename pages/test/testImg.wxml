@@ -1,0 +1,5 @@
+<!--pages/test/testImg.wxml-->
+<view class="wrapper">
+    <image class="avatar" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg" />
+    <image class="badge" src="../../images/done.png" />
+</view>

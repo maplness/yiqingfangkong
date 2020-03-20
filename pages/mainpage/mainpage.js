@@ -37,11 +37,11 @@ Page({
       },
       {
         icon:"../../images/f7.png",
-        label:"任务处置"
+        label:"事件处置"
       },
       {
         icon:"../../images/f1.png",
-        label:"信息采集"
+        label:"任务处理"
       },
       {
         icon:"../../images/clock1.png",
@@ -139,7 +139,13 @@ Page({
     }
   },
   func5() {
-    
+    if (!app.globalData.isLogin) {
+      this.checkLogIn()
+    } else {
+      wx.navigateTo({
+        url: '../task/taskProcess',
+      })
+    }
   },
   func4() {
     if (!app.globalData.isLogin){
