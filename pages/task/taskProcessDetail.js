@@ -9,6 +9,7 @@ Page({
    */
   data: {
     id: '',
+    taskId: '',
     l3_height: 300,
     pre_scrollTop: 0,
     heightArr: [0, 583, 677, 1400],
@@ -27,47 +28,54 @@ Page({
     images: [],
     solveInfo: '',
     solveImages: [],
-    processList: [
+    processArray: [
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
-        stepName: "申报事件",
+        stepName: "事件上报",
         auditPerson: "李大力",
         active: "1",
         time: "03-13 09:53"
       },
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
-        stepName: "申报事件",
-        auditPerson: "李大力",
+        stepName: "案卷建立",
+        auditPerson: "超级管理员",
         active: "1",
         time: "03-13 09:53"
       },
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
-        stepName: "申报事件",
-        auditPerson: "李大力",
+        stepName: "任务派遣",
+        auditPerson: "超级管理员",
         active: "1",
         time: "03-13 09:53"
       },
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
-        stepName: "申报事件",
-        auditPerson: "李大力",
-        active: "1",
+        stepName: "任务处理",
+        auditPerson: "超级管理员",
+        active: "0",
         time: "03-13 09:53"
       },
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
-        stepName: "申报事件",
-        auditPerson: "李大力",
-        active: "1",
+        stepName: "处理反馈",
+        auditPerson: "超级管理员",
+        active: "0",
         time: "03-13 09:53"
       },
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
-        stepName: "申报事件",
-        auditPerson: "李大力",
-        active: "1",
+        stepName: "核查结案",
+        auditPerson: "超级管理员",
+        active: "0",
+        time: "03-13 09:53"
+      },
+      {
+        avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+        stepName: "完成",
+        auditPerson: "超级管理员",
+        active: "0",
         time: "03-13 09:53"
       }
     ]
@@ -113,7 +121,8 @@ Page({
       success(res) {
         if (res.data.code == 200) {
           that.setData({
-            event: res.data.data
+            event: res.data.data,
+            taskId: res.data.data.taskInfo.id
           })
           
           //将事件图片塞到里边
@@ -427,6 +436,7 @@ Page({
     }
     let params = {
       id: that.data.id,
+      taskId: that.data.taskId,
       solveInfo: that.data.solveInfo,
       solvePic: '',
       stage: 2,

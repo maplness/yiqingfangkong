@@ -18,7 +18,7 @@
 >
 <view class="{{currentTab == 0?'show':'hidden'}} tab-content">
   <block wx:for="{{untreatedTaskDetailList}}" wx:for-item="item" wx:key="tab1">
-    <view class="card" bindtap="ToDetail"  data-index="{{index}}" data-id="{{item.id}}" data-cur_page="{{currentTab}}">
+    <view class="card" bindtap="ToDetail"  data-index="{{index}}" data-id="{{item.id}}"  data-cur_page="{{currentTab}}">
       <view class="card-title">
         <view class="card-title-image">
           <image src="../../images/task1.png"></image>
@@ -39,13 +39,13 @@
               <text class="">处理时间：</text>
             </view>
             <view class="card-content-loc">
-              <text>{{item.solveTime}}</text>
+              <text>{{item.solveTime == null ? '': item.solveTime}}</text>
             </view>
         </view>
         <view class="card-content-con">
-          <view class="card-content-text">处理详情：</view>
+          <view class="card-content-text">处理状态：</view>
           <view class="card-content-loc">
-            <text class="">{{item.solveInfo}}</text>
+            <text class="">待处理</text>
           </view>
             
         </view>
@@ -61,7 +61,7 @@
 <view class="{{currentTab == 1?'show':'hidden'}} tab-content">
 
   <block wx:for="{{processedTaskDetailList}}" wx:for-item="item" wx:key="tab2" data-index="{{index}}">
-    <view class="card" bindtap="ToDetail"  data-index="{{index}}" data-id="{{item.id}}" data-cur_page="{{currentTab}}">
+    <view class="card" bindtap="ToDetail"  data-index="{{index}}" data-id="{{item.id}}"  data-cur_page="{{currentTab}}">
       <view class="card-title">
         <view class="card-title-image">
           <image src="../../images/task3.png"></image>
@@ -89,10 +89,11 @@
 
         <view class="card-content-con">
           <view class="card-content-text">
-            <text class="">处理详情：</text>
+            <text class="">处理状态：</text>
           </view>
           <view class="card-content-loc">
-            <text class="">{{item.solveInfo}}</text>
+            <!-- <text class="">{{item.solveInfo}}</text> -->
+            <text class="">已处理</text>
           </view>
           
         </view>

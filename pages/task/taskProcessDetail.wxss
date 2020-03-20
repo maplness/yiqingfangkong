@@ -124,13 +124,12 @@ page{
 .l3 .process{
   background-color: #ffffff;
   width: 702rpx;
-  height: 1120rpx;
+  height: 1180rpx;
   margin-left: 24rpx;
   margin-top: 24rpx;
   border-radius: 5px;
   display: flex;
   flex-direction: column;
-  align-items: center;
 }
 
 .l3 .avatar{
@@ -138,29 +137,44 @@ page{
   height: 88rpx;
   border-radius: 50%;
 }
-.l3 .process .cell .left .avatar-badge{
-  width: 32rpx;
-  height: 32rpx;
-  position: absolute;
-  left: 150;
-  top: 30;
-  z-index: 10;
-}
+
 .l3 .process .cell{
   display: flex;
   flex-direction: row;
   position: relative;
-  top: 52rpx;
+  width: 620rpx;
+  left: 50rpx;
 }
 .l3 .process .cell .left{
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  position: relative;
 }
-.l3 .process .cell .left .bar{
+.l3 .process .cell .left .avatar-badge{
+  width: 32rpx;
+  height: 32rpx;
+  position: relative;
+  left: -20rpx;
+  z-index: 10;
+}
+.l3 .process .cell .left .avatar{
+  width: 88rpx;
+  height: 88rpx;
+  border-radius: 50%;
+  position: relative;
+}
+
+.l3 .process  .bar{
   width: 4rpx;
   height: 72rpx;
   background-color: #07c160;
+  position: relative;
+  left: 94rpx;
+}
+.l3 .process  .bar-active{
+  width: 4rpx;
+  height: 72rpx;
+  background-color: #EEB76C;
+  position: relative;
+  left: 94rpx;
 }
 .l3 .process .cell .mid{
   display: flex;
@@ -170,6 +184,7 @@ page{
 }
 .l3 .process .cell .mid .mid-l2{
   color: #AAAAAA;
+  width: 200rpx;
 }
 .l3 .process .cell .right{
   margin-left: 158rpx;
@@ -191,11 +206,18 @@ page{
   padding: 20rpx;
   border-bottom: 1px solid #F0F2F2;
 }
+.l3 .remark .solvePic{
+  display: flex;
+  flex-direction: column;
+  padding: 20rpx;
+}
 .l3 .remark .solveInfo .textarea{
   margin-top: 20rpx;
+  display: flex;
+  flex-direction: row;
 }
 .l3 .remark  .opinion{
-  background-color: #F5F5F5;
+  background-color: #ffffff;
   padding-top: 10rpx;
   padding-left: 10rpx;
   width: 100%;

@@ -14,7 +14,7 @@
     <view class="title">
         <view id="title1" class="item {{activeIndex==0?'active':'default'}}" bindtap="ToDetail">事件详情</view>
         <view id="title2" class="item {{activeIndex==1?'active':'default'}}" bindtap="ToProcess">处理进程</view>
-        <view id="title3" class="item {{activeIndex==2?'active':'default'}}" bindtap="ToRemark">处理意见</view>
+        <view id="title3" class="item {{activeIndex==2?'active':'default'}}" bindtap="ToRemark">处理详情</view>
     </view>
     <view id="indicator" style="left: {{indicatorLeft}}px" class="indicator"></view>
     
@@ -24,7 +24,7 @@
     <view id="detail" class="detail">
         <view class="p1">
             <view class="title">事件详情：</view>
-            <view class="value"><text>{{event.eventDetail}}</text></view>
+            <textarea style="height: 260rpx;" disabled="true"  value="{{event.eventDetail}}"></textarea>
         </view>
         <view class="p2">
             <view class="title">事件类型：</view>
@@ -53,31 +53,35 @@
         </view>
     </view>
     <view id="process" class="process">
-      <block wx:for="{{processList}}" wx:key="process" wx:index="index">
-        <view class="cell" style="">
-            <view class="left">
-                <image class="avatar" src="{{item.avatar}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
-                <image wx:if="{{item.active == '1'}}" class="avatar-badge" src="../../images/done.png" />
-                <view wx:if="{{item.active == '1' && index !=processList.length -1}}" class="bar"></view>
+      <view style="height:40rpx"></view>
+        <block wx:for="{{processArray}}" wx:key="process">
+            <view wx:if="{{index != 0}}" class="{{item.active == '1'? 'bar':'bar-active'}}"></view>
+            <view class="cell" style="">
+                <view class="left">
+                    
+                    <image class="avatar" src="{{item.avatar}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
+                    <image class="avatar-badge" src="{{item.active == '1'? '../../images/done.png': '../../images/loading.png'}}" />
+                    
+                </view>
+                <view class="mid">
+                    <view >{{item.stepName}}</view>
+                    <view class="mid-l2">{{item.auditPerson}}</view>
+                </view>
+                <view class="right">{{item.time}}</view>
             </view>
-            <view class="mid">
-                <view >{{item.stepName}}</view>
-                <view class="mid-l2">{{item.auditPerson}}</view>
-            </view>
-            <view class="right">{{item.time}}</view>
-        </view>
-      </block> 
+        </block>
     </view>
     <view id="remark" class="remark">
       <!-- 审批意见详情 -->
       <view class="solveInfo">
         <view>处理详情</view>
         <view class="textarea">
+          <image class="avatar" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg" />
           <textarea wx:if="{{stateIndex == 1}}" class="opinion"  placeholder="请输入处理详情" bindinput="opinionChange"></textarea>
           <textarea wx:if="{{stateIndex == 2}}" class="opinion" value="{{event.taskDetailList[0].solveInfo}}" placeholder="请输入处理详情" disabled="true"></textarea>
         </view>
       </view>
-      <view class="solveInfo">
+      <view class="solvePic">
         <view>图片</view>
         <view class="question-images clearFloat">
           <block wx:for="{{solveImages}}" wx:key="*this">
