@@ -10,9 +10,9 @@
             {{form.workGoal}}
         </view>
     </view>
-    <view class="l1">
+    <view class="l11">
         <view class="l1-title">工作记录</view>
-        <textarea disabled="true" class="l1-input" name="workDetail" value="{{form.workDetail}}"
+        <textarea disabled="true" class="l1-textarea" name="workDetail" value="{{form.workDetail}}"
                   placeholder="填写工作记录，包含工作目标的完成情况"></textarea>
     </view>
     <view class="l2">
@@ -25,6 +25,7 @@
                            bindtap="handleImagePreview"></image>
                 </view>
             </block>
+            <view wx:if="{{images.length == 0}}" class="noImage">暂无图片</view>
         </view>
     </view>
 </view>

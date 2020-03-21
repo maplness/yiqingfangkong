@@ -251,7 +251,7 @@ Page({
     if (that.data.stateIndex == 1){
       l3_height = windowHeight - (158 + 108 + 166) * pr_rate
     }else{
-      l3_height = windowHeight - (158 + 108) * pr_rate
+      l3_height = windowHeight - (158 + 108 + 120) * pr_rate
     }
     
     // console.log(pr_rate)
