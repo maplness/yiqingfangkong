@@ -9,7 +9,7 @@ Page({
   data: {
     l3_height: 300,
     pre_scrollTop: 0,
-    heightArr: [0, 583, 677, 1400],
+    heightArr: [0, 1383, 1677, 1800],
     activeIndex: 0,
     indicatorLeft: 0,
     ViewTo: "",
@@ -49,35 +49,35 @@ Page({
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
         stepName: "任务派遣",
         auditPerson: "李大力",
-        active: "0",
+        active: "1",
         time: "03-13 09:53"
       },
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
         stepName: "任务处理",
         auditPerson: "李大力",
-        active: "0",
+        active: "1",
         time: "03-13 09:53"
       },
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
         stepName: "处理反馈",
         auditPerson: "李大力",
-        active: "0",
+        active: "1",
         time: "03-13 09:53"
       },
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
         stepName: "核查结案",
         auditPerson: "李大力",
-        active: "0",
+        active: "1",
         time: "03-13 09:53"
       },
       {
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
         stepName: "完成",
         auditPerson: "李大力",
-        active: "0",
+        active: "1",
         time: "03-13 09:53"
       },
 
@@ -87,10 +87,11 @@ Page({
       { name: 'shit', value: '未完成' }
     ],
     images: [
-      "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
-      "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
-      "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg"
-    ]
+      // "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
+      // "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
+      // "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg"
+    ],
+    confirmImages: [],
   },
 
   /**
@@ -110,6 +111,17 @@ Page({
       console.log(imagesArr)
       that.setData({
         images: imagesArr
+      })
+    }
+    if (currentEvent.caseInfo.confirmImg != null && currentEvent.caseInfo.confirmImg != '') {
+      let imagesPath = currentEvent.caseInfo.confirmImg.split(',')
+      let imagesArr = []
+      for (let i = 0; i < imagesPath.length; i++) {
+        imagesArr.push(app.globalData.imageHost + imagesPath[i])
+      }
+      console.log(imagesArr)
+      that.setData({
+        confirmImages: imagesArr
       })
     }
     this.setData({
@@ -201,7 +213,7 @@ Page({
     let that = this
     var pr_rate = app.globalData.pr_rate
     var windowHeight = app.globalData.windowHeight
-    var l3_height = windowHeight - (158 + 108 ) * pr_rate
+    var l3_height = windowHeight - (158 + 108+ 140 ) * pr_rate
     // console.log(pr_rate)
     // console.log(windowHeight)
     // console.log(l3_height)

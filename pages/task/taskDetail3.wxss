@@ -228,6 +228,24 @@ page{
   flex-direction: row;
   margin-top: 20rpx;
 }
+.l3 .remark .remark-l2 .opinion .right{
+    margin-left: 40rpx;
+}
+.l3 .remark .remark-l2 .opinion .right .value{
+    font-size:14px;
+    font-family:PingFangSC-Regular,PingFang SC;
+}
+.l3 .remark .remark-l2 .opinion .right .info{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: 450rpx;
+}
+.l3 .remark .remark-l2 .opinion .right .info .desc{
+    font-size:12px;
+    font-family:PingFangSC-Regular,PingFang SC;
+    color: #A2A2A2;
+}
 
 .indicator{
   width: 48rpx;

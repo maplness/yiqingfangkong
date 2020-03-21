@@ -97,8 +97,8 @@ Page({
               method: 'GET',
               data: {
                 adCode: that.data.adCode,
-                lng: that.data.location.longitude,
-                lat: that.data.location.latitude,
+                lng: that.data.location.longitude.toFixed(6),
+                lat: that.data.location.latitude.toFixed(6),
                 mapType: 1
               },
               success(res) {
@@ -165,6 +165,7 @@ Page({
     params.eventLongitude = that.data.location.longitude
     params.eventLatitude = that.data.location.latitude
     params.eventGrid = that.data.grid.gridCode
+    params.eventGridName = that.data.gridName
     if (that.data.eventType == ''){
       wx.showModal({
         content: '请选择事件类型',

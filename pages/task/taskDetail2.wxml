@@ -2,7 +2,7 @@
     <image class="left" src="{{taskStatusImg}}" />
     <view class="mid">
         <view class="title">{{event.eventName}}</view>
-        <view class="desc">网格员： {{event.nickName}}</view>
+        <view class="desc">上报人： {{event.nickName}}</view>
     </view>
     <view wx:if="{{stateIndex == '1'}}" class="right" style="color:#32C5FF;background-color:#D7FFFF;">核实中</view>
     <view wx:if="{{stateIndex == '2'}}" class="right" style="color:#D2A162;background-color:#FDF0DF;">核查中</view>
@@ -53,20 +53,20 @@
         <view class="p2 title2" >核实详情</view>
         <view class="p2">
             <view class="title">是否立案</view>
-            <view class="value">已立案调查</view>
+            <view class="value">{{event.caseInfo.registerStatus == '1'? '已立案调查' : ' 已销案处理' }}</view>
         </view>
         <view class="p2">
             <view class="title">事件处理部门</view>
-            <view class="value">郑州市XXX区市场管理局</view>
+            <view class="value">济南市历下区市场管理局</view>
         </view>
         <view class="p2">
             <view class="title">核实意见</view>
-            <view class="value">2020-03-13日，在郑州市XXX区金域国际小区发现一名新冠状肺炎疫区归来人员，该人员是回国后隐瞒出国史病且在出现症状后仍欺骗社区工作人员及警方该男子被媒体戏称郑州“毒王”</view>
+            <view class="value">{{event.caseInfo.confirmRemark}}</view>
         </view>
         <view class="p2">
             <view class="title">照片</view>
             <view class="image-wrapper">
-                <block wx:for="{{images}}" wx:key="image">
+                <block wx:for="{{confirmImages}}" wx:key="image">
                     <image class="picture" src="{{item}}" />
                 </block>
             </view>
@@ -111,7 +111,8 @@
           <view class="title">反馈意见</view>
           <view class="opinion">
               <image class="avatar" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg" />
-              <input class="input" bindinput="opinionChange" placeholder="请输入审批意见" />
+              <textarea class="input" name="" id="" cols="30" rows="10" placeholder="请输入审批意见" bindinput="opinionChange"> </textarea>
+              <!-- <input class="input" bindinput="opinionChange" placeholder="请输入审批意见" /> -->
           </view>
           
       </view>
@@ -119,7 +120,25 @@
       <view class="remark-l3">
           <view >照片</view>
           
-        
+          <view class="question-images clearFloat">
+          <block wx:for="{{uploadImage}}" wx:key="*this">
+            <view class="q-image-wrap">
+              <!-- 图片缩略图  -->
+              <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+              <!-- 移除图片的按钮  -->
+              <view  class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
+                <icon class='iconfont iconchahao'></icon>
+              </view>
+            </view>
+          </block>
+          <!-- <view class="noImage" wx:if="{{stateIndex == 2 && solveImages.length == 0}}">暂无相关图片</view> -->
+        <!-- 上传图片 -->
+          <view >
+            <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{uploadImage.length < 3}}">
+              <icon class="iconfont iconcamera"></icon>
+            </view>
+          </view>
+            </view>
 
       </view>
       

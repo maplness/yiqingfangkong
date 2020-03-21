@@ -50,7 +50,7 @@ Page{
   display: flex;
   flex-direction: column;
   padding: 30rpx;
-  border-bottom: 1px solid #F9F9F9;
+  border-bottom: 1px solid #F5F5F5;
 }
 .tabContent .l1 .l1-input{
   padding-top: 10rpx;

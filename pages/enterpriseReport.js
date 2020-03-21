@@ -176,6 +176,7 @@ Page({
     params.eventType = that.data.eventId
     params.eventLongitude = that.data.location.longitude
     params.eventLatitude = that.data.location.latitude
+    params.eventGridName = that.data.gridName
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0];
       this.showModal(error);

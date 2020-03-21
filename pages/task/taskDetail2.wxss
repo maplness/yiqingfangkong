@@ -193,7 +193,7 @@ page{
 .l3 .remark{
   background-color: #ffffff;
   width: 702rpx;
-  height: 548rpx;
+  height: 788rpx;
   margin-left: 24rpx;
   margin-top: 24rpx;
   border-radius: 5px;
@@ -227,6 +227,10 @@ page{
   display: flex;
   flex-direction: row;
   margin-top: 20rpx;
+}
+.l3 .remark .remark-l2 .opinion .input{
+  height: 200rpx;
+  margin-left: 40rpx;
 }
 
 .l4{
@@ -263,6 +267,52 @@ page{
   left: 100rpx;
   animation-fill-mode: forwards;
   /* 100 350 600*/
+}
+.question-images{
+  padding-top: 20rpx;
+}
+.q-image-wrap{
+  width: 150rpx;
+  height: 150rpx;
+  border: 2px dotted #000000;
+  border-radius: 10rpx;
+  float: left;
+  margin-right: 20rpx;
+  position: relative;
+  overflow: hidden;
+}
+.q-image-wrap image{
+  width: 100%;
+  height: 100%;
+}
+.q-image-remover{
+  width: 100rpx;
+  height: 100rpx;
+  border-radius: 100%;
+  position: absolute;
+  top:-50rpx;
+  right:-50rpx;
+ 
+}
+.q-image-remover icon{
+  position: absolute;
+  left:20rpx;
+  bottom:12rpx;
+  color:#FD5C4C;
+}
+ 
+.uploadImgBtn{
+  width: 150rpx;
+  height: 150rpx;
+  text-align: center;
+  line-height: 140rpx;
+  border: 2px dotted #000000;
+  border-radius: 10rpx;
+  float: left;
+}
+.uploadImgBtn icon{
+  font-size: 80rpx;
+  color: #999;
 }
 .active{
   color: #1677FE;

@@ -108,17 +108,7 @@ Page({
    * 生命周期函数--监听页面加载
    */
   onLoad: function (options) {
-    let that = this;
-    this.computeScrollViewHeight()
-    that.data.pageNum1 = 1;
-    that.data.pageNum2 = 1;
-    that.data.pageNum3 = 1;
-    wx.showLoading({
-      title: '玩命加载中'
-    })
-    that.gettoBeAuditEventList();
-    that.gettoBeCheckEventList();
-    that.getprocessedEventList();
+    
   },
   //获取待核实事件数据
   gettoBeAuditEventList() {
@@ -393,13 +383,13 @@ Page({
       case 1:
         var currentEvent = that.data.toBeCheckEventList[index]
         wx.navigateTo({
-          url: './taskDetail?currentEvent=' + JSON.stringify(currentEvent) + "&statusIndex=2",
+          url: './taskDetail2?currentEvent=' + JSON.stringify(currentEvent) + "&statusIndex=2",
         })
         break;
       case 2:
         var currentEvent = that.data.processedEventList[index]
         wx.navigateTo({
-          url: './taskDetail?currentEvent=' + JSON.stringify(currentEvent) + "&statusIndex=3",
+          url: './taskDetail3?currentEvent=' + JSON.stringify(currentEvent) + "&statusIndex=3",
         })
 
     }
@@ -415,7 +405,17 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
-    
+    let that = this;
+    this.computeScrollViewHeight()
+    that.data.pageNum1 = 1;
+    that.data.pageNum2 = 1;
+    that.data.pageNum3 = 1;
+    wx.showLoading({
+      title: '玩命加载中'
+    })
+    that.gettoBeAuditEventList();
+    that.gettoBeCheckEventList();
+    that.getprocessedEventList();
   },
   computeScrollViewHeight(){
     let that = this;

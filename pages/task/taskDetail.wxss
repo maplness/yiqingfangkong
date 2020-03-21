@@ -216,6 +216,11 @@ page{
   flex-direction: row;
   margin-top: 20rpx;
 }
+.l3 .remark .remark-l2 .opinion .input{
+  height: 200rpx;
+  margin-left: 40rpx;
+}
+
 
 .l4{
   position: fixed;

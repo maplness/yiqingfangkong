@@ -116,6 +116,27 @@
 					"id": -1,
 					"name": "taskProcessDetail",
 					"pathName": "pages/task/taskProcessDetail",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/task/taskDetail2",
+					"pathName": "pages/task/taskDetail2",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/task/taskDetail3",
+					"pathName": "pages/task/taskDetail3",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/test/testImg",
+					"pathName": "pages/test/testImg",
 					"scene": null
 				}
 			]

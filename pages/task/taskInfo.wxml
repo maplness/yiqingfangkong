@@ -113,7 +113,7 @@ module.exports = {
         </view>
       </view>
       <view class="card-foot">
-        <view class="card-foot-time">{{item.updateTime}}</view>
+        <view class="card-foot-time">{{item.caseInfo.createTime}}</view>
         <view class="card-foot-detail">查看详情</view>
       </view>
     </view>

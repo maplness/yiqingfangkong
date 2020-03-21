@@ -54,7 +54,7 @@ Page({
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
         stepName: "任务处理",
         auditPerson: "超级管理员",
-        active: "0",
+        active: "1",
         time: "03-13 09:53"
       },
       {
@@ -251,7 +251,7 @@ Page({
     if (that.data.stateIndex == 1){
       l3_height = windowHeight - (158 + 108 + 166) * pr_rate
     }else{
-      l3_height = windowHeight - (158 + 108) * pr_rate
+      l3_height = windowHeight - (158 + 108 + 120) * pr_rate
     }
     
     // console.log(pr_rate)

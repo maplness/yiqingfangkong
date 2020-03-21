@@ -30,7 +30,7 @@ Page({
     stateIndex: '1',
     eventType1: '',
     eventType2: '',
-    eventToFileValue: '',
+    eventToFileValue: 'caseIn',
     index: 0,
     opinion: '',
     processArray: [
@@ -45,7 +45,7 @@ Page({
         avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
         stepName: "案卷建立",
         auditPerson: "李大力",
-        active: "1",
+        active: "0",
         time: "03-13 09:53"
       },
       {

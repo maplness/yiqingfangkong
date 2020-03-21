@@ -2,7 +2,7 @@
     <image class="left" src="{{taskStatusImg}}" />
     <view class="mid">
         <view class="title">{{event.eventName}}</view>
-        <view class="desc">网格员： {{event.nickName}}</view>
+        <view class="desc">上报人： {{event.nickName}}</view>
     </view>
     <view wx:if="{{stateIndex == '1'}}" class="right" style="color:#32C5FF;background-color:#D7FFFF;">核实中</view>
     <view wx:if="{{stateIndex == '2'}}" class="right" style="color:#D2A162;background-color:#FDF0DF;">核查中</view>
@@ -90,15 +90,14 @@
           <view class="title">反馈意见</view>
           <view class="opinion">
               <image class="avatar" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg" />
-              <input class="input" bindinput="opinionChange" placeholder="请输入审批意见" />
+              <textarea class="input" name="" id="" cols="30" rows="10" placeholder="请输入审批意见" bindinput="opinionChange"> </textarea>
+              <!-- <input class="input" bindinput="opinionChange" placeholder="请输入审批意见" /> -->
           </view>
           
       </view>
 
       <view class="remark-l3">
           <view >照片</view>
-          
-        
 
       </view>
       

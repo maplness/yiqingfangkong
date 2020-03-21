@@ -9,7 +9,7 @@ Page({
   data: {
     l3_height: 300,
     pre_scrollTop: 0,
-    heightArr: [0, 583, 677, 1400],
+    heightArr: [0, 983, 1277, 1800],
     activeIndex: 0,
     indicatorLeft: 0,
     ViewTo: "",
@@ -90,7 +90,10 @@ Page({
       "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
       "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
       "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg"
-    ]
+    ],
+    confirmImages: [],
+    uploadImage: [],
+    auditStatus: 'ok'
   },
 
   /**
@@ -110,6 +113,17 @@ Page({
       console.log(imagesArr)
       that.setData({
         images: imagesArr
+      })
+    }
+    if (currentEvent.caseInfo.confirmImg != null && currentEvent.caseInfo.confirmImg != '') {
+      let imagesPath = currentEvent.caseInfo.confirmImg.split(',')
+      let imagesArr = []
+      for (let i = 0; i < imagesPath.length; i++) {
+        imagesArr.push(app.globalData.imageHost + imagesPath[i])
+      }
+      console.log(imagesArr)
+      that.setData({
+        confirmImages: imagesArr
       })
     }
     this.setData({
@@ -171,13 +185,47 @@ Page({
   radioChange: function (e) {
     console.log('radio发生change事件，携带value值为：', e.detail.value)
     this.setData({
-      eventToFileValue: e.detail.value
+      auditStatus: e.detail.value
     })
   },
 
   opinionChange(e) {
     this.setData({
       opinion: e.detail.value
+    })
+  },
+  chooseImage(e) {
+    wx.chooseImage({
+      sizeType: ['original', 'compressed'],  //可选择原图或压缩后的图片
+      sourceType: ['album', 'camera'], //可选择性开放访问相册、相机
+      success: res => {
+        const images = this.data.uploadImage.concat(res.tempFilePaths)
+        // 限制最多只能留下3张照片
+        const images1 = images.length <= 3 ? images : images.slice(0, 3)
+        // console.log(images1);
+        this.setData({
+          uploadImage: images1
+        })
+      }
+    })
+  },
+  removeImage(e) {
+    var that = this;
+    var images = that.data.images;
+    // 获取要删除的第几张图片的下标
+    const idx = e.currentTarget.dataset.idx
+    // splice  第一个参数是下表值  第二个参数是删除的数量
+    images.splice(idx, 1)
+    this.setData({
+      uploadImage: images
+    })
+  },
+  handleImagePreview(e) {
+    const idx = e.target.dataset.idx
+    const images = this.data.uploadImage
+    wx.previewImage({
+      current: images[idx],  //当前预览的图片
+      urls: images,  //所有要预览的图片
     })
   },
 
@@ -375,6 +423,55 @@ Page({
   },
   submit(){
     console.log("submit")
-  }
+    var that = this
+
+    //核查结果
+    if (that.data.auditStatus == 'ok') {
+      that.data.event.caseInfo.auditStatus = '1'
+    } else {
+      that.data.event.caseInfo.auditStatus = '2'
+    } 
+
+    //核查意见
+    that.data.event.caseInfo.auditRemark = that.data.opinion
+
+    wx.request({
+      url: app.globalData.host + app.globalData.dropCaseUrl,
+      method: "POST",
+      data: that.data.event.caseInfo,
+      header: {
+        "Authorization": app.globalData.access_token,
+        "Content-Type": "application/json;charset=UTF-8"
+      },
+      success(res) {
+        if (res.data && res.data.code == 200) {
+          that.showModal({
+            msg: '提交成功',
+          });
+        } else {
+          that.showModal({
+            msg: '提交失败',
+          });
+        }
+      }
+    });
+    //提交成功并返回
+    // wx.showToast({
+    //   title: '登记成功',
+    //   duration: 2000
+    // })
+    setTimeout(function () {
+      //要延时执行的代码
+      wx.navigateBack({
+
+      })
+    }, 2000)
+  },
+  showModal(error) {
+    wx.showModal({
+      content: error.msg,
+      showCancel: false,
+    })
+  },
 })
 
