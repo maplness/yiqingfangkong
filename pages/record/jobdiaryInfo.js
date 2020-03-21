@@ -26,7 +26,30 @@ Page({
       workGoal: '',
       workDetail: ''
     },
-    noDataText: '没有更多了~'
+    noDataText: '没有更多了~',
+    job: 0
+  },
+  focusO: function(e){
+    let that = this;
+    setTimeout(function(){
+      that.setData({
+        job: 1
+      })
+    },100)
+    
+  },
+  focusT: function (e) {
+    let that = this;
+    setTimeout(function () {
+      that.setData({
+        job: 2
+      })
+    }, 100)
+  },
+  blurO: function(e){
+    this.setData({
+      job: 0
+    })
   },
   ToDetail(){
     this.setData({

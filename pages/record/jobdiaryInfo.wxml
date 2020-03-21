@@ -29,34 +29,32 @@
   <view class="tabContent">
     <form bindsubmit="submitForm">
       <view class="l1">
-        <view>填报人</view>
+        <view class="title">填报人</view>
         <input class="l1-input" name="userName" value="{{form.userName}}" placeholder="填写填报人" disabled="true" />
       </view>
       <view class="l1">
-        <view>工作目标</view>
-        <input class="l1-input" name="workGoal" value="{{form.workGoal}}"  placeholder="填写工作目标" />
+        <view class="title {{job == 1? 'active': ''}}">工作目标</view>
+        <input class="l1-input" name="workGoal" value="{{form.workGoal}}" bindfocus="focusO"  bindblur="blurO" placeholder="填写工作目标" />
       </view>
-      <view class="l1">
-        <view>工作记录</view>
-        <textarea class="l1-input" name="workDetail" value="{{form.workDetail}}" placeholder="填写工作记录，包含工作目标的完成情况"></textarea>
+      <view class="l11">
+        <view class="title {{job == 2?'active': ''}}">工作记录</view>
+        <textarea  class="l1-textarea" bindfocus="focusT" bindblur="blurO" name="workDetail" value="{{form.workDetail}}" placeholder="填写工作记录，包含工作目标的完成情况"></textarea>
       </view>
       <view class="l2">
-        <view>图片</view>
+        <view class="title">图片</view>
         <view class="question-images clearFloat">
           <block wx:for="{{images}}" wx:key="*this">
             <view class="q-image-wrap">
               <!-- 图片缩略图  -->
               <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
               <!-- 移除图片的按钮  -->
-              <view class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
-                <icon class='iconfont iconchahao'></icon>
-              </view>
+              <image class="q-image-remover" data-idx="{{index}}" bindtap="removeImage"  src="../../images/jian.png"></image>
             </view>
           </block>
         <!-- 上传图片 -->
-          <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{images.length < 3}}">
-            <icon class="iconfont iconcamera"></icon>
-          </view>
+        <view class="q-image-wrap" wx:if="{{images.length < 3}}">
+          <image class='uploadImgBtn' bindtap="chooseImage" src="../../images/jia.png"></image>
+        </view>
        </view>
       </view>
       <view class="l3">
