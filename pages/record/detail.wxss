@@ -10,7 +10,8 @@ Page{
   display: flex;
   flex-direction: column;
   height: 152rpx;
-  padding: 24rpx 32rpx;
+  /* padding: 24rpx 32rpx; */
+  padding-left: 32rpx;
   border-bottom: 1px solid #F9F9F9;
 }
 .l1-title{
@@ -27,7 +28,11 @@ Page{
   display: flex;
   flex-direction: column;
   height: 286rpx;
-  padding: 24rpx 32rpx;
+  padding-left: 32rpx;
+  padding-right: 16rpx;
+}
+.tabContent .l11 .l1-textarea{
+  width: 100%;
 }
 
 .tabContent .l2{
@@ -35,20 +40,21 @@ Page{
   display: flex;
   flex-direction: column;
   margin-top: 20rpx;
-  padding: 30rpx;
+  /* padding: 30rpx; */
+  padding-left: 30rpx;
+  padding-bottom: 30rpx;
   border-bottom: 1px solid #F9F9F9;
 }
 .tabContent .l2 .l2-title{
-  color: #6D6D6D
-}
-.question-images{
-  padding-top: 20rpx;
+  color: #6D6D6D;
+  height: 80rpx;
+  line-height: 80rpx;
 }
 .q-image-wrap{
   width: 150rpx;
   height: 150rpx;
   /* border: 2px dotted #000000; */
-  border-radius: 10rpx;
+  /* border-radius: 10rpx; */
   float: left;
   margin-right: 20rpx;
   position: relative;
