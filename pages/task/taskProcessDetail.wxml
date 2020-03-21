@@ -55,12 +55,12 @@
     <view id="process" class="process">
       <view style="height:40rpx"></view>
         <block wx:for="{{processArray}}" wx:key="process">
-            <view wx:if="{{index != 0}}" class="{{item.active == '1'? 'bar':'bar-active'}}"></view>
+            <view wx:if="{{index != 0}}" class="{{item.active == '1'? 'bar':(item.active == '0'?'bar-active':'bar-loading')}}"></view>
             <view class="cell" style="">
                 <view class="left">
                     
                     <image class="avatar" src="{{item.avatar}}" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
-                    <image class="avatar-badge" src="{{item.active == '1'? '../../images/done.png': '../../images/loading.png'}}" />
+                    <image class="avatar-badge" src="{{item.active == '1'? '../../images/done.png': (item.active ==  '0'?'../../images/loading.png':'../../images/ongoing.png')}}" />
                     
                 </view>
                 <view class="mid">
@@ -89,16 +89,14 @@
               <!-- 图片缩略图  -->
               <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
               <!-- 移除图片的按钮  -->
-              <view wx:if="{{stateIndex == 1}}" class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
-                <icon class='iconfont iconchahao'></icon>
-              </view>
+              <image wx:if="{{stateIndex == 1}}" class="q-image-remover" data-idx="{{index}}" bindtap="removeImage"  src="../../images/jian.png"></image>
             </view>
           </block>
           <view class="noImage" wx:if="{{stateIndex == 2 && solveImages.length == 0}}">暂无相关图片</view>
         <!-- 上传图片 -->
           <view wx:if="{{stateIndex == 1}}">
-            <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{solveImages.length < 3}}">
-              <icon class="iconfont iconcamera"></icon>
+            <view class="q-image-wrap" wx:if="{{solveImages.length < 3}}">
+              <image class='uploadImgBtn' bindtap="chooseImage" src="../../images/jia.png"></image>
             </view>
           </view>
           

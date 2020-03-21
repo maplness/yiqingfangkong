@@ -1,6 +1,7 @@
 // pages/task/taskProcessDetail.js
 const app = getApp()
 const time = require('../../utils/time.js')
+const util = require('../../utils/util.js')
 let timer = null
 Page({
 
@@ -78,7 +79,8 @@ Page({
         active: "0",
         time: "03-13 09:53"
       }
-    ]
+    ],
+    dictType: 'event_history_status'
   },
 
   /**
@@ -106,6 +108,9 @@ Page({
     }
     //根据任务详情id查询任务的所有信息
     that.getTaskAllInfo()
+    //获取处理进程
+    that.getAllProcessInfo()
+    
   },
   getTaskAllInfo(){
     let that = this;
@@ -152,6 +157,8 @@ Page({
               solveImages: []
             })
           }
+          //根据事件id获取事件流程
+          that.getCurrentEventHisProcess()
         } else {
           wx.showToast({
             title: res.data.msg,
@@ -167,6 +174,120 @@ Page({
       },//请求失败
       complete: function () {
         
+      }//请求完成后执行的函数
+    })
+  },
+  getAllProcessInfo(){
+    let  that = this;
+    wx.request({
+      url: app.globalData.host + '/system/dict/data/dictType/' + that.data.dictType,
+      data: {
+
+      },
+      method: "GET",
+      header: {
+        "Authorization": app.globalData.access_token
+      },
+      success(res) {
+        // console.log(res)
+        if (res.data.code == 200) {
+          if(res.data.data.length > 0){
+            let r = res.data.data;
+            let processArr = []
+            for(let i = 0; i< r.length;i++){
+              let process = {
+                avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+                stepName: r[i].dictLabel,
+                stepId: r[i].dictValue+"",
+                auditPerson: '',
+                active: "0",
+                time: ''
+              }
+              processArr.push(process)
+            }
+            that.setData({
+              processArray: processArr
+            })
+          }
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (err) {
+        wx.showToast({
+          title: err.errMsg,
+          icon: 'none'
+        })
+      },//请求失败
+      complete: function () {
+
+      }//请求完成后执行的函数
+    })
+  },
+  getCurrentEventHisProcess(){
+    let that = this;
+    wx.request({
+      url: app.globalData.host + '/event/historyInfo/listEventHistory/' + that.data.event.id,
+      data: {
+
+      },
+      method: "GET",
+      header: {
+        "Authorization": app.globalData.access_token
+      },
+      success(res) {
+        // console.log(res)
+        let r = res.data
+        if (r.code == 200) {
+          // console.log(r)
+          let processArr = that.data.processArray;
+          if (processArr.length > 0 && r.data.length > 0){
+            for (let i = 0; i < processArr.length;i++){
+              for(let j = 0;j< r.data.length; j++){
+                if (processArr[i].stepId == r.data[j].eventStageStatus){
+                  // processArr[i].avatar = app.globalData.imageHost + r.data[j].avatar
+                  processArr[i].avatar ="https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg"
+                  if (r.data[j].nickName != null && r.data[j].nickName != ''){
+                    processArr[i].auditPerson = r.data[j].nickName
+                  }
+                  if (r.data[j].eventStageFinish == 1){
+                    //代表当前阶段已经完成
+                    processArr[i].active = '1'
+                    processArr[i].time = util.formatTime1(new Date(r.data[j].eventStageEndTime))
+                  } else if (r.data[j].eventStageFinish == 2){
+                    //代表当前阶段正在进行中
+                    processArr[i].active = '2'
+                    processArr[i].time = util.formatTime1(new Date(r.data[j].eventStageStartTime))
+                  }else{
+                    //代表当前阶段完成失败（暂未考虑）
+                  }
+                  
+                }
+              }
+            }
+          }
+          that.setData({
+            processArray: processArr
+          })
+          // console.log(that.data.processArray)
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (err) {
+        wx.showToast({
+          title: err.errMsg,
+          icon: 'none'
+        })
+      },//请求失败
+      complete: function () {
+
       }//请求完成后执行的函数
     })
   },
@@ -212,7 +333,7 @@ Page({
   },
   removeImage(e) {
     var that = this;
-    var images = that.data.images;
+    var images = that.data.solveImages;
     // 获取要删除的第几张图片的下标
     const idx = e.currentTarget.dataset.idx
     // splice  第一个参数是下表值  第二个参数是删除的数量
@@ -249,7 +370,7 @@ Page({
     var windowHeight = app.globalData.windowHeight
     var l3_height = 0
     if (that.data.stateIndex == 1){
-      l3_height = windowHeight - (158 + 108 + 166) * pr_rate
+      l3_height = windowHeight - (158 + 108 + 216) * pr_rate
     }else{
       l3_height = windowHeight - (158 + 108 + 120) * pr_rate
     }

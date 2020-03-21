@@ -176,6 +176,13 @@ page{
   position: relative;
   left: 94rpx;
 }
+.l3 .process .bar-loading{
+  width: 4rpx;
+  height: 72rpx;
+  background-color: #61c3f9;
+  position: relative;
+  left: 94rpx;
+}
 .l3 .process .cell .mid{
   display: flex;
   flex-direction: column;
@@ -198,7 +205,7 @@ page{
   margin-left: 24rpx;
   margin-top: 24rpx;
   border-radius: 5px;
-  margin-bottom: 100rpx;
+  margin-bottom: 84rpx;
 }
 .l3 .remark .solveInfo{
   display: flex;
@@ -224,57 +231,39 @@ page{
   height: 200rpx;
   border-radius: 20rpx;
 }
-.question-images{
-  padding-top: 20rpx;
-}
 .q-image-wrap{
-  width: 150rpx;
-  height: 150rpx;
-  border: 2px dotted #000000;
-  border-radius: 10rpx;
   float: left;
-  margin-right: 20rpx;
+  width: 180rpx;
   position: relative;
   overflow: hidden;
 }
-.q-image-wrap image{
-  width: 100%;
-  height: 100%;
+.q-image-wrap .q-image{
+  width: 140rpx;
+  height: 140rpx;
+  margin-top: 26rpx;
 }
 .q-image-remover{
-  width: 100rpx;
-  height: 100rpx;
+  width:40rpx;
+  height: 40rpx;
   border-radius: 100%;
   position: absolute;
-  top:-50rpx;
-  right:-50rpx;
- 
+  top:10rpx;
+  right:16rpx;
 }
-.q-image-remover icon{
-  position: absolute;
-  left:20rpx;
-  bottom:12rpx;
-  color:#FD5C4C;
-}
- 
 .uploadImgBtn{
-  width: 150rpx;
-  height: 150rpx;
-  text-align: center;
-  line-height: 140rpx;
-  border: 2px dotted #000000;
-  border-radius: 10rpx;
+  width: 140rpx;
+  height: 140rpx;
+  /* text-align: center; */
+  margin-top: 26rpx;
+  background-color: #F5F5F5;
+  /* border-radius: 10rpx; */
   float: left;
-}
-.uploadImgBtn icon{
-  font-size: 80rpx;
-  color: #999;
 }
 .l4{
   position: fixed;
   bottom: 0rpx;
   width: 100%;
-  height: 166rpx;
+  height: 216rpx;
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
@@ -284,11 +273,14 @@ page{
   z-index: 11;
 }
 .l4 button{
-  width: 500rpx;
+  width: 686rpx;
+  height: 108rpx;
+  line-height: 108rpx;
   font-size: 32rpx;
   color: #ffffff;
   font-family: PingFangSC-Medium;
   background-color:  #1677FE;
+  border-radius: 14rpx;
 }
 .indicator{
   width: 48rpx;
