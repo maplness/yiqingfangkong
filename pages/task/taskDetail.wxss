@@ -124,13 +124,7 @@ page{
   display: flex;
   flex-direction: column;
 }
-.l3 .process .bar-loading{
-  width: 4rpx;
-  height: 72rpx;
-  background-color: #61c3f9;
-  position: relative;
-  left: 94rpx;
-}
+
 
 .l3 .avatar{
   width: 88rpx;
@@ -176,6 +170,13 @@ page{
   position: relative;
   left: 94rpx;
 }
+.l3 .process .bar-loading{
+  width: 4rpx;
+  height: 72rpx;
+  background-color: #61c3f9;
+  position: relative;
+  left: 94rpx;
+}
 .l3 .process .cell .mid{
   display: flex;
   flex-direction: column;
@@ -194,7 +195,7 @@ page{
 .l3 .remark{
   background-color: #ffffff;
   width: 702rpx;
-  height: 548rpx;
+  height: 700rpx;
   margin-left: 24rpx;
   margin-top: 24rpx;
   border-radius: 5px;
@@ -233,13 +234,40 @@ page{
   height: 200rpx;
   margin-left: 40rpx;
 }
-
+.q-image-wrap{
+  float: left;
+  width: 180rpx;
+  position: relative;
+  overflow: hidden;
+}
+.q-image-wrap .q-image{
+  width: 140rpx;
+  height: 140rpx;
+  margin-top: 26rpx;
+}
+.q-image-remover{
+  width:40rpx;
+  height: 40rpx;
+  border-radius: 100%;
+  position: absolute;
+  top:10rpx;
+  right:16rpx;
+}
+.uploadImgBtn{
+  width: 140rpx;
+  height: 140rpx;
+  /* text-align: center; */
+  margin-top: 26rpx;
+  background-color: #F5F5F5;
+  /* border-radius: 10rpx; */
+  float: left;
+}
 
 .l4{
   position: fixed;
   bottom: 0rpx;
   width: 100%;
-  height: 166rpx;
+  height: 216rpx;
   background-color: #ffffff;
   display: flex;
   flex-direction: row;
@@ -248,23 +276,21 @@ page{
   align-items: center;
   z-index: 11;
 }
-.l4 .v-divider{
-  width: 1px;
-  height: 34rpx;
-  background-color: rgb(197, 197, 197);
+.l4 button{
+  width: 318rpx;
+  height: 108rpx;
+  line-height: 108rpx;
+  border-radius: 14rpx;
 }
-.l4 .title{
-  width: 360rpx;
-  height: 166rpx;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.l4 .button1{
+  background-color: #FF453A;
+  color: #ffffff;
+}
+.l4 .button2{
+  background-color: #1677FF;
+  color: #ffffff;
+}
 
-  /* padding-top: 70rpx; */
-  font-size: 32rpx;
-  color: #1677FE;
-  font-family: PingFangSC-Medium;
-}
 .indicator{
   width: 48rpx;
   height: 4rpx;

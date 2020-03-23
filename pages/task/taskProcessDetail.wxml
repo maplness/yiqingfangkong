@@ -36,7 +36,7 @@
         </view>
         <view class="p2">
             <view class="title">定位网格：</view>
-            <view class="value">{{event.eventGrid}}</view>
+            <view class="value">{{event.eventGridName}}</view>
         </view>
         <view class="p2">
             <view class="title">事件发生位置：</view>

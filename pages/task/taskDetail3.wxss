@@ -180,6 +180,13 @@ page{
   position: relative;
   left: 94rpx;
 }
+.l3 .process .bar-loading{
+  width: 4rpx;
+  height: 72rpx;
+  background-color: #61c3f9;
+  position: relative;
+  left: 94rpx;
+}
 .l3 .process .cell .mid{
   display: flex;
   flex-direction: column;
@@ -188,6 +195,7 @@ page{
 }
 .l3 .process .cell .mid .mid-l2{
   color: #AAAAAA;
+  width: 200rpx;
 }
 .l3 .process .cell .right{
   margin-left: 158rpx;

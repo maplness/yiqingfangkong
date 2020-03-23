@@ -47,13 +47,11 @@
         <view class="p2">
             <view class="title">事件相关影像：</view>
             <view class="image-wrapper">
-                <block wx:for="{{images}}" wx:key="image">
-                    <image class="picture" src="{{item}}" />
-                </block>
-
+              <block wx:for="{{images}}" wx:key="image">
+                <image class="picture" src="{{item}}" />
+              </block>
+              <view class="noImage" wx:if="{{images.length == 0}}">暂无相关影像</view>
             </view>
-            
-            
         </view>
     </view>
     <view id="process" class="process">
@@ -101,7 +99,21 @@
 
       <view class="remark-l3">
           <view >照片</view>
-
+          <view class="question-images clearFloat">
+          <block wx:for="{{filingImages}}" wx:key="*this">
+            <view class="q-image-wrap">
+              <!-- 图片缩略图  -->
+              <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+              <!-- 移除图片的按钮  -->
+              <image class="q-image-remover" data-idx="{{index}}" bindtap="removeImage"  src="../../images/jian.png"></image>
+            </view>
+          </block>
+        <!-- 上传图片 -->
+          <view class="q-image-wrap" wx:if="{{filingImages.length < 3}}">
+              <image class='uploadImgBtn' bindtap="chooseImage" src="../../images/jia.png"></image>
+            </view>
+          
+       </view>
       </view>
       
     </view>
@@ -111,7 +123,7 @@
 
 
 <view class="l4">
-    <view class="title" bindtap="approved">核实通过</view>
-    <view class="v-divider"></view>
-    <view class="title" bindtap="approvedFail">核实不通过</view>
+    <button class="button1" bindtap="approvedFail">审核不通过</button>
+
+    <button class="button2" bindtap="approved">审核通过</button>
 </view>

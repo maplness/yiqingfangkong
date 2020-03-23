@@ -38,7 +38,7 @@
         </view>
         <view class="p2">
             <view class="title">定位网格：</view>
-            <view class="value">{{event.eventGrid}}</view>
+            <view class="value">{{event.eventGridName}}</view>
         </view>
         <view class="p2">
             <view class="title">事件发生位置：</view>
@@ -72,27 +72,26 @@
                 <block wx:for="{{confirmImages}}" wx:key="image">
                     <image class="picture" src="{{item}}" />
                 </block>
+                <view class="noImage" wx:if="{{confirmImages.length == 0}}">暂无图片</view>
             </view>
         </view>
-        
-        
     </view>
     <view id="process" class="process">
         <view style="height:40rpx"></view>
         <block wx:for="{{processArray}}" wx:key="process">
-            <view wx:if="{{index != 0}}" class="{{item.active == '1'? 'bar':'bar-active'}}"></view>
+            <view wx:if="{{index != 0}}" class="{{item.active == '1'? 'bar':(item.active == '0'?'bar-active':'bar-loading')}}"></view>
             <view class="cell" style="">
                 <view class="left">
                     
                     <image class="avatar" src="https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg" mode="aspectFit|aspectFill|widthFix" lazy-load="false" binderror="" bindload=""/>
-                    <image class="avatar-badge" src="{{item.active == '1'? '../../images/done.png': '../../images/loading.png'}}" />
+                    <image class="avatar-badge" src="{{item.active == '1'? '../../images/done.png': (item.active ==  '0'?'../../images/loading.png':'../../images/ongoing.png')}}" />
                     
                 </view>
                 <view class="mid">
                     <view >{{item.stepName}}</view>
-                    <view class="mid-l2">李大力</view>
+                    <view class="mid-l2">{{item.auditPerson}}</view>
                 </view>
-                <view class="right">03-13 09:53</view>
+                <view class="right">{{item.time}}</view>
             </view>
         </block>
     </view>
@@ -129,18 +128,13 @@
               <!-- 图片缩略图  -->
               <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
               <!-- 移除图片的按钮  -->
-              <view  class="q-image-remover" data-idx="{{index}}" bindtap="removeImage">
-                <icon class='iconfont iconchahao'></icon>
-              </view>
+              <image class="q-image-remover" data-idx="{{index}}" bindtap="removeImage"  src="../../images/jian.png"></image>
             </view>
           </block>
-          <!-- <view class="noImage" wx:if="{{stateIndex == 2 && solveImages.length == 0}}">暂无相关图片</view> -->
         <!-- 上传图片 -->
-          <view >
-            <view class='uploadImgBtn' bindtap="chooseImage" wx:if="{{uploadImage.length < 3}}">
-              <icon class="iconfont iconcamera"></icon>
+          <view class="q-image-wrap" wx:if="{{uploadImage.length < 3}}">
+              <image class='uploadImgBtn' bindtap="chooseImage" src="../../images/jia.png"></image>
             </view>
-          </view>
             </view>
 
       </view>

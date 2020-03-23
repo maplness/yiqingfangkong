@@ -1,5 +1,6 @@
 // pages/task/taskDetail.js
 const app = getApp()
+const util = require('../../utils/util.js')
 let timer;
 Page({
 
@@ -93,7 +94,8 @@ Page({
     ],
     confirmImages: [],
     uploadImage: [],
-    auditStatus: 'ok'
+    auditStatus: 'ok',
+    dictType: 'event_history_status'
   },
 
   /**
@@ -152,6 +154,124 @@ Page({
     }
     that.parseEventType(that.data.event.eventType)
     // console.log(app.globalData.eventTypeArray)
+    //获取处理进程
+    that.getAllProcessInfo()
+  },
+  getAllProcessInfo() {
+    let that = this;
+    wx.request({
+      url: app.globalData.host + '/system/dict/data/dictType/' + that.data.dictType,
+      data: {
+
+      },
+      method: "GET",
+      header: {
+        "Authorization": app.globalData.access_token
+      },
+      success(res) {
+        // console.log(res)
+        if (res.data.code == 200) {
+          if (res.data.data.length > 0) {
+            let r = res.data.data;
+            let processArr = []
+            for (let i = 0; i < r.length; i++) {
+              let process = {
+                avatar: "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg",
+                stepName: r[i].dictLabel,
+                stepId: r[i].dictValue + "",
+                auditPerson: '',
+                active: "0",
+                time: ''
+              }
+              processArr.push(process)
+            }
+            that.setData({
+              processArray: processArr
+            })
+            //根据事件id获取事件流程
+            that.getCurrentEventHisProcess()
+          }
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (err) {
+        wx.showToast({
+          title: err.errMsg,
+          icon: 'none'
+        })
+      },//请求失败
+      complete: function () {
+
+      }//请求完成后执行的函数
+    })
+  },
+  getCurrentEventHisProcess() {
+    let that = this;
+    wx.request({
+      url: app.globalData.host + '/event/historyInfo/listEventHistory/' + that.data.event.id,
+      data: {
+
+      },
+      method: "GET",
+      header: {
+        "Authorization": app.globalData.access_token
+      },
+      success(res) {
+        // console.log(res)
+        let r = res.data
+        if (r.code == 200) {
+          // console.log(r)
+          let processArr = that.data.processArray;
+          if (processArr.length > 0 && r.data.length > 0) {
+            for (let i = 0; i < processArr.length; i++) {
+              for (let j = 0; j < r.data.length; j++) {
+                if (processArr[i].stepId == r.data[j].eventStageStatus) {
+                  // processArr[i].avatar = app.globalData.imageHost + r.data[j].avatar
+                  processArr[i].avatar = "https://tva1.sinaimg.cn/large/00831rSTgy1gcvzklju4xj30dc0hs0ty.jpg"
+                  if (r.data[j].nickName != null && r.data[j].nickName != '') {
+                    processArr[i].auditPerson = r.data[j].nickName
+                  }
+                  if (r.data[j].eventStageFinish == 1) {
+                    //代表当前阶段已经完成
+                    processArr[i].active = '1'
+                    processArr[i].time = util.formatTime1(new Date(r.data[j].eventStageEndTime))
+                  } else if (r.data[j].eventStageFinish == 2) {
+                    //代表当前阶段正在进行中
+                    processArr[i].active = '2'
+                    processArr[i].time = util.formatTime1(new Date(r.data[j].eventStageStartTime))
+                  } else {
+                    //代表当前阶段完成失败（暂未考虑）
+                  }
+
+                }
+              }
+            }
+          }
+          that.setData({
+            processArray: processArr
+          })
+          // console.log(that.data.processArray)
+        } else {
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
+        }
+      },
+      fail: function (err) {
+        wx.showToast({
+          title: err.errMsg,
+          icon: 'none'
+        })
+      },//请求失败
+      complete: function () {
+
+      }//请求完成后执行的函数
+    })
   },
   parseEventType(e) {
     var that = this
@@ -211,12 +331,12 @@ Page({
   },
   removeImage(e) {
     var that = this;
-    var images = that.data.images;
+    var images = that.data.uploadImage;
     // 获取要删除的第几张图片的下标
     const idx = e.currentTarget.dataset.idx
     // splice  第一个参数是下表值  第二个参数是删除的数量
     images.splice(idx, 1)
-    this.setData({
+    that.setData({
       uploadImage: images
     })
   },
@@ -249,7 +369,7 @@ Page({
     let that = this
     var pr_rate = app.globalData.pr_rate
     var windowHeight = app.globalData.windowHeight
-    var l3_height = windowHeight - (158 + 108 + 166) * pr_rate
+    var l3_height = windowHeight - (158 + 108 + 216) * pr_rate
     // console.log(pr_rate)
     // console.log(windowHeight)
     // console.log(l3_height)
@@ -434,7 +554,40 @@ Page({
 
     //核查意见
     that.data.event.caseInfo.auditRemark = that.data.opinion
-
+    let auditImg = ''
+    //先上传照片，再提交
+    if (that.data.uploadImage.length > 0) {
+      // console.log(that.data.uploadImage)
+      for (var i = 0; i < that.data.uploadImage.length; i++) {
+        wx.uploadFile({
+          url: app.globalData.host + app.globalData.uploadImgUrl,
+          header: {
+            "Authorization": app.globalData.access_token
+          },
+          filePath: that.data.uploadImage[i],
+          name: 'file',
+          success(res) {
+            // console.log(res.data)
+            auditImg += JSON.parse(res.data).url + ','
+            // console.log(i)
+            // console.log(confirmImg)
+            var n = (auditImg.split(',')).length - 1;
+            //传完了图片
+            if (n == (that.data.uploadImage.length)) {
+              // console.log("图片上传完毕")
+              auditImg = auditImg.substring(0, auditImg.length - 1)
+              that.data.event.caseInfo.auditImg = auditImg
+              that.auditCurrentEvent()
+            }
+          }
+        })
+      }
+    } else {
+      that.auditCurrentEvent()
+    }
+  },
+  auditCurrentEvent(){
+    let that = this;
     wx.request({
       url: app.globalData.host + app.globalData.dropCaseUrl,
       method: "POST",
@@ -445,27 +598,24 @@ Page({
       },
       success(res) {
         if (res.data && res.data.code == 200) {
-          that.showModal({
-            msg: '提交成功',
-          });
+          wx.showToast({
+            title: '核查完成',
+          })
+          setTimeout(function () {
+            //要延时执行的代码
+            wx.navigateBack({
+
+            })
+          }, 1000)
+
         } else {
-          that.showModal({
-            msg: '提交失败',
-          });
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
         }
       }
     });
-    //提交成功并返回
-    // wx.showToast({
-    //   title: '登记成功',
-    //   duration: 2000
-    // })
-    setTimeout(function () {
-      //要延时执行的代码
-      wx.navigateBack({
-
-      })
-    }, 2000)
   },
   showModal(error) {
     wx.showModal({
