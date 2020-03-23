@@ -27,7 +27,7 @@
     <view class="form-item-row">
       <view class="form-item form-item-preleft">
         <text class="form-item-name">事件类型</text>
-        <picker class="form-item-input" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+        <picker class="" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
             <!-- <view class="">{{eventType}}</view> -->
             <input class="form-item-input" name="" value="{{eventType}}" placeholder="请选择事件类型"  disabled="true"/>
         </picker>

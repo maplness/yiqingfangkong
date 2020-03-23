@@ -39,6 +39,7 @@ page{
 }
 .form-item-input{
   font-size: 28rpx;
+  padding: 20rpx 0;
 }
 
 .form-item-location{

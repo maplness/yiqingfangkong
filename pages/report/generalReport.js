@@ -25,7 +25,7 @@ Page({
     objectMultiArray: [],
     multiArray: [],
     multiArray2: [],
-    multiIndex: [],
+    multiIndex: [0,0],
     checkeIndex: [],
     eventType: '',
     location: {},
@@ -393,6 +393,14 @@ Page({
   //mutiple picker
   bindMultiPickerChange: function (e) {
     console.log('picker发送选择改变，携带值为', e.detail.value)
+    if(e.detail.value[0] == 0 && e.detail.value[1] == 0){
+      var that = this
+      //此时未滑动
+      this.setData({
+        eventType: that.data.objectMultiArray[0][0].name + "--" + that.data.objectMultiArray[1][0].name,
+        eventId: that.data.objectMultiArray[0][0].id + ',' + that.data.objectMultiArray[1][0].id
+      })
+    }
     this.setData({
       multiIndex: e.detail.value
     })
@@ -446,9 +454,9 @@ Page({
   
     var id1 = data.multiArray2[0][data.multiIndex[0]]
     var id2 = data.multiArray2[1][data.multiIndex[1]]
-    console.log(data.multiArray2);
-    console.log(data.multiIndex[0]);
-    console.log(id1 + ',' + id2)
+    // console.log(data.multiArray2);
+    // console.log(data.multiIndex[0]);
+    // console.log(id1 + ',' + id2)
     // console.log(temp)
     this.setData({
       eventType: temp,

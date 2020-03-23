@@ -1,0 +1,50 @@
+<view class="wrapper">
+
+<view class="l1">
+    <view class="f-l">
+        <view class="t">我的工具</view>
+        <view class="edit">编辑</view>
+    </view>
+    <view class="s-l">
+
+    </view>
+</view>
+    
+<view class="h-divider"></view>
+<view class="l2">
+    <view class="title">信息采集</view>
+    <view class="function-wrapper">
+        <block wx:for="{{InfoCollection}}">
+            <view class="function-cell">
+                <image class="cell-icon" src="{{item.icon}}" />
+                <view class="cell-title">{{item.label}}</view>
+            </view>
+        </block>
+    </view>
+</view>
+<view class="h-divider"></view>
+<view class="l2">
+    <view class="title">事件上报</view>
+    <view class="function-wrapper">
+        <block wx:for="{{EventReport}}">
+            <view class="function-cell">
+                <image class="cell-icon" src="{{item.icon}}" />
+                <view class="cell-title">{{item.label}}</view>
+            </view>
+        </block>
+    </view>
+</view>
+<view class="h-divider"></view>
+<view class="l2">
+    <view class="title">办公管理</view>
+    <view class="function-wrapper">
+        <block wx:for="{{WorkStuff}}">
+            <view class="function-cell">
+                <image class="cell-icon" src="{{item.icon}}" />
+                <view class="cell-title">{{item.label}}</view>
+            </view>
+        </block>
+    </view>
+</view>
+
+</view>
