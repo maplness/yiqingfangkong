@@ -1,56 +1,76 @@
 /* pages/general/generalSign.wxss */
 @import '../../assets/iconfont/iconfont.wxss';
 page{
-  background-color: #F7F7F7;
-  margin-top: 32rpx;
+  background-color: #F5F5F5;
+  /* margin-top: 32rpx; */
+}
+.top{
+  height: 24rpx;
 }
 .form-item{
   display: flex;
-  flex-direction: row;
-  border-bottom: 1px solid #F8F8F8;
+  flex-direction: column;
+  border-bottom: 1px solid #F5F5F5;
   background-color: #fff;
-  padding: 40rpx;
+  padding: 24rpx 32rpx;
+}
+.form-item-row{
+  display: flex;
+  flex-direction: row;
+}
+.form-item-preleft{
+  flex: 5;
+}
+.form-item-preright{
+  background-color: #fff;
+  border-bottom: 1px solid #F5F5F5;
+  flex: 1;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  text-align: right;
+  align-items: center;
+  font-weight: bold;
+  color: #1677FF;
+  padding-right: 32rpx;
 }
 .form-item-name{
-  flex: 2
+  font-size: 32rpx;
 }
 .form-item-input{
-  flex: 3
+  font-size: 28rpx;
 }
 
 .form-item-location{
   display: flex;
   flex-direction: row;
-  height: 80rpx;
-  line-height: 80rpx;
+  height: 60rpx;
+  line-height: 60rpx;
+  font-size: 28rpx;
 }
 
 .form-item-location-icon{
   width: 40rpx;
 }
+.form-item-location-loc{
+  margin-top: 10rpx;
+}
 .form-item-location-input{
   width: 500rpx;
-  height: 80rpx;
-  line-height: 80rpx;
 }
 .form-item-location-click{
   width: 200rpx;
-  color: #55abfc;
+  color: #1677FF;
   text-align: right;
 }
-.addpic{
-  background-color: #F7F7F7;
-}
-.weui-input{
-  background-color: #ffffff;
-  height: 2em;
-  min-height: 2em;
-  line-height: 2em;
-  border-radius: 5px;
-  padding: 10rpx;
+.form-bottom{
+  margin-bottom: 58rpx;
 }
 .display_block{
   display: block;
+}
+/* .addpic{
+  background-color: #F7F7F7;
 }
 .textarea_p{
   width: 650rpx;
@@ -58,77 +78,53 @@ page{
   border-radius: 5px;
   margin-top: 5px;
   padding: 20rpx;
-}
+} */
 .q-image-wrap{
-  width: 150rpx;
-  height: 150rpx;
-  border: 2px dotted #000000;
-  border-radius: 10rpx;
   float: left;
-  margin-right: 20rpx;
+  width: 180rpx;
   position: relative;
   overflow: hidden;
 }
-.q-image-wrap image{
-  width: 100%;
-  height: 100%;
+.q-image-wrap .q-image{
+  width: 140rpx;
+  height: 140rpx;
+  margin-top: 26rpx;
 }
 .q-image-remover{
-  width: 100rpx;
-  height: 100rpx;
+  width:40rpx;
+  height: 40rpx;
   border-radius: 100%;
-  /* background: #2e82ff; */
   position: absolute;
-  top:-50rpx;
-  right:-50rpx;
- 
+  top:10rpx;
+  right:16rpx;
 }
-.q-image-remover icon{
-  position: absolute;
-  left:20rpx;
-  bottom:12rpx;
-  color:#FD5C4C;
-}
- 
 .uploadImgBtn{
-  width: 150rpx;
-  height: 150rpx;
-  text-align: center;
-  line-height: 140rpx;
-  border: 2px dotted #000000;
-  border-radius: 10rpx;
+  width: 140rpx;
+  height: 140rpx;
+  margin-top: 26rpx;
+  background-color: #F5F5F5;
   float: left;
 }
-.uploadImgBtn icon{
-  font-size: 80rpx;
-  color: #999;
-}
-
 .submitButton{
-  margin-top: 20rpx;
-  text-align: center;
-}
-
-.submitButton button{
-  width: 200rpx;
-  height: 80rpx;
-  line-height: 80rpx;
+  /* margin-top: 20rpx;
+  text-align: center; */
+  position: fixed;
+  bottom: 0rpx;
+  width: 100%;
+  height: 216rpx;
+  background-color: #ffffff;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
 }
 .submitButton .submit{
-  margin-right: 20rpx;
-  background-color: #55abfc;
-  color: white;
-}
-.submitButton .cancel{
-  margin-left: 20rpx;
-  border: 1rpx solid #000000;
-  background-color: white;
-  color: #000000;
-}
-.picRecord::after{
-  clear: both;
-}
-.picRecord{
-  display: flex;
-  padding: 10px 0; 
+  width: 686rpx;
+  height: 108rpx;
+  line-height: 108rpx;
+  font-size: 32rpx;
+  color: #ffffff;
+  font-family: PingFangSC-Medium;
+  background-color:  #1677FE;
+  border-radius: 14rpx;
 }

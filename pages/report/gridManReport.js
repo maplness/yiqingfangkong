@@ -11,7 +11,7 @@ Page({
   data: {
     images: [],
     current_location: "",
-
+    scrollHeight: 300,
     //multiple picker
     objectMultiShow: [],
     objectMultiArray: [],
@@ -23,7 +23,8 @@ Page({
     eventDetail: "",
     location: {},
     adCode: '',
-    grid: {}
+    grid: {},
+    gridName: ''
   },
   chooseImage(e) {
     wx.chooseImage({
@@ -81,6 +82,8 @@ Page({
     params.eventType = that.data.eventId
     params.eventLongitude = that.data.location.longitude
     params.eventLatitude = that.data.location.latitude
+    params.eventGrid = that.data.grid.gridCode
+    params.eventGridName = that.data.gridName
     params.picturePath = ''
     // that.submitForm(params)
     //先上传照片，再提交表单
@@ -126,14 +129,21 @@ Page({
       },
       success(res) {
         console.log(res)
-        that.showModal({
-          msg: '提交成功',
-        })
-        setTimeout(function () {
-          wx.navigateBack({
-
+        if(res.data.code == 200){
+          wx.showToast({
+            title: '提交成功',
           })
-        }, 1000);
+          setTimeout(function () {
+            wx.navigateBack({
+
+            })
+          }, 1000);
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
+        }
       }
     })
   },
@@ -180,11 +190,18 @@ Page({
                 mapType: 1
               },
               success(res) {
-                console.log(res)
-                that.setData({
-                  grid: res.data.data,
-                  gridName: res.data.data.gridName
-                })
+                // console.log(res)
+                if(res.data.code == 200){
+                  that.setData({
+                    grid: res.data.data,
+                    gridName: res.data.data.gridName
+                  })
+                }else{
+                  wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
+                  })
+                }
               }
             })
             // console.log(that.data.current_location)
@@ -239,7 +256,7 @@ Page({
   onLoad: function (options) {
     this.initValidate();
     var that = this;
-
+    that.computeScrollViewHeight()
     // 实例化API核心类
     var qqmapsdk = new QQMapWX({
       key: 'PU4BZ-3ZPW6-JNJSB-EQLMY-4QZWZ-LAFEG' // 必填
@@ -309,6 +326,15 @@ Page({
 
     // 数据更新
     this.setData(data)
+  },
+  computeScrollViewHeight() {
+    let that = this;
+    let windowHeight = wx.getSystemInfoSync().windowHeight
+    let scrollHeight = windowHeight - 216 * app.globalData.pr_rate - 2;
+    that.setData({
+      scrollHeight: scrollHeight
+    })
+    // console.log(that.data.scrollHeight);
   },
   //mutiple picker
   bindMultiPickerChange: function (e) {

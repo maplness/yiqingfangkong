@@ -1,12 +1,16 @@
 <view class="l1">
     <image class="left" src="{{taskStatusImg}}" />
     <view class="mid">
+      <view class="mid-1">
         <view class="title">{{event.eventName}}</view>
-        <view class="desc">上报人： {{event.nickName}}</view>
+        <view wx:if="{{stateIndex == '1'}}" class="right" style="color:#32C5FF;background-color:#D7FFFF;">核实中</view>
+        <view wx:if="{{stateIndex == '2'}}" class="right" style="color:#D2A162;background-color:#FDF0DF;">核查中</view>
+        <view wx:if="{{stateIndex == '3'}}" class="right" style="color:#69CEAC;background-color:#D3F2E8;">已完成</view>
+      </view>
+      
+      <view class="desc">上报人： {{event.nickName}}</view>
     </view>
-    <view wx:if="{{stateIndex == '1'}}" class="right" style="color:#32C5FF;background-color:#D7FFFF;">核实中</view>
-    <view wx:if="{{stateIndex == '2'}}" class="right" style="color:#D2A162;background-color:#FDF0DF;">核查中</view>
-    <view wx:if="{{stateIndex == '3'}}" class="right" style="color:#69CEAC;background-color:#D3F2E8;">已完成</view>
+    
 </view>
 <view class="l2">
     <view class="title">

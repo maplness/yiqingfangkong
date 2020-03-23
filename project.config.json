@@ -137,6 +137,27 @@
 					"id": -1,
 					"name": "pages/test/testImg",
 					"pathName": "pages/test/testImg",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/report/generalReport",
+					"pathName": "pages/report/generalReport",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/enterpriseReport",
+					"pathName": "pages/enterpriseReport",
+					"query": "",
+					"scene": null
+				},
+				{
+					"id": -1,
+					"name": "pages/task/taskDetail",
+					"pathName": "pages/task/taskDetail",
 					"scene": null
 				}
 			]

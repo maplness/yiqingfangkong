@@ -125,7 +125,7 @@ Page({
       this.checkLogIn()
     } else {
     wx.navigateTo({
-      url: '../enterpriseReport',
+      url: '../report/enterpriseReport',
     })
     }
   },

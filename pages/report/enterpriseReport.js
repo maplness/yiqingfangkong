@@ -1,6 +1,6 @@
 // pages/enterpriseReport.js
-import WxValidate from '../utils/WxValidate.js';
-var QQMapWX = require('../utils/qqmap-wx-jssdk.js');
+import WxValidate from '../../utils/WxValidate.js';
+var QQMapWX = require('../../utils/qqmap-wx-jssdk.js');
 const app = getApp();
 Page({
 
@@ -26,7 +26,8 @@ Page({
     eventId: '',
     location: {},
     adCode: '',
-    grid: {}
+    grid: {},
+    scrollHeight: 300
   },
   signDetailInput(e) {
     var v = e.detail.value || '';
@@ -55,9 +56,9 @@ Page({
     if (that.data.form.eventDetail == undefined){
       that.data.form.eventDetail = '';
     }
-    
+
     wx.navigateTo({
-      url: '/pages/enterpriseReportEventDetail?eventDetail=' + this.data.form.eventDetail
+      url: '/pages/report/enterpriseReportEventDetail?eventDetail=' + this.data.form.eventDetail
     })
   },
   getLocation() {
@@ -103,11 +104,18 @@ Page({
                 mapType: 1
               },
               success(res) {
-                console.log(res)
-                that.setData({
-                  grid: res.data.data,
-                  gridName: res.data.data.gridName
-                })
+                // console.log(res)
+                if(res.data.code == 200){
+                  that.setData({
+                    grid: res.data.data,
+                    gridName: res.data.data.gridName
+                  })
+                }else{
+                  wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
+                  })
+                }
               }
             })
           },
@@ -177,6 +185,7 @@ Page({
     params.eventLongitude = that.data.location.longitude
     params.eventLatitude = that.data.location.latitude
     params.eventGridName = that.data.gridName
+    params.eventGrid = that.data.grid.gridCode
     if (!this.WxValidate.checkForm(params)) {
       const error = this.WxValidate.errorList[0];
       this.showModal(error);
@@ -216,7 +225,7 @@ Page({
     } else {
       that.submitForm(params)
     }
-    
+
   },
   submitForm(e) {
     var that = this
@@ -230,18 +239,25 @@ Page({
       },
       success(res) {
         // console.log(res)
-        that.showModal({
-          msg: '提交成功',
-        })
-        setTimeout(function () {
-          wx.navigateBack({
-
+        if(res.data.code == 200){
+          wx.showToast({
+            title: '提交成功',
           })
-        }, 1000);
+          setTimeout(function () {
+            wx.navigateBack({
+
+            })
+          }, 1000);
+        }else{
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
+        }
       }
     })
   },
-  //报错 
+  //报错
   showModal(error) {
     wx.showModal({
       content: error.msg,
@@ -320,7 +336,7 @@ Page({
   onLoad: function (options) {
     this.initValidate();
     var that = this;
-
+    that.computeScrollViewHeight()
     // 实例化API核心类
     var qqmapsdk = new QQMapWX({
       key: 'PU4BZ-3ZPW6-JNJSB-EQLMY-4QZWZ-LAFEG' // 必填
@@ -471,6 +487,7 @@ Page({
    * 生命周期函数--监听页面显示
    */
   onShow: function () {
+    this.computeScrollViewHeight()
     var pages = getCurrentPages();
     var currPage = pages[pages.length - 1];
     // console.log(currPage.__data__.eventDetail);//此处既是上一页面传递过来的值
@@ -478,6 +495,15 @@ Page({
     this.setData({
       "form.eventDetail": currPage.__data__.eventDetail
     })
+  },
+  computeScrollViewHeight() {
+    let that = this;
+    let windowHeight = wx.getSystemInfoSync().windowHeight
+    let scrollHeight = windowHeight - 216 * app.globalData.pr_rate - 2;
+    that.setData({
+      scrollHeight: scrollHeight
+    })
+    // console.log(that.data.scrollHeight);
   },
 
   /**

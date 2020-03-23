@@ -1,0 +1,2 @@
+/* pages/enterpriseReportEventDetail.wxss */
+@import './generalReportEventDetail.wxss';

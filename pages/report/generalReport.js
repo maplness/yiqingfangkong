@@ -30,7 +30,9 @@ Page({
     eventType: '',
     location: {},
     adCode: '',
-    grid:{}
+    grid:{},
+    gridName: '',
+    scrollHeight: 300
 
   },
   signDetailInput(e) {
@@ -102,11 +104,18 @@ Page({
                 mapType: 1
               },
               success(res) {
-                console.log(res)
-                that.setData({
-                  grid: res.data.data,
-                  gridName: res.data.data.gridName
-                })
+                // console.log(res)
+                if(res.data.code == 200){
+                  that.setData({
+                    grid: res.data.data,
+                    gridName: res.data.data.gridName
+                  })
+                }else{
+                  wx.showToast({
+                    title: res.data.msg,
+                    icon: 'none'
+                  })
+                }
               }
             })
           },
@@ -225,12 +234,9 @@ Page({
       },
       success(res) {
         if (res.data && res.data.code == 200) {
-          that.showModal({
-            msg: '提交成功',
-          });
-          // wx.navigateTo({
-          //   url: '/pages/jobdiary/jobdiary'
-          // })
+          wx.showToast({
+            title: '提交成功',
+          })
           setTimeout(function () {
             wx.navigateBack({
 
@@ -238,9 +244,10 @@ Page({
           }, 1000);
 
         } else {
-          that.showModal({
-            msg: '提交失败',
-          });
+          wx.showToast({
+            title: res.data.msg,
+            icon: 'none'
+          })
         }
       }
     });
@@ -296,8 +303,8 @@ Page({
   onLoad: function (options) {
     this.initValidate();
     var that = this;
-    console.log("generalReport")
-
+    // console.log("generalReport")
+    that.computeScrollViewHeight()
     // 实例化API核心类
     var qqmapsdk = new QQMapWX({
       key: 'PU4BZ-3ZPW6-JNJSB-EQLMY-4QZWZ-LAFEG' // 必填
@@ -372,6 +379,15 @@ Page({
     // 数据更新
     this.setData(data)
 
+  },
+  computeScrollViewHeight() {
+    let that = this;
+    let windowHeight = wx.getSystemInfoSync().windowHeight
+    let scrollHeight = windowHeight - 216 * app.globalData.pr_rate - 2;
+    that.setData({
+      scrollHeight: scrollHeight
+    })
+    // console.log(that.data.scrollHeight);
   },
 
   //mutiple picker

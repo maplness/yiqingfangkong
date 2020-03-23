@@ -26,21 +26,25 @@ page{
   flex-direction: column;
   margin-left: 24rpx;
 }
-.l1 .mid .title{
+.l1 .mid .mid-1{
+  display: flex;
+  flex-direction: row;
+}
+.l1 .mid .mid-1 .title{
+  width: 500rpx;
   font-size: 32rpx;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
 }
 .l1 .mid .desc{
   margin-top: 8rpx;
   font-size: 28rpx;
   color: #A2A2A2;
 }
-.l1 .right{
-  margin-left: 214rpx;
+.l1 .mid .mid-1 .right{
+  margin-left: 10rpx;
   padding: 10rpx;
-  /* background-color: #FDF0DF; */
-  background-color: #D3F2E8;
-  /* color: #D2A162; */
-  color: #69CEAC;
   font-size: 20rpx;
   height: 28rpx;
   border-radius: 10rpx;

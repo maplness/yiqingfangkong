@@ -1,0 +1,85 @@
+<!--pages/enterpriseReport.wxml-->
+<!-- <view class="legalInfo">请如实填写信息，漏报、瞒报、提供虚假信息将承担相应法律后果</view> -->
+<view class="page">
+  <form bindsubmit="formSubmit">
+    <scroll-view scroll-y="true" style='width: 100%; height: {{scrollHeight}}px;'>
+      <view class="top"></view>
+      <view class="form-item">
+      <text class="form-item-name">企业名称</text>
+      <input class="form-item-input" placeholder="请填写企业名称" name="companyName"></input>
+    </view>
+    <view class="form-item">
+      <text class="form-item-name">详细地址</text>
+      <input class="form-item-input" name="companyAddress" placeholder="请填写详细地址"></input>
+    </view>
+    <view class="form-item">
+      <text class="form-item-name">企业负责人</text>
+      <input class="form-item-input" name="companyLeader" placeholder="请填写企业负责人" ></input>
+    </view>
+    <view class="form-item">
+      <text class="form-item-name">负责人联系方式</text>
+      <input class="form-item-input" name="leaderContact" placeholder="请填写负责人联系方式" ></input>
+    </view>
+    <view class="form-item">
+      <text class="form-item-name">报事名称</text>
+      <input class="form-item-input" name="eventName" placeholder="请填写报事名称" ></input>
+    </view>
+    <view class="form-item-row">
+      <view class="form-item form-item-preleft">
+        <text class="form-item-name">事件类型</text>
+        <picker class="form-item-input" mode="multiSelector" bindchange="bindMultiPickerChange" bindcolumnchange="bindMultiPickerColumnChange" value="{{multiIndex}}" range="{{multiArray}}">
+            <!-- <view class="">{{eventType}}</view> -->
+            <input class="form-item-input" name="" value="{{eventType}}" placeholder="请选择事件类型"  disabled="true"/>
+        </picker>
+      </view>
+      <view class="form-item-preright">
+        <icon class="iconfont iconpreviewright"></icon>
+      </view>
+    </view>
+    <view class="form-item">
+        <text class="form-item-name">报事详情</text>
+        <input class="form-item-input" name="eventDetail" placeholder="请填写报事详情" value='{{form.eventDetail}}'  disabled="true" bindtap="getEventDetail"/>
+        <!-- <view class="icon-style"><icon class="iconfont iconpreviewright"></icon></view> -->
+    </view>
+    <view class="form-item display_block">
+        <text class="form-item-name ">当前位置</text>
+        <view class="form-item-location">
+          <view class="form-item-location-icon"><icon class="iconfont iconlocation"></icon></view>
+          <view class="form-item-location-loc">
+          <input class='form-item-location-input' name='eventAddress' value='{{current_location}}' placeholder="填写事件发生位置" disabled="true" bindinput="changeLocation"></input>
+          </view>
+          <view class="form-item-location-click" bindtap="getLocation">重新定位</view>
+        </view> 
+    </view>
+    <view class="form-item">
+        <text class="form-item-name">定位网格</text>
+        <input class="form-item-input" name="eventGrid" placeholder="请填写定位网格" value="{{gridName}}" />
+    </view>
+    <view class="form-item">
+        <text class="form-item-name">联系电话</text>
+        <input class='form-item-input' name='reporterIdNum' placeholder="请填写联系电话" ></input>
+    </view>
+    <view class="form-item form-bottom">
+      <text class="form-item-name">图片</text>
+      <view class="question-images clearFloat">
+            <block wx:for="{{images}}" wx:key="*this">
+              <view class="q-image-wrap">
+                <!-- 图片缩略图  -->
+                <image class="q-image" src="{{item}}" mode="aspectFill" data-idx="{{index}}" bindtap="handleImagePreview"></image>
+                <!-- 移除图片的按钮  -->
+                <image class="q-image-remover" data-idx="{{index}}" bindtap="removeImage"  src="../../images/jian.png"></image>
+              </view>
+            </block>
+            <!-- 上传图片 -->
+            <view class="q-image-wrap" wx:if="{{images.length < 3}}">
+              <image class='uploadImgBtn' bindtap="chooseImage" src="../../images/jia.png"></image>
+            </view>
+          </view>
+        </view>
+    </scroll-view>
+    <view class="submitButton display_block">
+      <button class="submit" bindtap="" size="mini" formType="submit">提交报事</button>
+      <!-- <button class="cancel" bindtap="canceltip" size="mini">取消</button> -->
+    </view>
+</form>
+</view>
