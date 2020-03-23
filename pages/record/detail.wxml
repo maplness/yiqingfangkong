@@ -12,7 +12,7 @@
     </view>
     <view class="l11">
         <view class="l1-title">工作记录</view>
-        <textarea disabled="true" class="l1-textarea" name="workDetail" value="{{form.workDetail}}"
+        <textarea disabled="true" class="l1-textarea" name="workDetail" value="{{test}}"
                   placeholder="填写工作记录，包含工作目标的完成情况"></textarea>
     </view>
     <view class="l2">

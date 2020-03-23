@@ -23,8 +23,7 @@ Page{
 }
 .tabContent .list .list-date{
   font-size: 40rpx;
-  font-family:PingFangSC-Semibold,PingFang SC;
-  font-weight:500;
+  font-family:PingFang SC;
   padding: 32rpx 32rpx 4rpx 32rpx;
 }
 .tabContent .list .padding{

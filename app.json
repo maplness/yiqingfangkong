@@ -2,6 +2,7 @@
   "pages": [
     
     "pages/login/login",
+    "pages/mainpage/functions",
     "pages/test/testImg",
     "pages/task/taskDetail",
     "pages/task/taskDetail2",
