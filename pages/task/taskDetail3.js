@@ -10,7 +10,7 @@ Page({
   data: {
     l3_height: 300,
     pre_scrollTop: 0,
-    heightArr: [0, 1383, 1677, 1800],
+    heightArr: [0, 1383, 1677, 2300],
     activeIndex: 0,
     indicatorLeft: 0,
     ViewTo: "",
@@ -87,11 +87,7 @@ Page({
       { name: 'ok', value: '已完成', checked: 'true' },
       { name: 'shit', value: '未完成' }
     ],
-    images: [
-      // "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
-      // "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
-      // "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg"
-    ],
+    images: [],
     confirmImages: [],
     auditImages: [],
     dictType: 'event_history_status',

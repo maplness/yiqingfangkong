@@ -26,7 +26,8 @@
     <view id="detail" class="detail">
         <view class="p1">
             <view class="title">事件详情：</view>
-            <view class="value" style="height:200rpx;">{{event.eventDetail}}</view>
+            <!-- <view class="value" style="height:200rpx;">{{event.eventDetail}}</view> -->
+            <textarea style="width:650rpx;height: 260rpx;" disabled="true"  value="{{event.eventDetail}}"></textarea>
         </view>
         <view class="p2">
             <view class="title">事件类型：</view>
@@ -38,7 +39,7 @@
         </view>
         <view class="p2">
             <view class="title">定位网格：</view>
-            <view class="value">{{event.eventGridName}}</view>
+            <view class="value">{{event.eventGridName==null||event.eventGridName==''?'-':eventGridName}}</view>
         </view>
         <view class="p2">
             <view class="title">事件发生位置：</view>
@@ -50,6 +51,7 @@
                 <block wx:for="{{images}}" wx:key="image">
                     <image class="picture" src="{{item}}" />
                 </block>
+                <view class="noImage" wx:if="{{images.length == 0}}">暂无相关影像</view>
             </view>
         </view>
         <view class="h-divider"></view>

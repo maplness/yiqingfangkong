@@ -541,6 +541,13 @@ Page({
     } else{
       that.data.event.caseInfo.registerStatus = '2'
     }
+    if (that.data.opinion == ''){
+      wx.showModal({
+        content: '请输入审批意见',
+        showCancel: false
+      })
+      return false
+    }
     let confirmImg = ''
     // that.submitForm(params)
 
@@ -623,6 +630,13 @@ Page({
       that.data.event.caseInfo.registerStatus = '2'
     }
     console.log(that.data.event.caseInfo)
+    if (that.data.opinion == '') {
+      wx.showModal({
+        content: '请输入审批意见',
+        showCancel: false
+      })
+      return false
+    }
     //rigester case
     that.auditCurrentEvent()
   }

@@ -87,11 +87,7 @@ Page({
       { name: 'ok', value: '已完成', checked: 'true' },
       { name: 'shit', value: '未完成' }
     ],
-    images: [
-      "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
-      "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg",
-      "https://tva1.sinaimg.cn/large/00831rSTgy1gcq790nhy9j30ku09wq7v.jpg"
-    ],
+    images: [],
     confirmImages: [],
     uploadImage: [],
     auditStatus: 'ok',
@@ -551,7 +547,13 @@ Page({
     } else {
       that.data.event.caseInfo.auditStatus = '2'
     } 
-
+    if (that.data.opinion == '') {
+      wx.showModal({
+        content: '请输入审批意见',
+        showCancel: false
+      })
+      return false
+    }
     //核查意见
     that.data.event.caseInfo.auditRemark = that.data.opinion
     let auditImg = ''

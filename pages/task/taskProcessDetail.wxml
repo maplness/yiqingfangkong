@@ -7,7 +7,7 @@
         <view wx:if="{{stateIndex == '1'}}" class="right" style="color:#32C5FF;background-color:#D7FFFF;">处理中</view>
     <view wx:if="{{stateIndex == '2'}}" class="right" style="color:#69CEAC;background-color:#D3F2E8;">已处理</view>
       </view>
-      <view class="desc">处理人： {{event.taskInfo.assigneeName}}</view>
+      <view class="desc">上报人： {{event.nickName}}</view>
     </view>
 </view>
 <view class="l2">
@@ -36,7 +36,7 @@
         </view>
         <view class="p2">
             <view class="title">定位网格：</view>
-            <view class="value">{{event.eventGridName}}</view>
+            <view class="value">{{event.eventGridName== null ||event.eventGridName==''?'-':event.eventGridName }}</view>
         </view>
         <view class="p2">
             <view class="title">事件发生位置：</view>

@@ -39,7 +39,7 @@
               <text class="">处理时间：</text>
             </view>
             <view class="card-content-loc">
-              <text>{{item.solveTime == null ? '': item.solveTime}}</text>
+              <text>{{item.solveTime == null||item.solveTime == ''  ? '-': item.solveTime}}</text>
             </view>
         </view>
         <view class="card-content-con">

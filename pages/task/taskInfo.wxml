@@ -63,7 +63,7 @@ module.exports = {
               <text class="">报事人员：</text>
             </view>
             <view class="card-content-loc">
-              <text>{{item.nickName}}</text>
+              <text>{{item.nickName==null ||item.nickName==''?'-':item.nickName }}</text>
             </view>
           </view>
       </view>
@@ -108,7 +108,7 @@ module.exports = {
             <text class="">核实人员：</text>
           </view>
           <view class="card-content-loc">
-            <text>{{item.caseInfo.registerPersonName}}</text>
+            <text>{{item.caseInfo.registerPersonName==null||item.caseInfo.registerPersonName==''?'-':item.caseInfo.registerPersonName}}</text>
           </view>
         </view>
       </view>
@@ -143,7 +143,7 @@ module.exports = {
             <text class="">报事人员：</text>
           </view>
           <view class="card-content-loc">
-            <text class="">{{item.nickName}}</text>
+            <text class="">{{item.nickName==null||item.nickName==''?'-':item.nickName}}</text>
           </view>
         </view>
         <view class="card-content-con">
@@ -152,14 +152,14 @@ module.exports = {
             <text class="" wx:if="{{item.statusDesc == '已核实'}}">核实人员：</text>
           </view>
           <view class="card-content-loc">
-            <text wx:if="{{item.statusDesc == '已核查'}}">{{item.caseInfo.dropPersonName}}</text>
-            <text wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerPersonName}}</text>
+            <text wx:if="{{item.statusDesc == '已核查'}}">{{item.caseInfo.dropPersonName == null || item.caseInfo.dropPersonName == '' ? '-': item.caseInfo.dropPersonName}}</text>
+            <text wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerPersonName == null || item.caseInfo.registerPersonName == '' ? '-': item.caseInfo.registerPersonName}}</text>
           </view>
         </view>
       </view>
       <view class="card-foot">
-        <view class="card-foot-time" wx:if="{{item.statusDesc == '已核查'}}">{{item.caseInfo.dropTime}}               </view>
-        <view class="card-foot-time" wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerTime}}               </view>
+        <view class="card-foot-time" wx:if="{{item.statusDesc == '已核查'}}">{{item.caseInfo.dropTime == null || item.caseInfo.dropTime == ''?'-': item.caseInfo.dropTime}}               </view>
+        <view class="card-foot-time" wx:if="{{item.statusDesc == '已核实'}}">{{item.caseInfo.registerTime == null ||item.caseInfo.registerTime == ''?'-':item.caseInfo.registerTime}}               </view>
         <view class="card-foot-detail-ok">
           <text>{{item.statusDesc}}</text>
         </view>
