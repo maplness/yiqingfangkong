@@ -1,14 +1,25 @@
-// pages/mine/mine.js
+// pages/notification/notification.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    user: {}
+    news: [
+      {
+        title:"关于COVID-2019疫情期间的7*24巡查任务派发通知"
+      },
+      {
+        title:"关于COVID-2019疫情期间的7*24巡查任务派发通知"
+      },
+      {
+        title:"关于COVID-2019疫情期间的7*24巡查任务派发通知"
+      },
+      {
+        title:"关于COVID-2019疫情期间的7*24巡查任务派发通知"
+      }
+    ]
   },
-
-  
 
   /**
    * 生命周期函数--监听页面加载
@@ -22,31 +33,6 @@ Page({
    */
   onReady: function () {
 
-  },
-  changePassword() {
-    wx.navigateTo({
-      url: '../changePassword/changePassword',
-    })
-  },
-  reportRecord() {
-    wx.navigateTo({
-      url: '../report/reportRecord',
-    })
-  },
-  logout() {
-    wx.redirectTo({
-      url: '../login/login',
-    })
-  },
-  clockIn() {
-    wx.navigateTo({
-      url: '../clock/clock',
-    })
-  },
-  notification(){
-    wx.navigateTo({
-      url: '../notification/notification',
-    })
   },
 
   /**

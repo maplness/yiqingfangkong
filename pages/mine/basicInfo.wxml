@@ -1,0 +1,7 @@
+<!--pages/mine/basicInfo.wxml-->
+<view class="l1 title">基本信息</view>
+
+<view class="cell">
+    <view class="left">头像</view>
+    <view class="right"></view>
+</view>

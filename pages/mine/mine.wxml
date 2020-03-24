@@ -18,7 +18,7 @@
 
 <view class="mine-list-wrapper">
   
-  <view class="mine-list-cell">
+  <view class="mine-list-cell" bindtap="notification">
     <image class="icon" src="../../images/noti.png"></image>
     <view class="label">通知公告</view>
     <image class="foot" src="../../images/art.png"></image>

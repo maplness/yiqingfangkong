@@ -2,6 +2,8 @@
   "pages": [
     
     "pages/login/login",
+    "pages/mine/basicInfo",
+    "pages/notification/notification",
     "pages/mainpage/functions",
     "pages/test/testImg",
     "pages/task/taskDetail",

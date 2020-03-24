@@ -1,0 +1,27 @@
+/* pages/mine/basicInfo.wxss */
+page{
+    background-color: #F5F5F5;
+}
+.l1{
+    margin: 32rpx;
+}
+.title{
+    font-size: 30rpx;
+    color: #8A8A8A;
+}
+.cell{
+    background-color: #ffffff;
+    height: 100rpx;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 32rpx;
+}
+.cell .left{
+    margin: 10rpx;
+    opacity: 0.85;
+    font-family: PingFangSC-Regular;
+    font-size: 28rpx;
+    color: #000000;
+}

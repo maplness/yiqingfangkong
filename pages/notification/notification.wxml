@@ -1,0 +1,14 @@
+<view class="top"></view>
+<block wx:for="{{news}}">
+<view class="n-cell">
+    <view class="title">
+        关于COVID-2019疫情期间的7*24巡查任务派发通知
+    </view>
+    <view class="s-l">
+        <view class="left desc">推送类型</view>
+        <view class="right desc">2020-02-02</view>
+    </view>
+    
+</view>
+<view class="h-divider"></view>
+</block>

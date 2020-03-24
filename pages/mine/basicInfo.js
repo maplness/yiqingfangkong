@@ -1,14 +1,12 @@
-// pages/mine/mine.js
+// pages/mine/basicInfo.js
 Page({
 
   /**
    * 页面的初始数据
    */
   data: {
-    user: {}
-  },
 
-  
+  },
 
   /**
    * 生命周期函数--监听页面加载
@@ -22,31 +20,6 @@ Page({
    */
   onReady: function () {
 
-  },
-  changePassword() {
-    wx.navigateTo({
-      url: '../changePassword/changePassword',
-    })
-  },
-  reportRecord() {
-    wx.navigateTo({
-      url: '../report/reportRecord',
-    })
-  },
-  logout() {
-    wx.redirectTo({
-      url: '../login/login',
-    })
-  },
-  clockIn() {
-    wx.navigateTo({
-      url: '../clock/clock',
-    })
-  },
-  notification(){
-    wx.navigateTo({
-      url: '../notification/notification',
-    })
   },
 
   /**

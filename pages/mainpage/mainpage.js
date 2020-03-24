@@ -165,6 +165,16 @@ Page({
       })
     }
   },
+  func8(){
+    if(!app.globalData.isLogin){
+      this.checkLogIn()
+
+    }else{
+      wx.navigateTo({
+        url: './functions',
+      })
+    }
+  },
   onLoad(){
     var that = this
     //未登录点击返回登陆页
