@@ -1,0 +1,14 @@
+<!--pages/notification/notificationDetail.wxml-->
+<view class="l1">
+  <view class="title">{{news.noticeTitle}}</view>
+  <view class="s-l">
+      <view class="left desc">{{noticeType}}</view>
+      <view class="right desc">{{news.createTime}}</view>
+    </view>
+</view>
+<view class="l2">
+  <view class="content">
+    <rich-text nodes="{{news.noticeContent}}"></rich-text>
+  </view>
+</view>
+<view class="l3"></view>

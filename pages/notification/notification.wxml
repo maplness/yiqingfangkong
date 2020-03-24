@@ -1,14 +1,14 @@
 <view class="top"></view>
-<block wx:for="{{news}}">
-<view class="n-cell">
-    <view class="title">
-        关于COVID-2019疫情期间的7*24巡查任务派发通知
+  <block wx:for="{{news}}" wx:for-item="item" wx:key="new" data-index="{{index}}">
+    <view class="n-cell" data-index="{{index}}" data-type="{{item.noticeType}}" data-id="{{item.noticeId}}" bindtap="toDetail">
+        <view class="title">
+            {{item.noticeTitle}}
+        </view>
+        <view class="s-l">
+            <view class="left desc">{{item.noticeType}}</view>
+            <view class="right desc">{{item.createTime}}</view>
+        </view>
     </view>
-    <view class="s-l">
-        <view class="left desc">推送类型</view>
-        <view class="right desc">2020-02-02</view>
-    </view>
-    
-</view>
-<view class="h-divider"></view>
-</block>
+    <view class="h-divider"></view>
+  </block>
+  <view wx:if='{{noData}}'class="noData">{{noDataText}}</view>

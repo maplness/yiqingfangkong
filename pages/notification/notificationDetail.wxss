@@ -1,0 +1,36 @@
+/* pages/notification/notificationDetail.wxss */
+Page{
+  background-color: #F5F5F5;
+}
+.l1{
+  margin-top: 48rpx;
+}
+.l1 .title{
+  width: 680rpx;
+  font-size: 32rpx;
+  text-align: left;
+  margin: 0 auto;
+  font-family:PingFang SC;
+  font-weight: 600;
+}
+.l1 .s-l{
+  width: 680rpx;
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 24rpx auto;
+  font-size: 24rpx;
+}
+.l1 .s-l .desc{
+    color: #8D8D8D;
+}
+.l2{
+  margin-top: 48rpx;
+}
+.l2 .content{
+  width: 680rpx;
+  margin: 0 auto;
+}
+.l3{
+  height: 100rpx;
+}

@@ -1,6 +1,5 @@
 {
   "pages": [
-    
     "pages/login/login",
     "pages/mine/basicInfo",
     "pages/notification/notification",
@@ -30,7 +29,8 @@
     "pages/logs/logs",
     "pages/task/taskInfo",
     "pages/task/taskProcess",
-    "pages/task/taskProcessDetail"
+    "pages/task/taskProcessDetail",
+    "pages/notification/notificationDetail"
   ],
   "window": {
     "backgroundTextStyle": "light",
